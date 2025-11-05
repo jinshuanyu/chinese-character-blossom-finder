@@ -2,383 +2,267 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>花瓣識字查字器（含部首圈）</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>部件 × 注音 對照（花瓣）</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Iansui&display=swap" rel="stylesheet">
   <style>
-    body{font-family:"Iansui", "DFKai-SB", "BiauKai", "KaiTi", "標楷體", serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-    .btn-selected{background:#fb923c;color:#fff;border-color:#f97316}
     .page-hidden{display:none}
-    #petal-container{transition:min-height .3s ease}
-    .petal-char-container,.center-char-container{transform:translateZ(0)}
-    .zhuyin-col{display:flex;flex-direction:column;justify-content:center;align-items:center;line-height:1;margin-left:2px}
-    /* 部首圈小點 */
-    .radical-dot{
-      position:absolute; display:flex; align-items:center; justify-content:center;
-      width:2.25rem; height:2.25rem; border-radius:9999px;
-      background:#f1f5f9; border:2px solid #cbd5e1; font-weight:600;
-      transition:transform .15s ease, background .15s ease, border-color .15s ease;
-      box-shadow:0 2px 6px rgba(0,0,0,.06);
-    }
-    .radical-dot:hover{ transform:scale(1.08); background:#fee2e2; border-color:#fecaca }
-    /* 中心字下方的部首徽章（可選） */
-    .center-radical-badge{
-      position:absolute; bottom:-10px; left:50%; transform:translateX(-50%);
-      background:#fff; border:2px solid #fde68a; color:#b45309;
-      padding:.1rem .4rem; border-radius:9999px; font-weight:700; font-size:.9rem;
-      box-shadow:0 2px 6px rgba(0,0,0,.06);
+    .btn-selected{background:#fed7aa;border-color:#fb923c}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}
+    /* 花瓣舞台 */
+    .petal-stage{position:relative;width:100%;aspect-ratio:1/1;max-width:720px;margin:0 auto;background:#fff;border:1px solid #e5e7eb;border-radius:1rem;box-shadow:0 1px 0 rgba(0,0,0,.02)}
+    .center-node{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(38%,240px);height:min(38%,240px);border:2px solid #f97316;border-radius:1rem;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.25rem}
+    .center-node .char{font-size:clamp(40px,7vw,72px);font-weight:800;line-height:1}
+    .center-node .zy{font-size:clamp(14px,2.5vw,18px);color:#475569}
+    .center-node .rad{font-size:12px;color:#64748b}
+    .petal{position:absolute;transform:translate(-50%,-50%);width:min(30%,180px);height:min(30%,180px);border:1px solid #e5e7eb;border-radius:1rem;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.25rem;box-shadow:0 1px 0 rgba(0,0,0,.02);transition:.15s ease}
+    .petal:hover{border-color:#fb923c;background:#fff7ed;transform:translate(-50%,-50%) scale(1.04)}
+    .petal .char{font-size:clamp(28px,5.2vw,52px);font-weight:800;line-height:1}
+    .petal .zy{font-size:clamp(12px,2vw,16px);color:#475569}
+    .petal .rad{font-size:11px;color:#64748b}
+    .ring-dot{position:absolute;width:10px;height:10px;border-radius:9999px;background:#94a3b8;opacity:.4;transform:translate(-50%,-50%)}
+    @media (max-width:480px){
+      .center-node{width:44%;height:44%}
+      .petal{width:34%;height:34%}
     }
   </style>
 </head>
-<body class="bg-sky-50 text-gray-800">
-  <div class="container mx-auto p-4 md:p-8">
-    <div id="selection-page">
-      <header class="text-center mb-8">
-        <h1 class="text-4xl font-bold text-cyan-600 mb-2">花瓣識字查字器</h1>
-        <p class="text-lg text-gray-600">請先選擇注音，再點擊部件來識字。支援全文檢索 & 部首圈。</p>
-      </header>
-
-      <main class="bg-white rounded-lg shadow-lg p-6 space-y-8">
-        <!-- 🔍 全文檢索 -->
-        <div class="mb-6">
-          <h2 class="text-2xl font-semibold border-b-2 border-cyan-200 pb-2 mb-4">🔍 全文檢索</h2>
-          <div class="flex gap-2 justify-center">
-            <input id="search-input" type="text" placeholder="輸入國字或注音…" 
-                   class="border rounded-lg px-3 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-orange-400">
-            <button id="search-button"
-                    class="bg-orange-400 text-white px-4 py-2 rounded-lg hover:bg-orange-500 transition-colors">
-              搜尋
-            </button>
-          </div>
-          <div id="search-results" class="mt-4 space-y-3"></div>
-        </div>
-
-        <!-- ① 注音 -->
-        <div>
-          <h2 class="text-2xl font-semibold border-b-2 border-cyan-200 pb-2 mb-4">① 選擇注音</h2>
-          <div id="zhuyin-list" class="flex flex-wrap gap-2 justify-center"></div>
-        </div>
-
-        <!-- ② 部件 -->
-        <div>
-          <h2 class="text-2xl font-semibold border-b-2 border-cyan-200 pb-2 mb-4">② 選擇部件</h2>
-          <div id="component-list" class="flex flex-wrap gap-3 min-h-[7rem] items-center justify-center">
-            <p id="component-placeholder" class="text-gray-400">請先選擇注音符號。</p>
-          </div>
-        </div>
-      </main>
-    </div>
-
-    <div id="results-page" class="page-hidden">
-      <header class="text-center mb-8 relative">
-        <button id="back-button" class="absolute left-0 top-1/2 -translate-y-1/2 bg-orange-400 text-white py-2 px-4 rounded-lg hover:bg-orange-500 transition-colors shadow">
-          &larr; 返回
-        </button>
-        <h1 class="text-4xl font-bold text-cyan-600">識字結果</h1>
-      </header>
-
-      <main class="bg-white rounded-lg shadow-lg p-6">
-        <div id="petal-container" class="relative w-full flex justify-center items-center"></div>
-      </main>
-    </div>
-
-    <footer class="text-center mt-8 text-sm text-gray-500 space-y-2">
-      <p>字典連結至 <a href="https://dict.concised.moe.edu.tw/" target="_blank" class="text-blue-500 hover:underline">教育部《國語辭典簡編本》</a>。</p>
-      <div class="pt-4">
-        <a href="https://portaly.cc/mamahowma/support" target="_blank" rel="noopener noreferrer" class="inline-block bg-gradient-to-r from-amber-400 to-orange-500 text-white font-semibold py-2 px-5 rounded-full shadow-md hover:scale-105 transition-transform">
-          支持我繼續創作分享，請我喝杯咖啡吧 ☕
-        </a>
+<body class="bg-orange-50 text-slate-800">
+  <header class="sticky top-0 z-10 bg-white/85 backdrop-blur border-b">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center gap-3">
+      <h1 class="text-xl font-extrabold">部件 × 注音 對照（花瓣）</h1>
+      <div class="ml-auto text-sm text-slate-500">
+        資料：<span class="mono">/data/manifest.json</span> + <span class="mono">/data/*.json</span>
       </div>
-      <p class="pt-4">&copy; 2025 Christina Yu</p>
-    </footer>
-  </div>
+    </div>
+  </header>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
+  <!-- 首頁：注音 → 部件 -->
+  <main id="selection-page" class="max-w-6xl mx-auto px-4 py-6">
+    <section class="mb-6">
+      <h2 class="text-lg font-bold mb-2">注音索引</h2>
+      <div id="zhuyin-list" class="grid grid-cols-12 md:grid-cols-18 gap-2"></div>
+      <p class="text-sm text-slate-500 mt-2">未列於 <span class="mono">/data/manifest.json</span> 的注音會被灰掉。</p>
+    </section>
 
+    <section class="mb-6">
+      <h2 class="text-lg font-bold mb-2">部件</h2>
+      <div id="component-placeholder" class="text-slate-500">請先選一個注音。</div>
+      <div id="component-list" class="grid grid-cols-6 md:grid-cols-10 gap-3"></div>
+    </section>
+  </main>
 
-let componentData = {}; // moved to external files
+  <!-- 詳細頁：花瓣視圖 -->
+  <section id="results-page" class="page-hidden max-w-6xl mx-auto px-4 py-6">
+    <div class="mb-4 flex items-center gap-3">
+      <button id="back-button" class="px-3 py-2 border rounded-md hover:bg-orange-100">&larr; 返回</button>
+      <h2 class="text-lg font-bold">花瓣視圖</h2>
+    </div>
+    <!-- ✅ 你的原容器ID（若你原本叫 petal-container，就沿用；否則這裡也提供） -->
+    <div id="petal-container" class="petal-stage"></div>
+  </section>
 
-async function loadAllComponentData(zhuyinSymbols){
-  try{
-    const res = await fetch('data/manifest.json');
-    const man = res.ok ? await res.json() : { symbols: [] };
-    const available = new Set((man.symbols||[]).map(x=>x.zy));
-    // preload per manifest; symbols not listed -> empty
-    await Promise.all(zhuyinSymbols.map(async (zy)=>{
-      if(available.size && !available.has(zy)){ componentData[zy]=[]; return; }
+  <footer class="max-w-6xl mx-auto px-4 py-10 text-sm text-slate-500">
+    <p>把注音資料拆成 <span class="mono">/data/ㄅ.json</span> …；啟用清單由 <span class="mono">/data/manifest.json</span> 控制。</p>
+  </footer>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // ===== 注音順序 =====
+    const zhuyinSymbols = ["ㄅ","ㄆ","ㄇ","ㄈ","ㄉ","ㄊ","ㄋ","ㄌ","ㄍ","ㄎ","ㄏ","ㄐ","ㄑ","ㄒ","ㄓ","ㄔ","ㄕ","ㄖ","ㄗ","ㄘ","ㄙ","ㄧ","ㄨ","ㄩ","ㄚ","ㄛ","ㄜ","ㄝ","ㄞ","ㄟ","ㄠ","ㄡ","ㄢ","ㄣ","ㄤ","ㄥ","ㄦ"];
+
+    // ===== DOM =====
+    const selectionPage = document.getElementById('selection-page');
+    const resultsPage   = document.getElementById('results-page');
+    const zhuyinList    = document.getElementById('zhuyin-list');
+    const componentList = document.getElementById('component-list');
+    const componentPlaceholder = document.getElementById('component-placeholder');
+    const petalContainer = document.getElementById('petal-container'); // ✅ 花瓣容器固定用這個ID
+    const backButton    = document.getElementById('back-button');
+
+    // ===== 狀態 =====
+    let componentData = {};              // 外部載入
+    let manifest = null;                 // { symbols: [{zy: "ㄅ"}, ...] }
+    let selectedZhuyinBtn = null;
+    let currentItem = null;
+
+    // ===== 載 manifest（只列有資料的注音）=====
+    async function loadManifest(){
       try{
-        const r = await fetch('data/'+encodeURIComponent(zy)+'.json', {cache:'no-store'});
-        if(r.ok){
-          const arr = await r.json();
-          componentData[zy] = Array.isArray(arr)?arr:[];
-        }else{
+        const res = await fetch('data/manifest.json', {cache:'no-store'});
+        if(!res.ok) return { symbols: [] };
+        return await res.json();
+      }catch(e){
+        console.error('loadManifest error', e);
+        return { symbols: [] };
+      }
+    }
+
+    // ===== 依 manifest 載各注音 JSON 到 componentData =====
+    async function loadAllComponentData(zyList){
+      componentData = {};
+      const man = await loadManifest();
+      const available = new Set((man.symbols||[]).map(x=>x.zy));
+      for(const zy of zyList){
+        if(available.size && !available.has(zy)){
+          componentData[zy] = [];
+          continue;
+        }
+        try{
+          const r = await fetch('data/'+encodeURIComponent(zy)+'.json', {cache:'no-store'});
+          if(r.ok){
+            const arr = await r.json();
+            componentData[zy] = Array.isArray(arr) ? arr : [];
+          }else{
+            componentData[zy] = [];
+          }
+        }catch(_){
           componentData[zy] = [];
         }
-      }catch(_){
-        componentData[zy] = [];
       }
-    }));
-  }catch(e){
-    console.error('loadAllComponentData failed', e);
-  }
-}
-const zhuyinSymbols = ["ㄅ","ㄆ","ㄇ","ㄈ","ㄉ","ㄊ","ㄋ","ㄌ","ㄍ","ㄎ","ㄏ","ㄐ","ㄑ","ㄒ","ㄓ","ㄔ","ㄕ","ㄖ","ㄗ","ㄘ","ㄙ","ㄧ","ㄨ","ㄩ","ㄚ","ㄛ","ㄜ","ㄝ","ㄞ","ㄟ","ㄠ","ㄡ","ㄢ","ㄣ","ㄤ","ㄥ","ㄦ"];
-  const selectionPage        = document.getElementById('selection-page');
-  const resultsPage          = document.getElementById('results-page');
-  const zhuyinList           = document.getElementById('zhuyin-list');
-  const componentList        = document.getElementById('component-list');
-  const componentPlaceholder = document.getElementById('component-placeholder');
-  const petalContainer       = document.getElementById('petal-container');
-  const backButton           = document.getElementById('back-button');
-
-  let selectedZhuyinBtn=null, currentItem=null;
-
-  
-  // load external data first, then render buttons
-  (async function initButtons(){
-    await loadAllComponentData(zhuyinSymbols);
-
-  zhuyinSymbols.forEach(symbol=>{
-    const btn=document.createElement('button');
-    btn.textContent=symbol; btn.dataset.zhuyin=symbol;
-    const has = (componentData[symbol]||[]).length>0;
-    if(!has){
-      btn.disabled=true;
-      btn.className="text-lg border-2 border-gray-200 bg-gray-100 text-gray-400 rounded-md w-10 h-10 flex items-center justify-center cursor-not-allowed opacity-50";
-    }else{
-      btn.className="text-lg border-2 border-gray-300 rounded-md w-10 h-10 flex items-center justify-center cursor-pointer transition-colors hover:bg-orange-100";
-      btn.addEventListener('click', handleZhuyinClick);
     }
-    zhuyinList.appendChild(btn);
-  });
-  })();
 
-  function handleZhuyinClick(e){
-    const zy=e.target.dataset.zhuyin;
-    const items=componentData[zy]||[];
-    if(selectedZhuyinBtn) selectedZhuyinBtn.classList.remove('btn-selected');
-    selectedZhuyinBtn=e.target; selectedZhuyinBtn.classList.add('btn-selected');
+    // ===== 入口：載入 → 畫按鈕 =====
+    (async function init(){
+      manifest = await loadManifest();
+      await loadAllComponentData(zhuyinSymbols);
+      renderZhuyinButtons();
+    })();
 
-    componentList.innerHTML='';
-    if(items.length){
-      componentPlaceholder.style.display='none';
-      items.forEach(item=>{
-        const b=document.createElement('button');
-        b.textContent=item.component.char;
-        b.className="text-2xl font-bold border-2 border-gray-300 rounded-lg w-16 h-16 flex items-center justify-center cursor-pointer transition-all hover:bg-orange-100 hover:border-orange-400";
-        b.addEventListener('click', ()=>handleComponentClick(item));
-        componentList.appendChild(b);
+    // ===== 畫注音按鈕（未列於 manifest 的灰掉）=====
+    function renderZhuyinButtons(){
+      const available = new Set((manifest.symbols||[]).map(x=>x.zy));
+      zhuyinList.innerHTML = '';
+      zhuyinSymbols.forEach(symbol=>{
+        const btn = document.createElement('button');
+        btn.textContent = symbol; btn.dataset.zhuyin = symbol;
+        const hasData = (componentData[symbol]||[]).length > 0;
+        const enabled = available.size ? available.has(symbol) : true;
+
+        if(!enabled || !hasData){
+          // ✅ 兩條件任一不符就灰掉（你要的是預先灰掉沒資料）
+          btn.disabled = true;
+          btn.className = "text-lg border-2 border-gray-200 bg-gray-100 text-gray-400 rounded-md w-10 h-10 flex items-center justify-center cursor-not-allowed opacity-50";
+        }else{
+          btn.className = "text-lg border-2 border-gray-300 rounded-md w-10 h-10 flex items-center justify-center cursor-pointer transition-colors hover:bg-orange-100";
+          btn.addEventListener('click', handleZhuyinClick);
+        }
+        zhuyinList.appendChild(btn);
       });
-    }else{
-      componentPlaceholder.style.display='block';
-      componentPlaceholder.textContent='這個注音沒有對應的部件喔！';
     }
-  }
-  function handleComponentClick(item){
-    currentItem=item;
-    selectionPage.classList.add('page-hidden');
-    resultsPage.classList.remove('page-hidden');
-    renderPetalView(item);
-  }
-  backButton.addEventListener('click', ()=>{
-    resultsPage.classList.add('page-hidden');
-    selectionPage.classList.remove('page-hidden');
-  });
 
-/* =========================
-     ⑤ 螢幕佈局（半徑、尺寸）
-     ========================= */
-function computeLayout(petalCount){
-  const W = window.innerWidth;
-  const isNarrow = W < 390;     
-  const isMobile = W < 640 && !isNarrow;
+    // ===== 點注音 → 列部件按鈕 =====
+    function handleZhuyinClick(e){
+      const zy = e.currentTarget.dataset.zhuyin;
+      const items = componentData[zy] || [];
 
-  let centerWH, centerText, size, centerRadius, dotRadius, petalRadius;
-  const dotSizeNarrow = 32; 
-  const dotSizeDesktop = 36; 
+      if (selectedZhuyinBtn) selectedZhuyinBtn.classList.remove('btn-selected');
+      selectedZhuyinBtn = e.currentTarget; selectedZhuyinBtn.classList.add('btn-selected');
 
-  if(isNarrow){
-    // 直徑加大
-    centerWH = 'w-24 h-24'; centerText = 'text-4xl';
-    centerRadius = 48; // 96px / 2
-    dotRadius = dotSizeNarrow / 2;
-
-    if(petalCount<=8){   
-      size={container:'w-20 h-20', char:'text-4xl', zhuyin:'text-sm', tone:'text-sm'}; 
-      petalRadius = 40; // 80px / 2
-    } else if(petalCount<=12){ 
-      size={container:'w-[72px] h-[72px]', char:'text-3xl',  zhuyin:'text-xs', tone:'text-xs'};
-      petalRadius = 36; // 72px / 2
-    } else{                
-      size={container:'w-16 h-16', char:'text-lg',  zhuyin:'text-[10px]', tone:'text-[10px]'};
-      petalRadius = 32;
-    }
-  } else if(isMobile){
-    // 字體放大
-    centerWH = 'w-24 h-24'; centerText = 'text-4xl';
-    centerRadius = 48; // 96px / 2
-    dotRadius = dotSizeNarrow / 2;
-
-    if(petalCount<=8){   
-      size={container:'w-20 h-20', char:'text-4xl', zhuyin:'text-sm', tone:'text-sm'}; 
-      petalRadius = 40; // 80px / 2
-    } else if(petalCount<=12){ 
-      size={container:'w-[76px] h-[76px]', char:'text-4xl', zhuyin:'text-sm', tone:'text-sm'}; 
-      petalRadius = 38;
-    } else{                
-      size={container:'w-16 h-16', char:'text-3xl', zhuyin:'text-xs', tone:'text-xs'};
-      petalRadius = 32; // 64px / 2
-    }
-  } else { // Desktop
-    centerWH = 'w-28 h-28'; centerText = 'text-5xl';
-    centerRadius = 56; // 112px / 2
-    dotRadius = dotSizeDesktop / 2;
-
-    if(petalCount<=8){
-      size={container:'w-24 h-24', char:'text-4xl', zhuyin:'text-sm', tone:'text-sm'};
-      petalRadius = 48; // 96px / 2
-    } else if(petalCount<=12){
-      size={container:'w-20 h-20', char:'text-4xl', zhuyin:'text-sm', tone:'text-sm'};
-      petalRadius = 40; // 80px / 2
-    } else{
-      size={container:'w-16 h-16', char:'text-2xl', zhuyin:'text-xs', tone:'text-xs'};
-      petalRadius = 32; // 64px / 2
-    }
-  }
-
-  const centerBorderWidth = 4; 
-
-  const R2 = centerRadius + centerBorderWidth + dotRadius;
-  const R = R2 + dotRadius + petalRadius;
-
-  const totalDiameter = (R + petalRadius) * 2;
-  const minH = totalDiameter + 40; 
-
-  return { isNarrow, isMobile, centerWH, centerText, R, size, R2, minH };
-}
-  /* =========================
-     ⑥ 花瓣 / 部首圈
-     ========================= */
-  function createZhuyinHTML(zhuyinString, sizeClass, charClass){
-    const tones=['ˊ','ˇ','ˋ','˙'];
-    const last=zhuyinString ? zhuyinString.slice(-1) : '';
-    let base='', tone='';
-    if(tones.includes(last)){ base=zhuyinString.slice(0,-1); tone=last; }
-    else{ base=zhuyinString||''; tone=''; }
-    return base.split('').map((ch,i)=>{
-      if(i===base.length-1 && tone){
-        return `<span class="relative ${charClass}">${ch}<span class="absolute -top-1 -right-3 ${sizeClass}">${tone}</span></span>`;
+      componentList.innerHTML = '';
+      if (items.length) {
+        componentPlaceholder.style.display = 'none';
+        items.forEach(item => {
+          const b = document.createElement('button');
+          b.className = "text-2xl font-bold border-2 border-gray-300 rounded-lg w-16 h-16 flex items-center justify-center cursor-pointer transition-all hover:bg-orange-100 hover:border-orange-400";
+          b.textContent = item.component.char;
+          b.addEventListener('click', () => handleComponentClick(item));
+          componentList.appendChild(b);
+        });
+      } else {
+        componentPlaceholder.style.display = 'block';
+        componentPlaceholder.textContent = '這個注音目前沒有資料。';
       }
-      return `<span class="${charClass}">${ch}</span>`;
-    }).join('');
-  }
-
-  function createPetalElement(charObj,size){
-    const link=document.createElement('a');
-    link.href=`https://dict.concised.moe.edu.tw/search.jsp?word=${encodeURIComponent(charObj.char)}`;
-    link.target='_blank'; link.rel='noopener noreferrer';
-
-    const wrap=document.createElement('div');
-    wrap.className=`absolute flex items-center justify-center bg-pink-200 border-2 border-pink-300 rounded-full ${size.container} transition-transform hover:scale-110 hover:bg-pink-300 shadow petal-char-container`;
-
-    const big=document.createElement('span');
-    big.className=`${size.char} font-medium`; big.textContent=charObj.char;
-
-    const zy=document.createElement('div');
-    zy.className='zhuyin-col text-gray-600';
-    zy.innerHTML=createZhuyinHTML(charObj.zhuyin||'', size.tone, size.zhuyin);
-
-    wrap.appendChild(big); wrap.appendChild(zy); link.appendChild(wrap);
-    return { link, container:wrap };
-  }
-
-  // MODIFIED: This function has been updated to create larger radical dots with bigger text.
-  function createRadicalDot(label,isNarrow,isMobile){
-    const txt = canonicalRad(label);
-    const el=document.createElement('div');
-    // 放大尺寸與字級
-const cls = isNarrow
-  ? 'w-8 h-8 text-sm' // 稍微大一點
-  : (isMobile ? 'w-8 h-8 text-sm' : 'w-9 h-9 text-base'); // 再大一點
-    el.className = `radical-dot absolute bg-emerald-100 border border-emerald-300 rounded-full ${cls} flex items-center justify-center text-emerald-700 shadow font-normal`;
-    el.textContent = txt || '';
-    el.style.pointerEvents = 'none'; // 不擋點擊
-    return el;
-  }
-
-  function renderPetalView(item){
-    petalContainer.innerHTML='';
-    const characters=item.characters||[];
-    const n=characters.length;
-    const L=computeLayout(n);
-
-    // 中心（部件→簡編本）
-    const centerLink=document.createElement('a');
-    centerLink.href=`https://dict.concised.moe.edu.tw/search.jsp?word=${encodeURIComponent(item.component.char)}`;
-    centerLink.target='_blank'; centerLink.rel='noopener noreferrer';
-
-    const centerDiv=document.createElement('div');
-    centerDiv.className=`center-char-container absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-yellow-200 border-4 border-yellow-300 rounded-full ${L.centerWH} flex items-center justify-center z-20 transition-transform hover:scale-110 shadow-lg`;
-
-    const centerChar=document.createElement('span');
-    centerChar.className=`${L.centerText} font-bold`;
-    centerChar.textContent=item.component.char;
-
-    const centerZh=document.createElement('div');
-    centerZh.className="zhuyin-col text-gray-700 font-medium";
-    centerZh.innerHTML=createZhuyinHTML(item.component.zhuyin||'', 'text-sm', 'text-sm');
-
-    centerDiv.appendChild(centerChar);
-    centerDiv.appendChild(centerZh);
-
-    // ✅ 中心也顯示「部首正字」：放在圓內下緣的綠色膠囊
-    if(item.component.radical){
-      const pill=document.createElement('div');
-      pill.className='absolute -bottom-1 left-1/2 -translate-x-1/2 bg-emerald-100 text-emerald-800 border border-emerald-300 rounded-full px-2 py-[2px] text-sm';
-      pill.textContent = canonicalRad(item.component.radical);
-      centerDiv.appendChild(pill);
     }
 
-    centerLink.appendChild(centerDiv);
-    petalContainer.appendChild(centerLink);
+    // ===== 點部件 → 切頁 + 花瓣渲染 =====
+    function handleComponentClick(item){
+      currentItem = item;
+      selectionPage.classList.add('page-hidden');
+      resultsPage.classList.remove('page-hidden');
+      renderPetalView(item); // ✅ 關鍵：渲染花瓣
+    }
 
-    petalContainer.style.minHeight = L.minH + 'px';
+    backButton.addEventListener('click', ()=>{
+      resultsPage.classList.add('page-hidden');
+      selectionPage.classList.remove('page-hidden');
+      currentItem = null;
+      // 回來時保持已選注音與部件清單
+    });
 
-    // 外圈花瓣
-    const step=(2*Math.PI)/Math.max(n,1);
-    characters.forEach((c,i)=>{
-      const a = i*step - Math.PI/2;
-      const x = Math.cos(a)*L.R;
-      const y = Math.sin(a)*L.R;
+    // ===== 花瓣布局：等角圓環 =====
+    function computeLayout(count){
+      const pts = [];
+      if(count<=0) return pts;
+      const R = 42; // 半徑（占容器%）
+      const startDeg = -90; // 由上方開始
+      for(let i=0;i<count;i++){
+        const ang = (startDeg + i*(360/count)) * Math.PI/180;
+        const x = 50 + R*Math.cos(ang);
+        const y = 50 + R*Math.sin(ang);
+        pts.push({x,y});
+      }
+      return pts;
+    }
 
-      const {link,container}=createPetalElement(c,L.size);
-      container.style.transform=`translate(-50%,-50%) translate(${x}px,${y}px)`;
-      container.style.top='50%'; container.style.left='50%';
-      petalContainer.appendChild(link);
+    // ===== 真的畫花瓣 =====
+    function renderPetalView(item){
+      const chars = Array.isArray(item.characters) ? item.characters : [];
+      const pts = computeLayout(chars.length);
 
-      // ✅ 部首圈（正字、不設 title）
-      if(c.radical){
-        const rx = Math.cos(a)*L.R2, ry = Math.sin(a)*L.R2;
-        const dot = createRadicalDot(c.radical, L.isNarrow, L.isMobile);
-        dot.style.left='50%'; dot.style.top='50%';
-        dot.style.transform=`translate(-50%,-50%) translate(${rx}px,${ry}px)`;
-        petalContainer.appendChild(dot);
+      // 清空舞台
+      petalContainer.innerHTML = '';
+      petalContainer.classList.add('petal-stage'); // 保險：若外層沒class則補上
+
+      // 中心
+      const center = document.createElement('div');
+      center.className = 'center-node';
+      center.innerHTML = `
+        <div class="char">${item.component.char}</div>
+        <div class="zy">${item.component.zhuyin || ''}</div>
+        <div class="rad">部首：${normalizeRad(item.component.radical || '')}</div>
+      `;
+      petalContainer.appendChild(center);
+
+      // 輔助點（四方位）
+      [0,90,180,270].forEach(a=>{
+        const ang=a*Math.PI/180, R=42;
+        const x=50+R*Math.cos(ang), y=50+R*Math.sin(ang);
+        const d=document.createElement('div');
+        d.className='ring-dot'; d.style.left=x+'%'; d.style.top=y+'%';
+        petalContainer.appendChild(d);
+      });
+
+      // 花瓣
+      chars.forEach((c,idx)=>{
+        const p = document.createElement('div');
+        p.className = 'petal';
+        p.style.left = pts[idx].x+'%';
+        p.style.top  = pts[idx].y+'%';
+        p.innerHTML = `
+          <div class="char">${c.char}</div>
+          <div class="zy">${c.zhuyin || ''}</div>
+          <div class="rad">部首：${normalizeRad(c.radical || '')}</div>
+        `;
+        petalContainer.appendChild(p);
+      });
+    }
+
+    // ===== 偏旁正字化（維持你既有習慣）=====
+    const RAD_NORMALIZE = new Map(Object.entries({
+      "亻":"人","衤":"衣","氵":"水","月":"肉","⺼":"肉","扌":"手","忄":"心","犭":"犬",
+      "飠":"食","饣":"食","礻":"示","艹":"艸","艸":"艸","糹":"糸","纟":"糸","钅":"金","釒":"金",
+      "讠":"言","辶":"辵","阝":"阜"
+    }));
+    function normalizeRad(rad){ return RAD_NORMALIZE.get(rad) || rad || ''; }
+
+    // ===== RWD：縮放時重畫（保持視覺中心）=====
+    window.addEventListener('resize', ()=>{
+      if(!resultsPage.classList.contains('page-hidden') && currentItem){
+        renderPetalView(currentItem);
       }
     });
-  }
-
-  // 尺寸改變時，仍會重排
-  window.addEventListener('resize', ()=>{
-    if(!resultsPage.classList.contains('page-hidden') && currentItem){
-      renderPetalView(currentItem);
-    }
   });
-});
-</script>
-
-
+  </script>
 </body>
 </html>
-
