@@ -221,7 +221,8 @@
      * @returns {Promise<Array<Object>>} - 資料陣列。
      */
     async function fetchData(zhuyin) {
-      const filename = `${zhuyin}.json`;
+      // *** 調整路徑：從 data/ 取用注音符號檔案 ***
+      const filename = `data/${zhuyin}.json`; 
       loadingMessage.textContent = `正在載入 ${filename}...`;
       loadingMessage.classList.remove('page-hidden');
       
@@ -277,7 +278,9 @@
         renderPetals(currentData);
       } catch (error) {
         console.error(`Failed to load data for ${zhuyin}:`, error);
-        petalContainer.innerHTML = `<div class="p-8 text-red-600 text-center text-lg font-bold">載入 ${zhuyin}.json 資料失敗。<br>請檢查檔案路徑與內容是否正確。</div>`;
+        // 錯誤訊息中顯示完整路徑
+        const filePath = `data/${zhuyin}.json`;
+        petalContainer.innerHTML = `<div class="p-8 text-red-600 text-center text-lg font-bold">載入 ${filePath} 資料失敗。<br>請檢查檔案路徑與內容是否正確。</div>`;
         loadingMessage.classList.add('page-hidden');
       }
     }
@@ -288,10 +291,12 @@
     async function loadInitialData() {
       try {
         // 1. 載入 manifest.json
-        loadingMessage.textContent = '正在載入注音符號清單...';
-        const manifestResponse = await fetch('manifest.json');
+        // *** 調整路徑：從 data/manifest.json 取用清單檔案 ***
+        const manifestPath = 'data/manifest.json';
+        loadingMessage.textContent = `正在載入注音符號清單 (${manifestPath})...`;
+        const manifestResponse = await fetch(manifestPath);
         if (!manifestResponse.ok) {
-          throw new Error(`Failed to load manifest.json: ${manifestResponse.status}`);
+          throw new Error(`Failed to load manifest.json from ${manifestPath}: ${manifestResponse.status}`);
         }
         const manifest = await manifestResponse.json();
 
