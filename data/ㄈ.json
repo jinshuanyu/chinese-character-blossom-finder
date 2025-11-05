@@ -1,0 +1,183 @@
+[
+  {
+    "component": {
+      "char": "弗",
+      "zhuyin": "ㄈㄨˊ",
+      "radical": "弓"
+    },
+    "characters": [
+      {
+        "char": "佛",
+        "zhuyin": "ㄈㄛˊ",
+        "radical": "人"
+      },
+      {
+        "char": "沸",
+        "zhuyin": "ㄈㄟˋ",
+        "radical": "水"
+      },
+      {
+        "char": "狒",
+        "zhuyin": "ㄈㄟˋ",
+        "radical": "犬"
+      },
+      {
+        "char": "拂",
+        "zhuyin": "ㄈㄨˊ",
+        "radical": "手"
+      },
+      {
+        "char": "彿",
+        "zhuyin": "ㄈㄨˊ",
+        "radical": "彳"
+      },
+      {
+        "char": "費",
+        "zhuyin": "ㄈㄟˋ",
+        "radical": "貝"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "分",
+      "zhuyin": "ㄈㄣ",
+      "radical": "刀"
+    },
+    "characters": [
+      {
+        "char": "份",
+        "zhuyin": "ㄈㄣˋ",
+        "radical": "人"
+      },
+      {
+        "char": "粉",
+        "zhuyin": "ㄈㄣˇ",
+        "radical": "米"
+      },
+      {
+        "char": "芬",
+        "zhuyin": "ㄈㄣ",
+        "radical": "艸"
+      },
+      {
+        "char": "紛",
+        "zhuyin": "ㄈㄣ",
+        "radical": "糸"
+      },
+      {
+        "char": "忿",
+        "zhuyin": "ㄈㄣˋ",
+        "radical": "心"
+      },
+      {
+        "char": "氛",
+        "zhuyin": "ㄈㄣ",
+        "radical": "气"
+      },
+      {
+        "char": "吩",
+        "zhuyin": "ㄈㄣ",
+        "radical": "口"
+      },
+      {
+        "char": "頒",
+        "zhuyin": "ㄅㄢ",
+        "radical": "頁"
+      },
+      {
+        "char": "盼",
+        "zhuyin": "ㄆㄢˋ",
+        "radical": "目"
+      },
+      {
+        "char": "貧",
+        "zhuyin": "ㄆㄧㄣˊ",
+        "radical": "貝"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "凡",
+      "zhuyin": "ㄈㄢˊ",
+      "radical": "几"
+    },
+    "characters": [
+      {
+        "char": "梵",
+        "zhuyin": "ㄈㄢˋ",
+        "radical": "木"
+      },
+      {
+        "char": "帆",
+        "zhuyin": "ㄈㄢ",
+        "radical": "巾"
+      },
+      {
+        "char": "汎",
+        "zhuyin": "ㄈㄢˋ",
+        "radical": "水"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "方",
+      "zhuyin": "ㄈㄤ",
+      "radical": "方"
+    },
+    "characters": [
+      {
+        "char": "放",
+        "zhuyin": "ㄈㄤˋ",
+        "radical": "攴"
+      },
+      {
+        "char": "房",
+        "zhuyin": "ㄈㄤˊ",
+        "radical": "戶"
+      },
+      {
+        "char": "防",
+        "zhuyin": "ㄈㄤˊ",
+        "radical": "阜"
+      },
+      {
+        "char": "坊",
+        "zhuyin": "ㄈㄤ",
+        "radical": "土"
+      },
+      {
+        "char": "芳",
+        "zhuyin": "ㄈㄤ",
+        "radical": "艸"
+      },
+      {
+        "char": "仿",
+        "zhuyin": "ㄈㄤˇ",
+        "radical": "人"
+      },
+      {
+        "char": "訪",
+        "zhuyin": "ㄈㄤˇ",
+        "radical": "言"
+      },
+      {
+        "char": "妨",
+        "zhuyin": "ㄈㄤˊ",
+        "radical": "女"
+      },
+      {
+        "char": "紡",
+        "zhuyin": "ㄈㄤˇ",
+        "radical": "糸"
+      },
+      {
+        "char": "旁",
+        "zhuyin": "ㄆㄤˊ",
+        "radical": "方"
+      }
+    ]
+  }
+]

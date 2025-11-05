@@ -1,0 +1,60 @@
+[
+  {
+    "component": {
+      "char": "咢",
+      "zhuyin": "ㄜˋ",
+      "radical": "口"
+    },
+    "characters": [
+      {
+        "char": "顎",
+        "zhuyin": "ㄜˋ",
+        "radical": "頁"
+      },
+      {
+        "char": "萼",
+        "zhuyin": "ㄜˋ",
+        "radical": "艸"
+      },
+      {
+        "char": "鄂",
+        "zhuyin": "ㄜˋ",
+        "radical": "阝"
+      },
+      {
+        "char": "愕",
+        "zhuyin": "ㄜˋ",
+        "radical": "心"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "厄",
+      "zhuyin": "ㄜˋ",
+      "radical": "厂"
+    },
+    "characters": [
+      {
+        "char": "呃",
+        "zhuyin": "ㄜˋ",
+        "radical": "口"
+      },
+      {
+        "char": "軛",
+        "zhuyin": "ㄜˋ",
+        "radical": "車"
+      },
+      {
+        "char": "扼",
+        "zhuyin": "ㄜˋ",
+        "radical": "手"
+      },
+      {
+        "char": "砈",
+        "zhuyin": "ㄜˋ",
+        "radical": "石"
+      }
+    ]
+  }
+]

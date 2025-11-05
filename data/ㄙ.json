@@ -1,0 +1,109 @@
+[
+  {
+    "component": {
+      "char": "叟",
+      "zhuyin": "ㄙㄡˇ",
+      "radical": "又"
+    },
+    "characters": [
+      {
+        "char": "嫂",
+        "zhuyin": "ㄙㄠˇ",
+        "radical": "女"
+      },
+      {
+        "char": "搜",
+        "zhuyin": "ㄙㄡ",
+        "radical": "手"
+      },
+      {
+        "char": "瘦",
+        "zhuyin": "ㄕㄡˋ",
+        "radical": "疒"
+      },
+      {
+        "char": "艘",
+        "zhuyin": "ㄙㄠ",
+        "radical": "舟"
+      },
+      {
+        "char": "嗖",
+        "zhuyin": "ㄙㄡ",
+        "radical": "口"
+      },
+      {
+        "char": "餿",
+        "zhuyin": "ㄙㄡ",
+        "radical": "食"
+      },
+      {
+        "char": "颼",
+        "zhuyin": "ㄙㄡ",
+        "radical": "風"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "遂",
+      "zhuyin": "ㄙㄨㄟˋ",
+      "radical": "辵"
+    },
+    "characters": [
+      {
+        "char": "燧",
+        "zhuyin": "ㄙㄨㄟˋ",
+        "radical": "火"
+      },
+      {
+        "char": "隧",
+        "zhuyin": "ㄙㄨㄟˋ",
+        "radical": "阜"
+      },
+      {
+        "char": "邃",
+        "zhuyin": "ㄙㄨㄟˋ",
+        "radical": "穴"
+      },
+      {
+        "char": "隊",
+        "zhuyin": "ㄉㄨㄟˋ",
+        "radical": "阜"
+      },
+      {
+        "char": "墜",
+        "zhuyin": "ㄓㄨㄟˋ",
+        "radical": "土"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "寺",
+      "zhuyin": "ㄙˋ",
+      "radical": "寸"
+    },
+    "characters": [
+      {
+        "char": "時",
+        "zhuyin": "ㄕˊ",
+        "radical": "日"
+      },
+      {
+        "char": "詩",
+        "zhuyin": "ㄕ",
+        "radical": "言"
+      },
+      {
+        "char": "侍",
+        "zhuyin": "ㄕˋ",
+        "radical": "人"
+      },
+      {
+        "char": "持",
+        "zhuyin": "ㄔˊ",
+        "radical": "手"
+      }
+    ]
+  }
+]

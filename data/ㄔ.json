@@ -1,0 +1,99 @@
+[
+  {
+    "component": {
+      "char": "豖",
+      "zhuyin": "ㄔㄨˋ",
+      "radical": "豕"
+    },
+    "characters": [
+      {
+        "char": "啄",
+        "zhuyin": "ㄓㄨㄛˊ",
+        "radical": "口"
+      },
+      {
+        "char": "琢",
+        "zhuyin": "ㄓㄨㄛˊ",
+        "radical": "玉"
+      },
+      {
+        "char": "涿",
+        "zhuyin": "ㄓㄨㄛˊ",
+        "radical": "水"
+      },
+      {
+        "char": "䐁",
+        "zhuyin": "ㄓㄨㄛˊ",
+        "radical": "肉"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "巛",
+      "zhuyin": "ㄔㄨㄢ",
+      "radical": "巛"
+    },
+    "characters": [
+      {
+        "char": "巡",
+        "zhuyin": "ㄒㄩㄣˊ",
+        "radical": "巛"
+      },
+      {
+        "char": "災",
+        "zhuyin": "ㄗㄞ",
+        "radical": "火"
+      },
+      {
+        "char": "巢",
+        "zhuyin": "ㄔㄠˊ",
+        "radical": "巛"
+      },
+      {
+        "char": "川",
+        "zhuyin": "ㄔㄨㄢ",
+        "radical": "巛"
+      },
+      {
+        "char": "州",
+        "zhuyin": "ㄓㄡ",
+        "radical": "川"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "叉",
+      "zhuyin": "ㄔㄚ",
+      "radical": "又"
+    },
+    "characters": [
+      {
+        "char": "釵",
+        "zhuyin": "ㄔㄞ",
+        "radical": "金"
+      },
+      {
+        "char": "蚤",
+        "zhuyin": "ㄗㄠˇ",
+        "radical": "虫"
+      },
+      {
+        "char": "騷",
+        "zhuyin": "ㄙㄠ",
+        "radical": "馬"
+      },
+      {
+        "char": "搔",
+        "zhuyin": "ㄙㄠ",
+        "radical": "手"
+      },
+      {
+        "char": "衩",
+        "zhuyin": "ㄔㄚˋ",
+        "radical": "衣"
+      }
+    ]
+  }
+]

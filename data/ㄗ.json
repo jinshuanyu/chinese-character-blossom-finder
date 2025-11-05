@@ -1,0 +1,46 @@
+[
+  {
+    "component": {
+      "char": "卒",
+      "zhuyin": "ㄗㄨˊ",
+      "radical": "十"
+    },
+    "characters": [
+      {
+        "char": "碎",
+        "zhuyin": "ㄙㄨㄟˋ",
+        "radical": "石"
+      },
+      {
+        "char": "醉",
+        "zhuyin": "ㄗㄨㄟˋ",
+        "radical": "酉"
+      },
+      {
+        "char": "翠",
+        "zhuyin": "ㄘㄨㄟˋ",
+        "radical": "羽"
+      },
+      {
+        "char": "粹",
+        "zhuyin": "ㄘㄨㄟˋ",
+        "radical": "米"
+      },
+      {
+        "char": "萃",
+        "zhuyin": "ㄘㄨㄟˋ",
+        "radical": "艸"
+      },
+      {
+        "char": "悴",
+        "zhuyin": "ㄘㄨㄟˋ",
+        "radical": "心"
+      },
+      {
+        "char": "猝",
+        "zhuyin": "ㄘㄨˋ",
+        "radical": "犬"
+      }
+    ]
+  }
+]

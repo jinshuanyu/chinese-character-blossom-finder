@@ -1,0 +1,46 @@
+[
+  {
+    "component": {
+      "char": "安",
+      "zhuyin": "ㄢ",
+      "radical": "宀"
+    },
+    "characters": [
+      {
+        "char": "按",
+        "zhuyin": "ㄢˋ",
+        "radical": "手"
+      },
+      {
+        "char": "案",
+        "zhuyin": "ㄢˋ",
+        "radical": "木"
+      },
+      {
+        "char": "胺",
+        "zhuyin": "ㄢ",
+        "radical": "肉"
+      },
+      {
+        "char": "氨",
+        "zhuyin": "ㄢ",
+        "radical": "气"
+      },
+      {
+        "char": "鞍",
+        "zhuyin": "ㄢ",
+        "radical": "革"
+      },
+      {
+        "char": "桉",
+        "zhuyin": "ㄢ",
+        "radical": "木"
+      },
+      {
+        "char": "鮟",
+        "zhuyin": "ㄢ",
+        "radical": "魚"
+      }
+    ]
+  }
+]

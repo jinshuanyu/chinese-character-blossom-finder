@@ -1,0 +1,168 @@
+[
+  {
+    "component": {
+      "char": "亡",
+      "zhuyin": "ㄨㄤˊ",
+      "radical": "亠"
+    },
+    "characters": [
+      {
+        "char": "妄",
+        "zhuyin": "ㄨㄤˋ",
+        "radical": "女"
+      },
+      {
+        "char": "忙",
+        "zhuyin": "ㄇㄤˊ",
+        "radical": "心"
+      },
+      {
+        "char": "盲",
+        "zhuyin": "ㄇㄤˊ",
+        "radical": "目"
+      },
+      {
+        "char": "芒",
+        "zhuyin": "ㄇㄤˊ",
+        "radical": "艸"
+      },
+      {
+        "char": "茫",
+        "zhuyin": "ㄇㄤˊ",
+        "radical": "艸"
+      },
+      {
+        "char": "氓",
+        "zhuyin": "ㄇㄤˊ",
+        "radical": "民"
+      },
+      {
+        "char": "忘",
+        "zhuyin": "ㄨㄤˋ",
+        "radical": "心"
+      },
+      {
+        "char": "荒",
+        "zhuyin": "ㄏㄨㄤ",
+        "radical": "艸"
+      },
+      {
+        "char": "慌",
+        "zhuyin": "ㄏㄨㄤ",
+        "radical": "心"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "宛",
+      "zhuyin": "ㄨㄢˇ",
+      "radical": "宀"
+    },
+    "characters": [
+      {
+        "char": "碗",
+        "zhuyin": "ㄨㄢˇ",
+        "radical": "石"
+      },
+      {
+        "char": "婉",
+        "zhuyin": "ㄨㄢˇ",
+        "radical": "女"
+      },
+      {
+        "char": "腕",
+        "zhuyin": "ㄨㄢˋ",
+        "radical": "肉"
+      },
+      {
+        "char": "惋",
+        "zhuyin": "ㄨㄢˇ",
+        "radical": "心"
+      },
+      {
+        "char": "蜿",
+        "zhuyin": "ㄨㄢ",
+        "radical": "虫"
+      },
+      {
+        "char": "剜",
+        "zhuyin": "ㄨㄢ",
+        "radical": "刀"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "危",
+      "zhuyin": "ㄨㄟˊ",
+      "radical": "卩"
+    },
+    "characters": [
+      {
+        "char": "跪",
+        "zhuyin": "ㄍㄨㄟˋ",
+        "radical": "足"
+      },
+      {
+        "char": "詭",
+        "zhuyin": "ㄍㄨㄟˇ",
+        "radical": "言"
+      },
+      {
+        "char": "桅",
+        "zhuyin": "ㄨㄟˊ",
+        "radical": "木"
+      },
+      {
+        "char": "脆",
+        "zhuyin": "ㄘㄨㄟˋ",
+        "radical": "肉"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "我",
+      "zhuyin": "ㄨㄛˇ",
+      "radical": "戈"
+    },
+    "characters": [
+      {
+        "char": "哦",
+        "zhuyin": "ㄜˊ",
+        "radical": "口"
+      },
+      {
+        "char": "餓",
+        "zhuyin": "ㄜˋ",
+        "radical": "食"
+      },
+      {
+        "char": "俄",
+        "zhuyin": "ㄜˊ",
+        "radical": "人"
+      },
+      {
+        "char": "鵝",
+        "zhuyin": "ㄜˊ",
+        "radical": "鳥"
+      },
+      {
+        "char": "娥",
+        "zhuyin": "ㄜˊ",
+        "radical": "女"
+      },
+      {
+        "char": "蛾",
+        "zhuyin": "ㄜˊ",
+        "radical": "虫"
+      },
+      {
+        "char": "峨",
+        "zhuyin": "ㄜˊ",
+        "radical": "山"
+      }
+    ]
+  }
+]

@@ -1,0 +1,158 @@
+[
+  {
+    "component": {
+      "char": "秋",
+      "zhuyin": "ㄑㄧㄡ",
+      "radical": "禾"
+    },
+    "characters": [
+      {
+        "char": "鰍",
+        "zhuyin": "ㄑㄧㄡ",
+        "radical": "魚"
+      },
+      {
+        "char": "啾",
+        "zhuyin": "ㄐㄧㄡ",
+        "radical": "口"
+      },
+      {
+        "char": "揪",
+        "zhuyin": "ㄐㄧㄡ",
+        "radical": "手"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "求",
+      "zhuyin": "ㄑㄧㄡˊ",
+      "radical": "水"
+    },
+    "characters": [
+      {
+        "char": "球",
+        "zhuyin": "ㄑㄧㄡˊ",
+        "radical": "玉"
+      },
+      {
+        "char": "毬",
+        "zhuyin": "ㄑㄧㄡˊ",
+        "radical": "毛"
+      },
+      {
+        "char": "裘",
+        "zhuyin": "ㄑㄧㄡˊ",
+        "radical": "衣"
+      },
+      {
+        "char": "逑",
+        "zhuyin": "ㄑㄧㄡˊ",
+        "radical": "辶"
+      },
+      {
+        "char": "救",
+        "zhuyin": "ㄐㄧㄡˋ",
+        "radical": "攴"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "乞",
+      "zhuyin": "ㄑㄧˇ",
+      "radical": "乙"
+    },
+    "characters": [
+      {
+        "char": "乾",
+        "zhuyin": "ㄍㄢ",
+        "radical": "乙"
+      },
+      {
+        "char": "吃",
+        "zhuyin": "ㄔ",
+        "radical": "口"
+      },
+      {
+        "char": "屹",
+        "zhuyin": "ㄧˋ",
+        "radical": "山"
+      },
+      {
+        "char": "訖",
+        "zhuyin": "ㄑㄧˋ",
+        "radical": "言"
+      },
+      {
+        "char": "迄",
+        "zhuyin": "ㄑㄧˋ",
+        "radical": "辵"
+      },
+      {
+        "char": "疙",
+        "zhuyin": "ㄍㄜ",
+        "radical": "疒"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "青",
+      "zhuyin": "ㄑㄧㄥ",
+      "radical": "青"
+    },
+    "characters": [
+      {
+        "char": "請",
+        "zhuyin": "ㄑㄧㄥˇ",
+        "radical": "言"
+      },
+      {
+        "char": "清",
+        "zhuyin": "ㄑㄧㄥ",
+        "radical": "水"
+      },
+      {
+        "char": "情",
+        "zhuyin": "ㄑㄧㄥˊ",
+        "radical": "心"
+      },
+      {
+        "char": "晴",
+        "zhuyin": "ㄑㄧㄥˊ",
+        "radical": "日"
+      },
+      {
+        "char": "蜻",
+        "zhuyin": "ㄑㄧㄥ",
+        "radical": "虫"
+      },
+      {
+        "char": "靜",
+        "zhuyin": "ㄐㄧㄥˋ",
+        "radical": "青"
+      },
+      {
+        "char": "精",
+        "zhuyin": "ㄐㄧㄥ",
+        "radical": "米"
+      },
+      {
+        "char": "睛",
+        "zhuyin": "ㄐㄧㄥ",
+        "radical": "目"
+      },
+      {
+        "char": "菁",
+        "zhuyin": "ㄐㄧㄥ",
+        "radical": "艸"
+      },
+      {
+        "char": "猜",
+        "zhuyin": "ㄘㄞ",
+        "radical": "犬"
+      }
+    ]
+  }
+]

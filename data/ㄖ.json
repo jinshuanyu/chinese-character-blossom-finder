@@ -1,0 +1,50 @@
+[
+  {
+    "component": {
+      "char": "刃",
+      "zhuyin": "ㄖㄣˋ",
+      "radical": "刀"
+    },
+    "characters": [
+      {
+        "char": "忍",
+        "zhuyin": "ㄖㄣˇ",
+        "radical": "心"
+      },
+      {
+        "char": "韌",
+        "zhuyin": "ㄖㄣˋ",
+        "radical": "韋"
+      },
+      {
+        "char": "紉",
+        "zhuyin": "ㄖㄣˋ",
+        "radical": "糸"
+      },
+      {
+        "char": "認",
+        "zhuyin": "ㄖㄣˋ",
+        "radical": "言"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "若",
+      "zhuyin": "ㄖㄨㄛˋ",
+      "radical": "艸"
+    },
+    "characters": [
+      {
+        "char": "諾",
+        "zhuyin": "ㄋㄨㄛˋ",
+        "radical": "言"
+      },
+      {
+        "char": "偌",
+        "zhuyin": "ㄖㄨㄛˋ",
+        "radical": "人"
+      }
+    ]
+  }
+]

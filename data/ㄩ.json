@@ -1,0 +1,138 @@
+[
+  {
+    "component": {
+      "char": "于",
+      "zhuyin": "ㄩˊ",
+      "radical": "二"
+    },
+    "characters": [
+      {
+        "char": "芋",
+        "zhuyin": "ㄩˋ",
+        "radical": "艸"
+      },
+      {
+        "char": "宇",
+        "zhuyin": "ㄩˇ",
+        "radical": "宀"
+      },
+      {
+        "char": "竽",
+        "zhuyin": "ㄩˊ",
+        "radical": "竹"
+      },
+      {
+        "char": "迂",
+        "zhuyin": "ㄩ",
+        "radical": "辵"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "夗",
+      "zhuyin": "ㄩㄢˋ",
+      "radical": "夕"
+    },
+    "characters": [
+      {
+        "char": "苑",
+        "zhuyin": "ㄩㄢˋ",
+        "radical": "艸"
+      },
+      {
+        "char": "怨",
+        "zhuyin": "ㄩㄢˋ",
+        "radical": "心"
+      },
+      {
+        "char": "宛",
+        "zhuyin": "ㄨㄢˇ",
+        "radical": "宀"
+      },
+      {
+        "char": "鴛",
+        "zhuyin": "ㄩㄢ",
+        "radical": "鳥"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "元",
+      "zhuyin": "ㄩㄢˊ",
+      "radical": "二"
+    },
+    "characters": [
+      {
+        "char": "玩",
+        "zhuyin": "ㄨㄢˊ",
+        "radical": "玉"
+      },
+      {
+        "char": "完",
+        "zhuyin": "ㄨㄢˊ",
+        "radical": "宀"
+      },
+      {
+        "char": "頑",
+        "zhuyin": "ㄨㄢˊ",
+        "radical": "頁"
+      },
+      {
+        "char": "皖",
+        "zhuyin": "ㄨㄢˇ",
+        "radical": "白"
+      },
+      {
+        "char": "烷",
+        "zhuyin": "ㄨㄢˊ",
+        "radical": "火"
+      },
+      {
+        "char": "冠",
+        "zhuyin": "ㄍㄨㄢ",
+        "radical": "冖"
+      },
+      {
+        "char": "莞",
+        "zhuyin": "ㄍㄨㄢˇ",
+        "radical": "艸"
+      },
+      {
+        "char": "浣",
+        "zhuyin": "ㄏㄨㄢˋ",
+        "radical": "水"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "勻",
+      "zhuyin": "ㄩㄣˊ",
+      "radical": "勹"
+    },
+    "characters": [
+      {
+        "char": "筠",
+        "zhuyin": "ㄩㄣˊ",
+        "radical": "竹"
+      },
+      {
+        "char": "均",
+        "zhuyin": "ㄐㄩㄣ",
+        "radical": "土"
+      },
+      {
+        "char": "鈞",
+        "zhuyin": "ㄐㄩㄣ",
+        "radical": "金"
+      },
+      {
+        "char": "昀",
+        "zhuyin": "ㄩㄣˊ",
+        "radical": "日"
+      }
+    ]
+  }
+]

@@ -1,0 +1,451 @@
+[
+  {
+    "component": {
+      "char": "巠",
+      "zhuyin": "ㄐㄧㄥ",
+      "radical": "巛"
+    },
+    "characters": [
+      {
+        "char": "輕",
+        "zhuyin": "ㄑㄧㄥ",
+        "radical": "車"
+      },
+      {
+        "char": "氫",
+        "zhuyin": "ㄑㄧㄥ",
+        "radical": "气"
+      },
+      {
+        "char": "經",
+        "zhuyin": "ㄐㄧㄥ",
+        "radical": "糸"
+      },
+      {
+        "char": "頸",
+        "zhuyin": "ㄐㄧㄥˇ",
+        "radical": "頁"
+      },
+      {
+        "char": "勁",
+        "zhuyin": "ㄐㄧㄣˋ",
+        "radical": "力"
+      },
+      {
+        "char": "脛",
+        "zhuyin": "ㄐㄧㄥˋ",
+        "radical": "肉"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "堇",
+      "zhuyin": "ㄐㄧㄣˇ",
+      "radical": "土"
+    },
+    "characters": [
+      {
+        "char": "僅",
+        "zhuyin": "ㄐㄧㄣˇ",
+        "radical": "人"
+      },
+      {
+        "char": "謹",
+        "zhuyin": "ㄐㄧㄣˇ",
+        "radical": "言"
+      },
+      {
+        "char": "瑾",
+        "zhuyin": "ㄐㄧㄣˇ",
+        "radical": "玉"
+      },
+      {
+        "char": "槿",
+        "zhuyin": "ㄐㄧㄣˇ",
+        "radical": "木"
+      },
+      {
+        "char": "覲",
+        "zhuyin": "ㄐㄧㄣˋ",
+        "radical": "見"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "加",
+      "zhuyin": "ㄐㄧㄚ",
+      "radical": "力"
+    },
+    "characters": [
+      {
+        "char": "架",
+        "zhuyin": "ㄐㄧㄚˋ",
+        "radical": "木"
+      },
+      {
+        "char": "駕",
+        "zhuyin": "ㄐㄧㄚˋ",
+        "radical": "馬"
+      },
+      {
+        "char": "茄",
+        "zhuyin": "ㄑㄧㄝˊ",
+        "radical": "艸"
+      },
+      {
+        "char": "痂",
+        "zhuyin": "ㄐㄧㄚ",
+        "radical": "疒"
+      },
+      {
+        "char": "迦",
+        "zhuyin": "ㄐㄧㄚ",
+        "radical": "辶"
+      },
+      {
+        "char": "枷",
+        "zhuyin": "ㄐㄧㄚ",
+        "radical": "木"
+      },
+      {
+        "char": "袈",
+        "zhuyin": "ㄐㄧㄚ",
+        "radical": "衣"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "夾",
+      "zhuyin": "ㄐㄧㄚ",
+      "radical": "大"
+    },
+    "characters": [
+      {
+        "char": "狹",
+        "zhuyin": "ㄒㄧㄚˊ",
+        "radical": "犬"
+      },
+      {
+        "char": "俠",
+        "zhuyin": "ㄒㄧㄚˊ",
+        "radical": "人"
+      },
+      {
+        "char": "峽",
+        "zhuyin": "ㄒㄧㄚˊ",
+        "radical": "山"
+      },
+      {
+        "char": "莢",
+        "zhuyin": "ㄐㄧㄚˊ",
+        "radical": "艸"
+      },
+      {
+        "char": "頰",
+        "zhuyin": "ㄐㄧㄚˊ",
+        "radical": "頁"
+      },
+      {
+        "char": "挾",
+        "zhuyin": "ㄒㄧㄝˊ",
+        "radical": "手"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "見",
+      "zhuyin": "ㄐㄧㄢˋ",
+      "radical": "見"
+    },
+    "characters": [
+      {
+        "char": "視",
+        "zhuyin": "ㄕˋ",
+        "radical": "見"
+      },
+      {
+        "char": "親",
+        "zhuyin": "ㄑㄧㄣ",
+        "radical": "見"
+      },
+      {
+        "char": "現",
+        "zhuyin": "ㄒㄧㄢˋ",
+        "radical": "玉"
+      },
+      {
+        "char": "峴",
+        "zhuyin": "ㄒㄧㄢˋ",
+        "radical": "山"
+      },
+      {
+        "char": "蜆",
+        "zhuyin": "ㄒㄧㄢˋ",
+        "radical": "虫"
+      },
+      {
+        "char": "莧",
+        "zhuyin": "ㄒㄧㄢˋ",
+        "radical": "艸"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "九",
+      "zhuyin": "ㄐㄧㄡˇ",
+      "radical": "乙"
+    },
+    "characters": [
+      {
+        "char": "究",
+        "zhuyin": "ㄐㄧㄡˋ",
+        "radical": "穴"
+      },
+      {
+        "char": "丸",
+        "zhuyin": "ㄨㄢˊ",
+        "radical": "丶"
+      },
+      {
+        "char": "染",
+        "zhuyin": "ㄖㄢˇ",
+        "radical": "木"
+      },
+      {
+        "char": "仇",
+        "zhuyin": "ㄔㄡˊ",
+        "radical": "人"
+      },
+      {
+        "char": "旭",
+        "zhuyin": "ㄒㄩˋ",
+        "radical": "日"
+      },
+      {
+        "char": "軌",
+        "zhuyin": "ㄍㄨㄟˇ",
+        "radical": "車"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "己",
+      "zhuyin": "ㄐㄧˇ",
+      "radical": "己"
+    },
+    "characters": [
+      {
+        "char": "記",
+        "zhuyin": "ㄐㄧˋ",
+        "radical": "言"
+      },
+      {
+        "char": "紀",
+        "zhuyin": "ㄐㄧˋ",
+        "radical": "糸"
+      },
+      {
+        "char": "忌",
+        "zhuyin": "ㄐㄧˋ",
+        "radical": "心"
+      },
+      {
+        "char": "杞",
+        "zhuyin": "ㄑㄧˇ",
+        "radical": "木"
+      },
+      {
+        "char": "配",
+        "zhuyin": "ㄆㄟˋ",
+        "radical": "酉"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "今",
+      "zhuyin": "ㄐㄧㄣ",
+      "radical": "人"
+    },
+    "characters": [
+      {
+        "char": "念",
+        "zhuyin": "ㄋㄧㄢˋ",
+        "radical": "心"
+      },
+      {
+        "char": "琴",
+        "zhuyin": "ㄑㄧㄣˊ",
+        "radical": "玉"
+      },
+      {
+        "char": "陰",
+        "zhuyin": "ㄧㄣ",
+        "radical": "阜"
+      },
+      {
+        "char": "貪",
+        "zhuyin": "ㄊㄢ",
+        "radical": "貝"
+      },
+      {
+        "char": "含",
+        "zhuyin": "ㄏㄢˊ",
+        "radical": "口"
+      },
+      {
+        "char": "吟",
+        "zhuyin": "ㄧㄣˊ",
+        "radical": "口"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "及",
+      "zhuyin": "ㄐㄧˊ",
+      "radical": "又"
+    },
+    "characters": [
+      {
+        "char": "級",
+        "zhuyin": "ㄐㄧˊ",
+        "radical": "糸"
+      },
+      {
+        "char": "圾",
+        "zhuyin": "ㄙㄜˋ",
+        "radical": "土"
+      },
+      {
+        "char": "吸",
+        "zhuyin": "ㄒㄧ",
+        "radical": "口"
+      },
+      {
+        "char": "汲",
+        "zhuyin": "ㄐㄧˊ",
+        "radical": "水"
+      },
+      {
+        "char": "笈",
+        "zhuyin": "ㄐㄧˊ",
+        "radical": "竹"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "巨",
+      "zhuyin": "ㄐㄩˋ",
+      "radical": "工"
+    },
+    "characters": [
+      {
+        "char": "距",
+        "zhuyin": "ㄐㄩˋ",
+        "radical": "足"
+      },
+      {
+        "char": "拒",
+        "zhuyin": "ㄐㄩˋ",
+        "radical": "手"
+      },
+      {
+        "char": "矩",
+        "zhuyin": "ㄐㄩˇ",
+        "radical": "矢"
+      },
+      {
+        "char": "鉅",
+        "zhuyin": "ㄐㄩˋ",
+        "radical": "金"
+      },
+      {
+        "char": "炬",
+        "zhuyin": "ㄐㄩˋ",
+        "radical": "火"
+      },
+      {
+        "char": "渠",
+        "zhuyin": "ㄑㄩˊ",
+        "radical": "水"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "交",
+      "zhuyin": "ㄐㄧㄠ",
+      "radical": "亠"
+    },
+    "characters": [
+      {
+        "char": "餃",
+        "zhuyin": "ㄐㄧㄠˇ",
+        "radical": "食"
+      },
+      {
+        "char": "較",
+        "zhuyin": "ㄐㄧㄠˋ",
+        "radical": "車"
+      },
+      {
+        "char": "絞",
+        "zhuyin": "ㄐㄧㄠˇ",
+        "radical": "糸"
+      },
+      {
+        "char": "校",
+        "zhuyin": "ㄒㄧㄠˋ",
+        "radical": "木"
+      },
+      {
+        "char": "郊",
+        "zhuyin": "ㄐㄧㄠ",
+        "radical": "阝"
+      },
+      {
+        "char": "姣",
+        "zhuyin": "ㄐㄧㄠ",
+        "radical": "女"
+      },
+      {
+        "char": "鮫",
+        "zhuyin": "ㄐㄧㄠ",
+        "radical": "魚"
+      },
+      {
+        "char": "狡",
+        "zhuyin": "ㄐㄧㄠˇ",
+        "radical": "犬"
+      },
+      {
+        "char": "蛟",
+        "zhuyin": "ㄐㄧㄠ",
+        "radical": "虫"
+      },
+      {
+        "char": "跤",
+        "zhuyin": "ㄐㄧㄠ",
+        "radical": "足"
+      },
+      {
+        "char": "皎",
+        "zhuyin": "ㄐㄧㄠˇ",
+        "radical": "白"
+      },
+      {
+        "char": "茭",
+        "zhuyin": "ㄐㄧㄠ",
+        "radical": "艸"
+      }
+    ]
+  }
+]

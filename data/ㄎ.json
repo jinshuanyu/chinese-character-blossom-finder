@@ -1,0 +1,124 @@
+[
+  {
+    "component": {
+      "char": "可",
+      "zhuyin": "ㄎㄜˇ",
+      "radical": "口"
+    },
+    "characters": [
+      {
+        "char": "柯",
+        "zhuyin": "ㄎㄜ",
+        "radical": "木"
+      },
+      {
+        "char": "珂",
+        "zhuyin": "ㄎㄜ",
+        "radical": "玉"
+      },
+      {
+        "char": "何",
+        "zhuyin": "ㄏㄜˊ",
+        "radical": "人"
+      },
+      {
+        "char": "河",
+        "zhuyin": "ㄏㄜˊ",
+        "radical": "水"
+      },
+      {
+        "char": "呵",
+        "zhuyin": "ㄏㄜ",
+        "radical": "口"
+      },
+      {
+        "char": "荷",
+        "zhuyin": "ㄏㄜˊ",
+        "radical": "艸"
+      },
+      {
+        "char": "蚵",
+        "zhuyin": "ㄎㄜ",
+        "radical": "虫"
+      },
+      {
+        "char": "歌",
+        "zhuyin": "ㄍㄜ",
+        "radical": "欠"
+      },
+      {
+        "char": "哥",
+        "zhuyin": "ㄍㄜ",
+        "radical": "口"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "亢",
+      "zhuyin": "ㄎㄤˋ",
+      "radical": "亠"
+    },
+    "characters": [
+      {
+        "char": "抗",
+        "zhuyin": "ㄎㄤˋ",
+        "radical": "手"
+      },
+      {
+        "char": "炕",
+        "zhuyin": "ㄎㄤˋ",
+        "radical": "火"
+      },
+      {
+        "char": "航",
+        "zhuyin": "ㄏㄤˊ",
+        "radical": "舟"
+      },
+      {
+        "char": "杭",
+        "zhuyin": "ㄏㄤˊ",
+        "radical": "木"
+      },
+      {
+        "char": "吭",
+        "zhuyin": "ㄎㄥ",
+        "radical": "口"
+      },
+      {
+        "char": "坑",
+        "zhuyin": "ㄎㄥ",
+        "radical": "土"
+      },
+      {
+        "char": "骯",
+        "zhuyin": "ㄤ",
+        "radical": "骨"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "康",
+      "zhuyin": "ㄎㄤ",
+      "radical": "广"
+    },
+    "characters": [
+      {
+        "char": "糠",
+        "zhuyin": "ㄎㄤ",
+        "radical": "米"
+      },
+      {
+        "char": "慷",
+        "zhuyin": "ㄎㄤ",
+        "radical": "心"
+      },
+      {
+        "char": "鱇",
+        "zhuyin": "ㄎㄤ",
+        "radical": "魚"
+      }
+    ]
+  }
+]

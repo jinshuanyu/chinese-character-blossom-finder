@@ -1,0 +1,104 @@
+[
+  {
+    "component": {
+      "char": "寸",
+      "zhuyin": "ㄘㄨㄣˋ",
+      "radical": "寸"
+    },
+    "characters": [
+      {
+        "char": "村",
+        "zhuyin": "ㄘㄨㄣ",
+        "radical": "木"
+      },
+      {
+        "char": "付",
+        "zhuyin": "ㄈㄨˋ",
+        "radical": "人"
+      },
+      {
+        "char": "守",
+        "zhuyin": "ㄕㄡˇ",
+        "radical": "宀"
+      },
+      {
+        "char": "討",
+        "zhuyin": "ㄊㄠˇ",
+        "radical": "言"
+      },
+      {
+        "char": "肘",
+        "zhuyin": "ㄓㄡˇ",
+        "radical": "肉"
+      },
+      {
+        "char": "紂",
+        "zhuyin": "ㄓㄡˋ",
+        "radical": "糸"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "才",
+      "zhuyin": "ㄘㄞˊ",
+      "radical": "手"
+    },
+    "characters": [
+      {
+        "char": "材",
+        "zhuyin": "ㄘㄞˊ",
+        "radical": "木"
+      },
+      {
+        "char": "財",
+        "zhuyin": "ㄘㄞˊ",
+        "radical": "貝"
+      },
+      {
+        "char": "閉",
+        "zhuyin": "ㄅㄧˋ",
+        "radical": "門"
+      },
+      {
+        "char": "豺",
+        "zhuyin": "ㄔㄞˊ",
+        "radical": "豸"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "曹",
+      "zhuyin": "ㄘㄠˊ",
+      "radical": "曰"
+    },
+    "characters": [
+      {
+        "char": "槽",
+        "zhuyin": "ㄘㄠˊ",
+        "radical": "木"
+      },
+      {
+        "char": "嘈",
+        "zhuyin": "ㄘㄠˊ",
+        "radical": "口"
+      },
+      {
+        "char": "漕",
+        "zhuyin": "ㄘㄠˊ",
+        "radical": "水"
+      },
+      {
+        "char": "糟",
+        "zhuyin": "ㄗㄠ",
+        "radical": "米"
+      },
+      {
+        "char": "遭",
+        "zhuyin": "ㄗㄠ",
+        "radical": "辵"
+      }
+    ]
+  }
+]

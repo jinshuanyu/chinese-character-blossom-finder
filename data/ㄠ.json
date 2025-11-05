@@ -1,0 +1,41 @@
+[
+  {
+    "component": {
+      "char": "敖",
+      "zhuyin": "ㄠˊ",
+      "radical": "攴"
+    },
+    "characters": [
+      {
+        "char": "熬",
+        "zhuyin": "ㄠˊ",
+        "radical": "火"
+      },
+      {
+        "char": "傲",
+        "zhuyin": "ㄠˋ",
+        "radical": "人"
+      },
+      {
+        "char": "嗷",
+        "zhuyin": "ㄠˊ",
+        "radical": "口"
+      },
+      {
+        "char": "鰲",
+        "zhuyin": "ㄠˊ",
+        "radical": "魚"
+      },
+      {
+        "char": "螯",
+        "zhuyin": "ㄠˊ",
+        "radical": "虫"
+      },
+      {
+        "char": "遨",
+        "zhuyin": "ㄠˊ",
+        "radical": "辵"
+      }
+    ]
+  }
+]

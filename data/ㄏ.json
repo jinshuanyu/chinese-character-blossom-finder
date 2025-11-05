@@ -1,0 +1,55 @@
+[
+  {
+    "component": {
+      "char": "后",
+      "zhuyin": "ㄏㄡˋ",
+      "radical": "口"
+    },
+    "characters": [
+      {
+        "char": "逅",
+        "zhuyin": "ㄏㄡˋ",
+        "radical": "辵"
+      },
+      {
+        "char": "垢",
+        "zhuyin": "ㄍㄡˋ",
+        "radical": "土"
+      },
+      {
+        "char": "詬",
+        "zhuyin": "ㄍㄡˋ",
+        "radical": "言"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "會",
+      "zhuyin": "ㄏㄨㄟˋ",
+      "radical": "曰"
+    },
+    "characters": [
+      {
+        "char": "繪",
+        "zhuyin": "ㄏㄨㄟˋ",
+        "radical": "糸"
+      },
+      {
+        "char": "燴",
+        "zhuyin": "ㄏㄨㄟˋ",
+        "radical": "火"
+      },
+      {
+        "char": "膾",
+        "zhuyin": "ㄎㄨㄞˋ",
+        "radical": "肉"
+      },
+      {
+        "char": "儈",
+        "zhuyin": "ㄎㄨㄞˋ",
+        "radical": "人"
+      }
+    ]
+  }
+]

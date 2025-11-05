@@ -1,0 +1,119 @@
+[
+  {
+    "component": {
+      "char": "同",
+      "zhuyin": "ㄊㄨㄥˊ",
+      "radical": "口"
+    },
+    "characters": [
+      {
+        "char": "銅",
+        "zhuyin": "ㄊㄨㄥˊ",
+        "radical": "金"
+      },
+      {
+        "char": "筒",
+        "zhuyin": "ㄊㄨㄥˇ",
+        "radical": "竹"
+      },
+      {
+        "char": "桐",
+        "zhuyin": "ㄊㄨㄥˊ",
+        "radical": "木"
+      },
+      {
+        "char": "酮",
+        "zhuyin": "ㄊㄨㄥˊ",
+        "radical": "酉"
+      },
+      {
+        "char": "茼",
+        "zhuyin": "ㄊㄨㄥˊ",
+        "radical": "艸"
+      },
+      {
+        "char": "洞",
+        "zhuyin": "ㄉㄨㄥˋ",
+        "radical": "水"
+      },
+      {
+        "char": "恫",
+        "zhuyin": "ㄉㄨㄥˋ",
+        "radical": "心"
+      },
+      {
+        "char": "胴",
+        "zhuyin": "ㄉㄨㄥˋ",
+        "radical": "肉"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "土",
+      "zhuyin": "ㄊㄨˇ",
+      "radical": "土"
+    },
+    "characters": [
+      {
+        "char": "吐",
+        "zhuyin": "ㄊㄨˇ",
+        "radical": "口"
+      },
+      {
+        "char": "杜",
+        "zhuyin": "ㄉㄨˋ",
+        "radical": "木"
+      },
+      {
+        "char": "肚",
+        "zhuyin": "ㄉㄨˋ",
+        "radical": "肉"
+      },
+      {
+        "char": "牡",
+        "zhuyin": "ㄇㄨˇ",
+        "radical": "牛"
+      },
+      {
+        "char": "灶",
+        "zhuyin": "ㄗㄠˋ",
+        "radical": "火"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "匋",
+      "zhuyin": "ㄊㄠˊ",
+      "radical": "勹"
+    },
+    "characters": [
+      {
+        "char": "陶",
+        "zhuyin": "ㄊㄠˊ",
+        "radical": "阝"
+      },
+      {
+        "char": "掏",
+        "zhuyin": "ㄊㄠ",
+        "radical": "手"
+      },
+      {
+        "char": "淘",
+        "zhuyin": "ㄊㄠˊ",
+        "radical": "水"
+      },
+      {
+        "char": "萄",
+        "zhuyin": "ㄊㄠˊ",
+        "radical": "艸"
+      },
+      {
+        "char": "啕",
+        "zhuyin": "ㄊㄠˊ",
+        "radical": "口"
+      }
+    ]
+  }
+]

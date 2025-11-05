@@ -1,0 +1,157 @@
+[
+  {
+    "component": {
+      "char": "尼",
+      "zhuyin": "ㄋㄧˊ",
+      "radical": "尸"
+    },
+    "characters": [
+      {
+        "char": "妮",
+        "zhuyin": "ㄋㄧˊ",
+        "radical": "女"
+      },
+      {
+        "char": "泥",
+        "zhuyin": "ㄋㄧˊ",
+        "radical": "水"
+      },
+      {
+        "char": "呢",
+        "zhuyin": "˙ㄋㄜ",
+        "radical": "口"
+      },
+      {
+        "char": "旎",
+        "zhuyin": "ㄋㄧˇ",
+        "radical": "方"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "乃",
+      "zhuyin": "ㄋㄞˇ",
+      "radical": "丿"
+    },
+    "characters": [
+      {
+        "char": "奶",
+        "zhuyin": "ㄋㄞˇ",
+        "radical": "女"
+      },
+      {
+        "char": "氖",
+        "zhuyin": "ㄋㄞˇ",
+        "radical": "气"
+      },
+      {
+        "char": "仍",
+        "zhuyin": "ㄖㄥˊ",
+        "radical": "人"
+      },
+      {
+        "char": "扔",
+        "zhuyin": "ㄖㄥ",
+        "radical": "手"
+      },
+      {
+        "char": "秀",
+        "zhuyin": "ㄒㄧㄡˋ",
+        "radical": "禾"
+      },
+      {
+        "char": "盈",
+        "zhuyin": "ㄧㄥˊ",
+        "radical": "皿"
+      },
+      {
+        "char": "孕",
+        "zhuyin": "ㄩㄣˋ",
+        "radical": "子"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "內",
+      "zhuyin": "ㄋㄟˋ",
+      "radical": "入"
+    },
+    "characters": [
+      {
+        "char": "納",
+        "zhuyin": "ㄋㄚˋ",
+        "radical": "糸"
+      },
+      {
+        "char": "吶",
+        "zhuyin": "ㄋㄚˋ",
+        "radical": "口"
+      },
+      {
+        "char": "鈉",
+        "zhuyin": "ㄋㄚˋ",
+        "radical": "金"
+      },
+      {
+        "char": "衲",
+        "zhuyin": "ㄋㄚˋ",
+        "radical": "衣"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "那",
+      "zhuyin": "ㄋㄚˋ",
+      "radical": "邑"
+    },
+    "characters": [
+      {
+        "char": "哪",
+        "zhuyin": "ㄋㄚˇ",
+        "radical": "口"
+      },
+      {
+        "char": "挪",
+        "zhuyin": "ㄋㄨㄛˊ",
+        "radical": "手"
+      },
+      {
+        "char": "娜",
+        "zhuyin": "ㄋㄨㄛˋ",
+        "radical": "女"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "奴",
+      "zhuyin": "ㄋㄨˊ",
+      "radical": "女"
+    },
+    "characters": [
+      {
+        "char": "努",
+        "zhuyin": "ㄋㄨˇ",
+        "radical": "力"
+      },
+      {
+        "char": "怒",
+        "zhuyin": "ㄋㄨˋ",
+        "radical": "心"
+      },
+      {
+        "char": "弩",
+        "zhuyin": "ㄋㄨˇ",
+        "radical": "弓"
+      },
+      {
+        "char": "駑",
+        "zhuyin": "ㄋㄨˊ",
+        "radical": "馬"
+      }
+    ]
+  }
+]

@@ -1,0 +1,99 @@
+[
+  {
+    "component": {
+      "char": "樂",
+      "zhuyin": "ㄌㄜˋ",
+      "radical": "木"
+    },
+    "characters": [
+      {
+        "char": "藥",
+        "zhuyin": "ㄧㄠˋ",
+        "radical": "艸"
+      },
+      {
+        "char": "爍",
+        "zhuyin": "ㄕㄨㄛˋ",
+        "radical": "火"
+      },
+      {
+        "char": "礫",
+        "zhuyin": "ㄌㄧˋ",
+        "radical": "石"
+      },
+      {
+        "char": "櫟",
+        "zhuyin": "ㄌㄧˋ",
+        "radical": "木"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "侖",
+      "zhuyin": "ㄌㄨㄣˊ",
+      "radical": "人"
+    },
+    "characters": [
+      {
+        "char": "輪",
+        "zhuyin": "ㄌㄨㄣˊ",
+        "radical": "車"
+      },
+      {
+        "char": "論",
+        "zhuyin": "ㄌㄨㄣˋ",
+        "radical": "言"
+      },
+      {
+        "char": "倫",
+        "zhuyin": "ㄌㄨㄣˊ",
+        "radical": "人"
+      },
+      {
+        "char": "崙",
+        "zhuyin": "ㄌㄨㄣˊ",
+        "radical": "山"
+      },
+      {
+        "char": "綸",
+        "zhuyin": "ㄌㄨㄣˊ",
+        "radical": "糸"
+      },
+      {
+        "char": "淪",
+        "zhuyin": "ㄌㄨㄣˊ",
+        "radical": "水"
+      },
+      {
+        "char": "掄",
+        "zhuyin": "ㄌㄨㄣˊ",
+        "radical": "手"
+      },
+      {
+        "char": "圇",
+        "zhuyin": "ㄌㄨㄣˊ",
+        "radical": "囗"
+      }
+    ]
+  },
+  {
+    "component": {
+      "char": "路",
+      "zhuyin": "ㄌㄨˋ",
+      "radical": "足"
+    },
+    "characters": [
+      {
+        "char": "璐",
+        "zhuyin": "ㄌㄨˋ",
+        "radical": "玉"
+      },
+      {
+        "char": "露",
+        "zhuyin": "ㄌㄨˋ",
+        "radical": "雨"
+      }
+    ]
+  }
+]

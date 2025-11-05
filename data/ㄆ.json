@@ -1,0 +1,61 @@
+[
+  {
+    "component": {
+      "char": "皮",
+      "zhuyin": "ㄆㄧˊ",
+      "radical": "皮"
+    },
+    "characters": [
+      {
+        "char": "破",
+        "zhuyin": "ㄆㄛˋ",
+        "radical": "石"
+      },
+      {
+        "char": "坡",
+        "zhuyin": "ㄆㄛ",
+        "radical": "土"
+      },
+      {
+        "char": "婆",
+        "zhuyin": "ㄆㄛˊ",
+        "radical": "女"
+      },
+      {
+        "char": "頗",
+        "zhuyin": "ㄆㄛˇ",
+        "radical": "頁"
+      },
+      {
+        "char": "波",
+        "zhuyin": "ㄅㄛ",
+        "radical": "水"
+      },
+      {
+        "char": "玻",
+        "zhuyin": "ㄅㄛ",
+        "radical": "玉"
+      },
+      {
+        "char": "跛",
+        "zhuyin": "ㄅㄛˇ",
+        "radical": "足"
+      },
+      {
+        "char": "疲",
+        "zhuyin": "ㄆㄧˊ",
+        "radical": "疒"
+      },
+      {
+        "char": "彼",
+        "zhuyin": "ㄅㄧˇ",
+        "radical": "彳"
+      },
+      {
+        "char": "被",
+        "zhuyin": "ㄅㄟˋ",
+        "radical": "衣"
+      }
+    ]
+  }
+]
