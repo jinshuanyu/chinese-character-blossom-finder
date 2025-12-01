@@ -36,7 +36,7 @@
     <div id="selection-page">
       <header class="text-center mb-8">
         <h1 class="text-4xl font-bold text-cyan-600 mb-2">花瓣識字 🌸</h1>
-        <p class="text-lg text-gray-600">選注音、找部件，看字族像花瓣一樣綻放！（點選文字可查字典）</p>
+        <p class="text-lg text-gray-600">選注音、找部件，認識文字家族！</p>
       </header>
 
       <main class="bg-white rounded-lg shadow-lg p-6 space-y-8">
@@ -70,7 +70,7 @@
     <div id="results-page" class="page-hidden">
       <header class="text-center mb-8 relative">
         <button id="back-button" class="absolute left-0 top-1/2 -translate-y-1/2 bg-orange-400 text-white py-2 px-4 rounded-lg hover:bg-orange-500 transition-colors shadow">
-          &larr; 查其他字
+          &larr; 返回
         </button>
         <h1 class="text-4xl font-bold text-cyan-600">識字花瓣圖</h1>
       </header>
@@ -87,7 +87,7 @@
           喜歡這個免費工具嗎？☕ 請杯咖啡鼓勵我
         </a>
       </div>
-      <p class="pt-4">&copy; 2025 Christina Yu</p>
+      <p class="pt-4">&copy; 2025 Christina Yu. All Rights Reserved. </p>
     </footer>
   </div>
 
@@ -1445,7 +1445,7 @@ characters:[
     selectionPage.classList.add('page-hidden');
     resultsPage.classList.remove('page-hidden');
     // 【修改點】 結果頁標題動態更新
-    document.querySelector('#results-page h1').textContent = `「${item.component.char}」的文字家族`;
+    document.querySelector('#results-page h1').textContent = `「${item.component.char}」的字族`;
     renderPetalView(item);
   }
   backButton.addEventListener('click', ()=>{
