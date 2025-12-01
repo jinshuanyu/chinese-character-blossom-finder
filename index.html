@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>花瓣識字查字器（含部首圈）</title>
+  <title>花瓣識字寶：部件字族查詢</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Iansui&display=swap" rel="stylesheet">
   <style>
@@ -22,7 +22,7 @@
       box-shadow:0 2px 6px rgba(0,0,0,.06);
     }
     .radical-dot:hover{ transform:scale(1.08); background:#fee2e2; border-color:#fecaca }
-    /* 中心字下方的部首徽章（可選） */
+    /* 中心字下方的部首徽章 */
     .center-radical-badge{
       position:absolute; bottom:-10px; left:50%; transform:translateX(-50%);
       background:#fff; border:2px solid #fde68a; color:#b45309;
@@ -35,36 +35,33 @@
   <div class="container mx-auto p-4 md:p-8">
     <div id="selection-page">
       <header class="text-center mb-8">
-        <h1 class="text-4xl font-bold text-cyan-600 mb-2">花瓣識字查字器</h1>
-        <p class="text-lg text-gray-600">請先選擇注音，再點擊部件來識字。支援全文檢索 & 部首圈。</p>
+        <h1 class="text-4xl font-bold text-cyan-600 mb-2">花瓣識字 🌸</h1>
+        <p class="text-lg text-gray-600">選注音、找部件，看字族像花瓣一樣綻放！（點選文字可查字典）</p>
       </header>
 
       <main class="bg-white rounded-lg shadow-lg p-6 space-y-8">
-        <!-- 🔍 全文檢索 -->
         <div class="mb-6">
           <h2 class="text-2xl font-semibold border-b-2 border-cyan-200 pb-2 mb-4">🔍 全文檢索</h2>
-          <div class="flex gap-2 justify-center">
-            <input id="search-input" type="text" placeholder="輸入國字或注音…" 
-                   class="border rounded-lg px-3 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-orange-400">
-            <button id="search-button"
-                    class="bg-orange-400 text-white px-4 py-2 rounded-lg hover:bg-orange-500 transition-colors">
-              搜尋
-            </button>
-          </div>
+          <div class="flex gap-2 justify-start">
+  <input id="search-input" type="text" placeholder="輸入國字或注音（青、ㄑㄧㄥ...）" 
+         class="border rounded-lg px-3 py-2 w-72 focus:outline-none focus:ring-2 focus:ring-orange-400">
+  <button id="search-button"
+          class="bg-orange-400 text-white px-4 py-2 rounded-lg hover:bg-orange-500 transition-colors">
+    找一找
+  </button>
+</div>
           <div id="search-results" class="mt-4 space-y-3"></div>
         </div>
 
-        <!-- ① 注音 -->
         <div>
-          <h2 class="text-2xl font-semibold border-b-2 border-cyan-200 pb-2 mb-4">① 選擇注音</h2>
+          <h2 class="text-2xl font-semibold border-b-2 border-cyan-200 pb-2 mb-4">① 先選部件的注音</h2>
           <div id="zhuyin-list" class="flex flex-wrap gap-2 justify-center"></div>
         </div>
 
-        <!-- ② 部件 -->
         <div>
-          <h2 class="text-2xl font-semibold border-b-2 border-cyan-200 pb-2 mb-4">② 選擇部件</h2>
+          <h2 class="text-2xl font-semibold border-b-2 border-cyan-200 pb-2 mb-4">② 再選部件</h2>
           <div id="component-list" class="flex flex-wrap gap-3 min-h-[7rem] items-center justify-center">
-            <p id="component-placeholder" class="text-gray-400">請先選擇注音符號。</p>
+            <p id="component-placeholder" class="text-gray-400">👆 請先點選上方的注音，這裡就會出現對應的部件囉！</p>
           </div>
         </div>
       </main>
@@ -73,9 +70,9 @@
     <div id="results-page" class="page-hidden">
       <header class="text-center mb-8 relative">
         <button id="back-button" class="absolute left-0 top-1/2 -translate-y-1/2 bg-orange-400 text-white py-2 px-4 rounded-lg hover:bg-orange-500 transition-colors shadow">
-          &larr; 返回
+          &larr; 查其他字
         </button>
-        <h1 class="text-4xl font-bold text-cyan-600">識字結果</h1>
+        <h1 class="text-4xl font-bold text-cyan-600">識字花瓣圖</h1>
       </header>
 
       <main class="bg-white rounded-lg shadow-lg p-6">
@@ -86,8 +83,8 @@
     <footer class="text-center mt-8 text-sm text-gray-500 space-y-2">
       <p>字典連結至 <a href="https://dict.concised.moe.edu.tw/" target="_blank" class="text-blue-500 hover:underline">教育部《國語辭典簡編本》</a>。</p>
       <div class="pt-4">
-        <a href="https://portaly.cc/mamahowma/support" target="_blank" rel="noopener noreferrer" class="inline-block bg-gradient-to-r from-amber-400 to-orange-500 text-white font-semibold py-2 px-5 rounded-full shadow-md hover:scale-105 transition-transform">
-         喜歡這個免費工具嗎？☕ 請杯咖啡鼓勵我
+        <a href="https://portaly.cc/mamahowma/support" target="_blank" rel="noopener noreferrer" class="inline-block bg-gradient-to-r from-amber-400 to-orange-500 text-white font-medium py-2 px-5 rounded-full shadow-md hover:scale-105 transition-transform">
+          喜歡這個免費工具嗎？☕ 請杯咖啡鼓勵我
         </a>
       </div>
       <p class="pt-4">&copy; 2025 Christina Yu</p>
@@ -97,6 +94,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', () => {
 
+// 為了讓程式碼完整運作，我把完整的資料內容放回來了
 const componentData = {
     "ㄅ":[
 {
@@ -135,7 +133,6 @@ const componentData = {
 
         {char:"赴",zhuyin:"ㄈㄨˋ", radical:"走"}
       ]},
-      // MODIFIED: Added radical to component
       {component:{char:"包",zhuyin:"ㄅㄠ", radical:"勹"},characters:[
           {char:"抱", zhuyin:"ㄅㄠˋ", radical:"手"},
           {char:"飽", zhuyin:"ㄅㄠˇ", radical:"食"},
@@ -178,7 +175,6 @@ const componentData = {
 }
     ],
     "ㄆ":[
-      // MODIFIED: Added radical to component
       {component:{char:"皮",zhuyin:"ㄆㄧˊ", radical:"皮"},characters:[
         {char:"破",zhuyin:"ㄆㄛˋ", radical:"石"},
         {char:"坡",zhuyin:"ㄆㄛ", radical:"土"},
@@ -280,7 +276,7 @@ const componentData = {
     { char: "蜢", zhuyin: "ㄇㄥˇ", radical: "虫" }
   ]
 }
-     
+      
     ],
     "ㄈ":[
       {component:{char:"弗",zhuyin:"ㄈㄨˊ", radical:"弓"},characters:[
@@ -757,7 +753,7 @@ const componentData = {
         {char:"迄",zhuyin:"ㄑㄧˋ", radical:"辵"},
         {char:"疙",zhuyin:"ㄍㄜ", radical:"疒"}
       ]},
-       // MODIFIED: Added radical to component
+        // MODIFIED: Added radical to component
       {component:{char:"青",zhuyin:"ㄑㄧㄥ", radical:"青"},characters:[
         {char:"請",zhuyin:"ㄑㄧㄥˇ", radical:"言"},
         {char:"清",zhuyin:"ㄑㄧㄥ", radical:"水"},
@@ -809,7 +805,7 @@ const componentData = {
     { char: "佻", zhuyin: "ㄊㄧㄠ", radical: "人" },
     { char: "窕", zhuyin: "ㄊㄧㄠˇ", radical: "穴" }
   ]
-}
+},
 ,
 {
   component: { char: "中", zhuyin: "ㄓㄨㄥ", radical: "丨" },
@@ -821,7 +817,7 @@ const componentData = {
     { char: "忡", zhuyin: "ㄔㄨㄥ", radical: "心" },
     { char: "沖", zhuyin: "ㄔㄨㄥ", radical: "水" }
   ]
-}
+},
 ,
       {component:{char:"長",zhuyin:"ㄓㄤˇ", radical:"長"},characters:[
         {char:"張",zhuyin:"ㄓㄤ", radical:"弓"},
@@ -957,7 +953,7 @@ characters: [{ char: "啜", zhuyin: "ㄔㄨㄛˋ", radical: "口" },
         {char:"酌",zhuyin:"ㄓㄨㄛˊ", radical:"酉"},
         {char:"杓",zhuyin:"ㄕㄠˊ", radical:"木"}
       ]},
-       // MODIFIED: Added radical to component
+        // MODIFIED: Added radical to component
       {component:{char:"山",zhuyin:"ㄕㄢ", radical:"山"},characters:[
         {char:"訕",zhuyin:"ㄕㄢˋ", radical:"言"},
         {char:"汕",zhuyin:"ㄕㄢˋ", radical:"水"},
@@ -1352,7 +1348,13 @@ characters:[
   }
   function renderSearchResults(results){
     searchResults.innerHTML = '';
-    if(!results.length){ searchResults.innerHTML='<p class="text-gray-500">查無結果</p>'; return; }
+    
+    // 【修改點】 無結果時的禮貌用語
+    if(!results.length){ 
+      searchResults.innerHTML='<p class="text-gray-500">抱歉，資料庫中暫時找不到這個字或部件。</p>'; 
+      return; 
+    }
+
     const header = document.createElement('div');
     header.className='text-sm text-gray-600';
     header.textContent=`搜尋結果（${results.length} 筆）`;
@@ -1362,10 +1364,19 @@ characters:[
       const btn=document.createElement('button');
       btn.type='button';
       btn.className='w-full text-left bg-white border rounded-lg p-3 shadow hover:bg-orange-50';
-      const extra = r.type==='character' ? `（部件：<b>${r.parent}</b>）` : '（部件）';
+      
+      // 【修改點】 搜尋列表的文字顯示邏輯
+      let extra = '';
+      if(r.type === 'character') {
+        extra = `所屬部件：<b>${r.parent}</b>`;
+      } else {
+        extra = `查看「<b>${r.char}</b>」的所有延伸字`;
+      }
+
       btn.innerHTML = `
         <span class="text-2xl font-bold mr-2">${r.char}</span>
-        <span class="text-gray-600">${r.zhuyin||''}</span> ${extra}
+        <span class="text-gray-600">${r.zhuyin||''}</span> 
+        <span class="text-sm text-gray-500 ml-2">${extra}</span>
       `;
       btn.addEventListener('click', ()=>{
         const target = r.type==='character' ? r.parent : r.char;
@@ -1433,6 +1444,8 @@ characters:[
     currentItem=item;
     selectionPage.classList.add('page-hidden');
     resultsPage.classList.remove('page-hidden');
+    // 【修改點】 結果頁標題動態更新
+    document.querySelector('#results-page h1').textContent = `「${item.component.char}」的文字家族`;
     renderPetalView(item);
   }
   backButton.addEventListener('click', ()=>{
@@ -1445,7 +1458,7 @@ characters:[
      ========================= */
 function computeLayout(petalCount){
   const W = window.innerWidth;
-  const isNarrow = W < 390;     
+  const isNarrow = W < 390;      
   const isMobile = W < 640 && !isNarrow;
 
   let centerWH, centerText, size, centerRadius, dotRadius, petalRadius;
@@ -1464,7 +1477,7 @@ function computeLayout(petalCount){
     } else if(petalCount<=12){ 
       size={container:'w-[72px] h-[72px]', char:'text-3xl',  zhuyin:'text-xs', tone:'text-xs'};
       petalRadius = 36; // 72px / 2
-    } else{                
+    } else{                 
       size={container:'w-16 h-16', char:'text-lg',  zhuyin:'text-[10px]', tone:'text-[10px]'};
       petalRadius = 32;
     }
@@ -1480,7 +1493,7 @@ function computeLayout(petalCount){
     } else if(petalCount<=12){ 
       size={container:'w-[76px] h-[76px]', char:'text-4xl', zhuyin:'text-sm', tone:'text-sm'}; 
       petalRadius = 38;
-    } else{                
+    } else{                 
       size={container:'w-16 h-16', char:'text-3xl', zhuyin:'text-xs', tone:'text-xs'};
       petalRadius = 32; // 64px / 2
     }
@@ -1634,4 +1647,3 @@ const cls = isNarrow
 
 </body>
 </html>
-
