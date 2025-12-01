@@ -229,6 +229,35 @@ document.addEventListener('DOMContentLoaded', () => {
 // 為了讓程式碼完整運作，我把完整的資料內容放回來了
 const componentData = {
     "ㄅ":[{
+      component: { char: "八", zhuyin: "ㄅㄚ", radical: "八" },
+      characters: [
+        { char: "分", zhuyin: "ㄈㄣ", radical: "刀" },
+        { char: "公", zhuyin: "ㄍㄨㄥ", radical: "八" },
+        { char: "趴", zhuyin: "ㄆㄚ", radical: "足" },
+        { char: "扒", zhuyin: "ㄆㄚˊ", radical: "手" }
+      ]
+    },
+    {
+      component: { char: "半", zhuyin: "ㄅㄢˋ", radical: "十" },
+      characters: [
+        { char: "伴", zhuyin: "ㄅㄢˋ", radical: "人" },
+        { char: "判", zhuyin: "ㄆㄢˋ", radical: "刀" },
+        { char: "胖", zhuyin: "ㄆㄤˋ", radical: "肉" },
+        { char: "絆", zhuyin: "ㄅㄢˋ", radical: "糸" }
+      ]
+    },
+    {
+      component: { char: "扁", zhuyin: "ㄅㄧㄢˇ", radical: "戶" },
+      characters: [
+        { char: "篇", zhuyin: "ㄆㄧㄢ", radical: "竹" },
+        { char: "偏", zhuyin: "ㄆㄧㄢ", radical: "人" },
+        { char: "遍", zhuyin: "ㄅㄧㄢˋ", radical: "辵" },
+        { char: "編", zhuyin: "ㄅㄧㄢ", radical: "糸" },
+        { char: "蝙", zhuyin: "ㄅㄧㄢ", radical: "虫" },
+        { char: "翩", zhuyin: "ㄆㄧㄢ", radical: "羽" }
+      ]
+    },
+         {
   component: { char: "巴", zhuyin: "ㄅㄚ", radical: "己" },
   characters: [
     { char: "把", zhuyin: "ㄅㄚˇ", radical: "手" },
@@ -317,7 +346,34 @@ const componentData = {
   ]
 }
     ],
-    "ㄆ":[
+    "ㄆ":[{
+      component: { char: "平", zhuyin: "ㄆㄧㄥˊ", radical: "干" },
+      characters: [
+        { char: "評", zhuyin: "ㄆㄧㄥˊ", radical: "言" },
+        { char: "坪", zhuyin: "ㄆㄧㄥˊ", radical: "土" },
+        { char: "萍", zhuyin: "ㄆㄧㄥˊ", radical: "艸" },
+        { char: "秤", zhuyin: "ㄔㄥˋ", radical: "禾" }
+      ]
+    },
+    {
+      component: { char: "票", zhuyin: "ㄆㄧㄠˋ", radical: "示" },
+      characters: [
+        { char: "漂", zhuyin: "ㄆㄧㄠˋ", radical: "水" },
+        { char: "飄", zhuyin: "ㄆㄧㄠ", radical: "風" },
+        { char: "標", zhuyin: "ㄅㄧㄠ", radical: "木" },
+        { char: "瓢", zhuyin: "ㄆㄧㄠˊ", radical: "瓜" }
+      ]
+    },
+    { // 部的左邊
+      component: { char: "咅", zhuyin: "ㄆㄡˇ", radical: "口" },
+      characters: [
+        { char: "倍", zhuyin: "ㄅㄟˋ", radical: "人" },
+        { char: "培", zhuyin: "ㄆㄟˊ", radical: "土" },
+        { char: "賠", zhuyin: "ㄆㄟˊ", radical: "貝" },
+        { char: "剖", zhuyin: "ㄆㄡˇ", radical: "刀" },
+        { char: "部", zhuyin: "ㄅㄨˋ", radical: "邑" }
+      ]
+    },
       {component:{char:"皮",zhuyin:"ㄆㄧˊ", radical:"皮"},characters:[
         {char:"破",zhuyin:"ㄆㄛˋ", radical:"石"},
         {char:"坡",zhuyin:"ㄆㄛ", radical:"土"},
@@ -332,6 +388,27 @@ const componentData = {
       ]}
     ],
     "ㄇ":[{
+      component: { char: "苗", zhuyin: "ㄇㄧㄠˊ", radical: "艸" },
+      characters: [
+        { char: "描", zhuyin: "ㄇㄧㄠˊ", radical: "手" },
+        { char: "貓", zhuyin: "ㄇㄠ", radical: "豸" },
+        { char: "錨", zhuyin: "ㄇㄠˊ", radical: "金" },
+        { char: "瞄", zhuyin: "ㄇㄧㄠˊ", radical: "目" }
+      ]
+    },
+      {
+  component: { char: "門", zhuyin: "ㄇㄣˊ", radical: "門" },
+  characters: [
+    { char: "們", zhuyin: "˙ㄇㄣ", radical: "人" },
+    { char: "悶", zhuyin: "ㄇㄣ", radical: "心" },
+    { char: "閃", zhuyin: "ㄕㄢˇ", radical: "門" },
+    { char: "問", zhuyin: "ㄨㄣˋ", radical: "口" },
+    { char: "開", zhuyin: "ㄎㄞ", radical: "門" },
+    { char: "關", zhuyin: "ㄍㄨㄢ", radical: "門" },
+    { char: "聞", zhuyin: "ㄨㄣˊ", radical: "耳" }
+  ]
+},
+      {
   component: { char: "矛", zhuyin: "ㄇㄠˊ", radical: "矛" },
   characters: [
     { char: "茅", zhuyin: "ㄇㄠˊ", radical: "艸" },
@@ -377,7 +454,7 @@ const componentData = {
     { char: "嘛", zhuyin: "˙ㄇㄚ", radical: "口" },
     { char: "痲", zhuyin: "ㄇㄚˊ", radical: "疒" },
     { char: "蔴", zhuyin: "ㄇㄚˊ", radical: "艸" },
-    { char: "麼", zhuyin: "ㄇㄛ", radical: "幺" },
+    { char: "麼", zhuyin: "˙ㄇㄛ", radical: "幺" },
     { char: "魔", zhuyin: "ㄇㄛˊ", radical: "鬼" },
     { char: "摩", zhuyin: "ㄇㄛˊ", radical: "手" },
     { char: "磨", zhuyin: "ㄇㄛˊ", radical: "石" }
@@ -430,7 +507,29 @@ const componentData = {
 }
       
     ],
-    "ㄈ":[{
+    "ㄈ":[
+      {
+  component: { char: "非", zhuyin: "ㄈㄟ", radical: "非" },
+  characters: [
+    { char: "排", zhuyin: "ㄆㄞˊ", radical: "手" },
+    { char: "徘", zhuyin: "ㄆㄞˊ", radical: "彳" },
+    { char: "悲", zhuyin: "ㄅㄟ", radical: "心" },
+    { char: "菲", zhuyin: "ㄈㄟ", radical: "艸" },
+    { char: "啡", zhuyin: "ㄈㄟ", radical: "口" },
+    { char: "斐", zhuyin: "ㄈㄟˇ", radical: "文" },
+    { char: "翡", zhuyin: "ㄈㄟˇ", radical: "羽" }
+  ]
+},
+      {
+      component: { char: "付", zhuyin: "ㄈㄨˋ", radical: "人" },
+      characters: [
+        { char: "府", zhuyin: "ㄈㄨˇ", radical: "广" },
+        { char: "附", zhuyin: "ㄈㄨˋ", radical: "阜" },
+        { char: "符", zhuyin: "ㄈㄨˊ", radical: "竹" },
+        { char: "腐", zhuyin: "ㄈㄨˇ", radical: "肉" }
+      ]
+    },
+      {
   component: { char: "反", zhuyin: "ㄈㄢˇ", radical: "又" },
   characters: [
     { char: "飯", zhuyin: "ㄈㄢˋ", radical: "食" },
@@ -438,7 +537,7 @@ const componentData = {
     { char: "販", zhuyin: "ㄈㄢˋ", radical: "貝" },
     { char: "版", zhuyin: "ㄅㄢˇ", radical: "片" },
     { char: "板", zhuyin: "ㄅㄢˇ", radical: "木" },
-    { char: "畈", zhuyin: "ㄈㄢˋ", radical: "田" },
+    
     { char: "坂", zhuyin: "ㄅㄢˇ", radical: "土" },
     { char: "扳", zhuyin: "ㄅㄢ", radical: "手" },
     { char: "阪", zhuyin: "ㄅㄢˇ", radical: "阜" },
@@ -499,7 +598,7 @@ const componentData = {
       ]},
       {component:{char:"凡",zhuyin:"ㄈㄢˊ", radical:"几"},characters:[
         {char:"梵",zhuyin:"ㄈㄢˋ", radical:"木"},
-        {char:"帆",zhuyin:"ㄈㄢ", radical:"巾"},
+        {char:"帆",zhuyin:"ㄈㄢˊ", radical:"巾"},
         {char:"汎",zhuyin:"ㄈㄢˋ", radical:"水"}
       ]},
       {component:{char:"方",zhuyin:"ㄈㄤ", radical:"方"},characters:[
@@ -516,14 +615,15 @@ const componentData = {
       ]}
     ],
     "ㄉ":[{
-  component: { char: "彔", zhuyin: "ㄌㄨˋ", radical: "彐" },
-  characters: [
-    { char: "綠", zhuyin: "ㄌㄩˋ", radical: "糸" },
-    { char: "錄", zhuyin: "ㄌㄨˋ", radical: "金" },
-    { char: "祿", zhuyin: "ㄌㄨˋ", radical: "示" },
-    { char: "碌", zhuyin: "ㄌㄨˋ", radical: "石" }
-  ]
-},
+      component: { char: "登", zhuyin: "ㄉㄥ", radical: "癶" },
+      characters: [
+        { char: "燈", zhuyin: "ㄉㄥ", radical: "火" },
+        { char: "證", zhuyin: "ㄓㄥˋ", radical: "言" },
+        { char: "澄", zhuyin: "ㄔㄥˊ", radical: "水" },
+        { char: "瞪", zhuyin: "ㄉㄥˋ", radical: "目" },
+        { char: "凳", zhuyin: "ㄉㄥˋ", radical: "几" }
+      ]
+    },
          {
   component: { char: "耑", zhuyin: "ㄉㄨㄢ", radical: "而" },
   characters: [
@@ -542,7 +642,7 @@ const componentData = {
         {char:"叮",zhuyin:"ㄉㄧㄥ", radical:"口"},
         {char:"盯",zhuyin:"ㄉㄧㄥ", radical:"目"},
         {char:"寧",zhuyin:"ㄋㄧㄥˊ", radical:"宀"},
-        {char:"定",zhuyin:"ㄉㄧㄥˋ", radical:"宀"},
+      
         {char:"釘",zhuyin:"ㄉㄧㄥ", radical:"金"}
       ]},
       {component:{char:"弟",zhuyin:"ㄉㄧˋ", radical:"弓"},characters:[
@@ -631,7 +731,25 @@ const componentData = {
     { char: "牡", zhuyin: "ㄇㄨˇ", radical: "牛" },
     { char: "灶", zhuyin: "ㄗㄠˋ", radical: "火" }
   ]
-},
+},{
+      component: { char: "台", zhuyin: "ㄊㄞˊ", radical: "口" },
+      characters: [
+        { char: "抬", zhuyin: "ㄊㄞˊ", radical: "手" },
+        { char: "治", zhuyin: "ㄓˋ", radical: "水" },
+        { char: "苔", zhuyin: "ㄊㄞˊ", radical: "艸" },
+        { char: "始", zhuyin: "ㄕˇ", radical: "女" },
+        { char: "怡", zhuyin: "ㄧˊ", radical: "心" }
+      ]
+    },
+    {
+      component: { char: "屯", zhuyin: "ㄊㄨㄣˊ", radical: "屮" },
+      characters: [
+        { char: "純", zhuyin: "ㄔㄨㄣˊ", radical: "糸" },
+        { char: "頓", zhuyin: "ㄉㄨㄣˋ", radical: "頁" },
+        { char: "噸", zhuyin: "ㄉㄨㄣˋ", radical: "口" },
+        { char: "沌", zhuyin: "ㄉㄨㄣˋ", radical: "水" }
+      ]
+    },
 {
   component: { char: "匋", zhuyin: "ㄊㄠˊ", radical: "勹" },
   characters: [
@@ -687,7 +805,45 @@ const componentData = {
 
 
     ],
-    "ㄌ":[
+    "ㄌ":[{
+      component: { char: "立", zhuyin: "ㄌㄧˋ", radical: "立" },
+      characters: [
+        { char: "位", zhuyin: "ㄨㄟˋ", radical: "人" },
+        { char: "拉", zhuyin: "ㄌㄚ", radical: "手" },
+        { char: "泣", zhuyin: "ㄑㄧˋ", radical: "水" },
+        { char: "粒", zhuyin: "ㄌㄧˋ", radical: "米" },
+        { char: "垃", zhuyin: "ㄌㄜˋ", radical: "土" }
+      ]
+    },
+    {
+      component: { char: "良", zhuyin: "ㄌㄧㄤˊ", radical: "艮" },
+      characters: [
+        { char: "狼", zhuyin: "ㄌㄤˊ", radical: "犬" },
+        { char: "浪", zhuyin: "ㄌㄤˋ", radical: "水" },
+        { char: "娘", zhuyin: "ㄋㄧㄤˊ", radical: "女" },
+        { char: "糧", zhuyin: "ㄌㄧㄤˊ", radical: "米" },
+        { char: "食", zhuyin: "ㄕˊ", radical: "食" }
+      ]
+    },
+    {
+      component: { char: "里", zhuyin: "ㄌㄧˇ", radical: "里" },
+      characters: [
+        { char: "理", zhuyin: "ㄌㄧˇ", radical: "玉" },
+        { char: "裡", zhuyin: "ㄌㄧˇ", radical: "衣" },
+        { char: "童", zhuyin: "ㄊㄨㄥˊ", radical: "立" },
+        { char: "埋", zhuyin: "ㄇㄞˊ", radical: "土" },
+        { char: "鯉", zhuyin: "ㄌㄧˇ", radical: "魚" }
+      ]
+    },
+      {
+  component: { char: "彔", zhuyin: "ㄌㄨˋ", radical: "彐" },
+  characters: [
+    { char: "綠", zhuyin: "ㄌㄩˋ", radical: "糸" },
+    { char: "錄", zhuyin: "ㄌㄨˋ", radical: "金" },
+    { char: "祿", zhuyin: "ㄌㄨˋ", radical: "示" },
+    { char: "碌", zhuyin: "ㄌㄨˋ", radical: "石" }
+  ]
+},
       {component:{char:"樂",zhuyin:"ㄌㄜˋ", radical:"木"},characters:[
         {char:"藥",zhuyin:"ㄧㄠˋ", radical:"艸"},
         {char:"爍",zhuyin:"ㄕㄨㄛˋ", radical:"火"},
@@ -737,7 +893,36 @@ const componentData = {
 }
 
     ],
-    "ㄍ":[
+    "ㄍ":[{
+      component: { char: "干", zhuyin: "ㄍㄢ", radical: "干" },
+      characters: [
+        { char: "竿", zhuyin: "ㄍㄢ", radical: "竹" },
+        { char: "肝", zhuyin: "ㄍㄢ", radical: "肉" },
+        { char: "趕", zhuyin: "ㄍㄢˇ", radical: "走" },
+        { char: "汗", zhuyin: "ㄏㄢˋ", radical: "水" },
+        { char: "旱", zhuyin: "ㄏㄢˋ", radical: "日" },
+        { char: "刊", zhuyin: "ㄎㄢ", radical: "刀" }
+      ]
+    },
+    {
+      component: { char: "告", zhuyin: "ㄍㄠˋ", radical: "口" },
+      characters: [
+        { char: "造", zhuyin: "ㄗㄠˋ", radical: "辵" },
+        { char: "靠", zhuyin: "ㄎㄠˋ", radical: "非" },
+        { char: "浩", zhuyin: "ㄏㄠˋ", radical: "水" },
+        { char: "酷", zhuyin: "ㄎㄨˋ", radical: "酉" }
+      ]
+    },
+    { // 鍋的右邊
+      component: { char: "咼", zhuyin: "ㄍㄨㄚ", radical: "口" },
+      characters: [
+        { char: "過", zhuyin: "ㄍㄨㄛˋ", radical: "辵" },
+        { char: "鍋", zhuyin: "ㄍㄨㄛ", radical: "金" },
+        { char: "禍", zhuyin: "ㄏㄨㄛˋ", radical: "示" },
+        { char: "窩", zhuyin: "ㄨㄛ", radical: "穴" },
+        { char: "蝸", zhuyin: "ㄍㄨㄚ", radical: "虫" }
+      ]
+    },
       {component:{char:"工",zhuyin:"ㄍㄨㄥ", radical:"工"},characters:[
         {char:"功",zhuyin:"ㄍㄨㄥ", radical:"力"},
         {char:"紅",zhuyin:"ㄏㄨㄥˊ", radical:"糸"},
@@ -853,6 +1038,15 @@ const componentData = {
 
     ],
     "ㄎ":[{
+      component: { char: "夸", zhuyin: "ㄎㄨㄚ", radical: "大" },
+      characters: [
+        { char: "跨", zhuyin: "ㄎㄨㄚˋ", radical: "足" },
+        { char: "誇", zhuyin: "ㄎㄨㄚ", radical: "言" },
+        { char: "垮", zhuyin: "ㄎㄨㄚˇ", radical: "土" },
+        { char: "胯", zhuyin: "ㄎㄨㄚˋ", radical: "肉" }
+      ]
+    },
+         {
   component: { char: "可", zhuyin: "ㄎㄜˇ", radical: "口" },
   characters: [
     { char: "柯", zhuyin: "ㄎㄜ", radical: "木" },
@@ -881,7 +1075,36 @@ const componentData = {
         {char:"鱇",zhuyin:"ㄎㄤ", radical:"魚"}
       ]}
     ],
-    "ㄏ":[
+    "ㄏ":[{
+      component: { char: "曷", zhuyin: "ㄏㄜˊ", radical: "曰" },
+      characters: [
+        { char: "喝", zhuyin: "ㄏㄜ", radical: "口" },
+        { char: "渴", zhuyin: "ㄎㄜˇ", radical: "水" },
+        { char: "歇", zhuyin: "ㄒㄧㄝ", radical: "欠" },
+        { char: "褐", zhuyin: "ㄏㄜˊ", radical: "衣" },
+        { char: "葛", zhuyin: "ㄍㄜˊ", radical: "艸" }
+      ]
+    },
+    {
+      component: { char: "胡", zhuyin: "ㄏㄨˊ", radical: "肉" },
+      characters: [
+        { char: "湖", zhuyin: "ㄏㄨˊ", radical: "水" },
+        { char: "糊", zhuyin: "ㄏㄨˊ", radical: "米" },
+        { char: "蝴", zhuyin: "ㄏㄨˊ", radical: "虫" },
+        { char: "葫", zhuyin: "ㄏㄨˊ", radical: "艸" },
+        { char: "鬍", zhuyin: "ㄏㄨˊ", radical: "髟" }
+      ]
+    },
+    {
+      component: { char: "亥", zhuyin: "ㄏㄞˋ", radical: "亠" },
+      characters: [
+        { char: "孩", zhuyin: "ㄏㄞˊ", radical: "子" },
+        { char: "核", zhuyin: "ㄏㄜˊ", radical: "木" },
+        { char: "刻", zhuyin: "ㄎㄜ", radical: "刀" },
+        { char: "該", zhuyin: "ㄍㄞ", radical: "言" },
+        { char: "咳", zhuyin: "ㄎㄜˊ", radical: "口" }
+      ]
+    },
       {component:{char:"后",zhuyin:"ㄏㄡˋ", radical:"口"},characters:[
         {char:"逅",zhuyin:"ㄏㄡˋ", radical:"辵"},
         {char:"垢",zhuyin:"ㄍㄡˋ", radical:"土"},
@@ -935,7 +1158,37 @@ const componentData = {
         {char:"儈",zhuyin:"ㄎㄨㄞˋ", radical:"人"}
       ]}
     ],
-    "ㄐ":[  {
+    "ㄐ":[ {
+  component: { char: "兼", zhuyin: "ㄐㄧㄢ", radical: "八" },
+  characters: [
+    { char: "賺", zhuyin: "ㄓㄨㄢˋ", radical: "貝" },
+    { char: "謙", zhuyin: "ㄑㄧㄢ", radical: "言" },
+    { char: "嫌", zhuyin: "ㄒㄧㄢˊ", radical: "女" },
+    { char: "廉", zhuyin: "ㄌㄧㄢˊ", radical: "广" },
+    { char: "歉", zhuyin: "ㄑㄧㄢˋ", radical: "欠" },
+    { char: "鎌", zhuyin: "ㄌㄧㄢˊ", radical: "金" }
+  ]
+},{
+      component: { char: "戔", zhuyin: "ㄐㄧㄢ", radical: "戈" },
+      characters: [
+        { char: "淺", zhuyin: "ㄑㄧㄢˇ", radical: "水" },
+        { char: "錢", zhuyin: "ㄑㄧㄢˊ", radical: "金" },
+        { char: "賤", zhuyin: "ㄐㄧㄢˋ", radical: "貝" },
+        { char: "踐", zhuyin: "ㄐㄧㄢˋ", radical: "足" },
+        { char: "殘", zhuyin: "ㄘㄢˊ", radical: "歹" },
+        { char: "盞", zhuyin: "ㄓㄢˇ", radical: "皿" }
+      ]
+    },
+    {
+      component: { char: "將", zhuyin: "ㄐㄧㄤ", radical: "寸" },
+      characters: [
+        { char: "獎", zhuyin: "ㄐㄧㄤˇ", radical: "大" },
+        { char: "漿", zhuyin: "ㄐㄧㄤ", radical: "水" },
+        { char: "醬", zhuyin: "ㄐㄧㄤˋ", radical: "酉" },
+        { char: "槳", zhuyin: "ㄐㄧㄤˇ", radical: "木" }
+      ]
+    },
+         {
   component: { char: "巠", zhuyin: "ㄐㄧㄥ", radical: "巛" },
   characters: [
     { char: "輕", zhuyin: "ㄑㄧㄥ", radical: "車" },
@@ -1094,7 +1347,35 @@ const componentData = {
     { char: "鬟", zhuyin: "ㄏㄨㄢˊ", radical: "髟" },
     { char: "嬛", zhuyin: "ㄏㄨㄢˊ", radical: "女" }
   ]
-},
+},{
+      component: { char: "丘", zhuyin: "ㄑㄧㄡ", radical: "一" },
+      characters: [
+        { char: "兵", zhuyin: "ㄅㄧㄥ", radical: "八" },
+        { char: "岳", zhuyin: "ㄩㄝˋ", radical: "山" },
+        { char: "蚯", zhuyin: "ㄑㄧㄡ", radical: "虫" }
+      ]
+    },
+    {
+      component: { char: "其", zhuyin: "ㄑㄧˊ", radical: "八" },
+      characters: [
+        { char: "期", zhuyin: "ㄑㄧˊ", radical: "月" },
+        { char: "旗", zhuyin: "ㄑㄧˊ", radical: "方" },
+        { char: "棋", zhuyin: "ㄑㄧˊ", radical: "木" },
+        { char: "欺", zhuyin: "ㄑㄧ", radical: "欠" },
+        { char: "基", zhuyin: "ㄐㄧ", radical: "土" },
+        { char: "箕", zhuyin: "ㄐㄧ", radical: "竹" }
+      ]
+    },
+    {
+      component: { char: "喬", zhuyin: "ㄑㄧㄠˊ", radical: "口" },
+      characters: [
+        { char: "橋", zhuyin: "ㄑㄧㄠˊ", radical: "木" },
+        { char: "嬌", zhuyin: "ㄐㄧㄠ", radical: "女" },
+        { char: "驕", zhuyin: "ㄐㄧㄠ", radical: "馬" },
+        { char: "轎", zhuyin: "ㄐㄧㄠˋ", radical: "車" },
+        { char: "僑", zhuyin: "ㄑㄧㄠˊ", radical: "人" }
+      ]
+    },
 {
   component: { char: "切", zhuyin: "ㄑㄧㄝ", radical: "刀" },
   characters: [
@@ -1155,7 +1436,27 @@ const componentData = {
         {char:"猜",zhuyin:"ㄘㄞ", radical:"犬"}
       ]}
     ],
-    "ㄒ":[
+    "ㄒ":[{
+      component: { char: "咸", zhuyin: "ㄒㄧㄢˊ", radical: "口" },
+      characters: [
+        { char: "喊", zhuyin: "ㄏㄢˇ", radical: "口" },
+        { char: "減", zhuyin: "ㄐㄧㄢˇ", radical: "水" },
+        { char: "感", zhuyin: "ㄍㄢˇ", radical: "心" },
+        { char: "憾", zhuyin: "ㄏㄢˋ", radical: "心" },
+        { char: "鹹", zhuyin: "ㄒㄧㄢˊ", radical: "鹵" }
+      ]
+    },
+    {
+      component: { char: "肖", zhuyin: "ㄒㄧㄠˋ", radical: "肉" },
+      characters: [
+        { char: "消", zhuyin: "ㄒㄧㄠ", radical: "水" },
+        { char: "削", zhuyin: "ㄒㄩㄝ", radical: "刀" },
+        { char: "宵", zhuyin: "ㄒㄧㄠ", radical: "宀" },
+        { char: "銷", zhuyin: "ㄒㄧㄠ", radical: "金" },
+        { char: "俏", zhuyin: "ㄑㄧㄠˋ", radical: "人" },
+        { char: "悄", zhuyin: "ㄑㄧㄠˇ", radical: "心" }
+      ]
+    },
       {component:{char:"旬",zhuyin:"ㄒㄩㄣˊ", radical:"日"},characters:[
         {char:"詢",zhuyin:"ㄒㄩㄣˊ", radical:"言"},
         {char:"荀",zhuyin:"ㄒㄩㄣˊ", radical:"艸"},
@@ -1204,7 +1505,36 @@ const componentData = {
         {char:"舷",zhuyin:"ㄒㄧㄢˊ", radical:"舟"}
       ]}
     ],
-    "ㄓ":[{
+    "ㄓ":[
+      {
+      component: { char: "周", zhuyin: "ㄓㄡ", radical: "口" },
+      characters: [
+        { char: "調", zhuyin: "ㄊㄧㄠˊ", radical: "言" },
+        { char: "週", zhuyin: "ㄓㄡ", radical: "辵" },
+        { char: "雕", zhuyin: "ㄉㄧㄠ", radical: "隹" },
+        { char: "稠", zhuyin: "ㄔㄡˊ", radical: "禾" }
+      ]
+    },
+    { // 珍的右邊
+      component: { char: "㐱", zhuyin: "ㄓㄣˇ", radical: "人" },
+      characters: [
+        { char: "珍", zhuyin: "ㄓㄣ", radical: "玉" },
+        { char: "診", zhuyin: "ㄓㄣˇ", radical: "言" },
+        { char: "疹", zhuyin: "ㄓㄣˇ", radical: "疒" },
+        { char: "趁", zhuyin: "ㄔㄣˋ", radical: "走" }
+      ]
+    },
+    {
+      component: { char: "重", zhuyin: "ㄓㄨㄥˋ", radical: "里" },
+      characters: [
+        { char: "動", zhuyin: "ㄉㄨㄥˋ", radical: "力" },
+        { char: "種", zhuyin: "ㄓㄨㄥˇ", radical: "禾" },
+        { char: "腫", zhuyin: "ㄓㄨㄥˇ", radical: "肉" },
+        { char: "衝", zhuyin: "ㄔㄨㄥ", radical: "行" },
+        { char: "懂", zhuyin: "ㄉㄨㄥˇ", radical: "心" }
+      ]
+    },
+      {
   component: { char: "兆", zhuyin: "ㄓㄠˋ", radical: "儿" },
   characters: [
     { char: "桃", zhuyin: "ㄊㄠˊ", radical: "木" },
@@ -1360,6 +1690,15 @@ characters: [{ char: "啜", zhuyin: "ㄔㄨㄛˋ", radical: "口" },
     { char: "唇", zhuyin: "ㄔㄨㄣˊ", radical: "口" }
   ]
 },
+      {
+      component: { char: "丑", zhuyin: "ㄔㄡˇ", radical: "一" },
+      characters: [
+        { char: "紐", zhuyin: "ㄋㄧㄡˇ", radical: "糸" },
+        { char: "鈕", zhuyin: "ㄋㄧㄡˇ", radical: "金" },
+        { char: "羞", zhuyin: "ㄒㄧㄡ", radical: "羊" },
+        { char: "扭", zhuyin: "ㄋㄧㄡˇ", radical: "手" }
+      ]
+    },
       {component:{char:"叉",zhuyin:"ㄔㄚ", radical:"又"},characters:[
         {char:"釵",zhuyin:"ㄔㄞ", radical:"金"},
         {char:"蚤",zhuyin:"ㄗㄠˇ", radical:"虫"},
@@ -1368,7 +1707,17 @@ characters: [{ char: "啜", zhuyin: "ㄔㄨㄛˋ", radical: "口" },
         {char:"衩",zhuyin:"ㄔㄚˋ", radical:"衣"}
       ]}
     ],
-    "ㄕ":[
+    "ㄕ":[{
+      component: { char: "尚", zhuyin: "ㄕㄤˋ", radical: "小" },
+      characters: [
+        { char: "當", zhuyin: "ㄉㄤ", radical: "田" },
+        { char: "常", zhuyin: "ㄔㄤˊ", radical: "巾" },
+        { char: "掌", zhuyin: "ㄓㄤˇ", radical: "手" },
+        { char: "黨", zhuyin: "ㄉㄤˇ", radical: "黑" },
+        { char: "堂", zhuyin: "ㄊㄤˊ", radical: "土" },
+        { char: "賞", zhuyin: "ㄕㄤˇ", radical: "貝" }
+      ]
+    },
       {component:{char:"十",zhuyin:"ㄕˊ", radical:"十"},characters:[
         {char:"千",zhuyin:"ㄑㄧㄢ", radical:"十"},
         {char:"什",zhuyin:"ㄕˊ", radical:"人"},
@@ -1484,7 +1833,15 @@ characters: [{ char: "啜", zhuyin: "ㄔㄨㄛˋ", radical: "口" },
   ]
 }
     ],
-    "ㄘ":[
+    "ㄘ":[{
+      component: { char: "采", zhuyin: "ㄘㄞˇ", radical: "采" },
+      characters: [
+        { char: "彩", zhuyin: "ㄘㄞˇ", radical: "彡" },
+        { char: "採", zhuyin: "ㄘㄞˇ", radical: "手" },
+        { char: "菜", zhuyin: "ㄘㄞˋ", radical: "艸" },
+        { char: "踩", zhuyin: "ㄘㄞˇ", radical: "足" }
+      ]
+    },
       {component:{char:"寸",zhuyin:"ㄘㄨㄣˋ", radical:"寸"},characters:[
         {char:"村",zhuyin:"ㄘㄨㄣ", radical:"木"},
         {char:"付",zhuyin:"ㄈㄨˋ", radical:"人"},
@@ -1620,6 +1977,46 @@ characters:[
     { char: "拋", zhuyin: "ㄆㄠ", radical: "手" }
   ]
 },
+         {
+      component: { char: "牙", zhuyin: "ㄧㄚˊ", radical: "牙" },
+      characters: [
+        { char: "呀", zhuyin: "˙ㄧㄚ", radical: "口" },
+        { char: "芽", zhuyin: "ㄧㄚˊ", radical: "艸" },
+        { char: "訝", zhuyin: "ㄧㄚˋ", radical: "言" },
+        { char: "鴉", zhuyin: "ㄧㄚ", radical: "鳥" },
+        { char: "雅", zhuyin: "ㄧㄚˇ", radical: "隹" }
+      ]
+    },
+    {
+      component: { char: "央", zhuyin: "ㄧㄤ", radical: "大" },
+      characters: [
+        { char: "英", zhuyin: "ㄧㄥ", radical: "艸" },
+        { char: "映", zhuyin: "ㄧㄥˋ", radical: "日" },
+        { char: "殃", zhuyin: "ㄧㄤ", radical: "歹" },
+        { char: "秧", zhuyin: "ㄧㄤ", radical: "禾" }
+      ]
+    },
+    {
+      component: { char: "羊", zhuyin: "ㄧㄤˊ", radical: "羊" },
+      characters: [
+        { char: "樣", zhuyin: "ㄧㄤˋ", radical: "木" },
+        { char: "洋", zhuyin: "ㄧㄤˊ", radical: "水" },
+        { char: "詳", zhuyin: "ㄒㄧㄤˊ", radical: "言" },
+        { char: "祥", zhuyin: "ㄒㄧㄤˊ", radical: "示" },
+        { char: "氧", zhuyin: "ㄧㄤˇ", radical: "气" },
+        { char: "癢", zhuyin: "ㄧㄤˇ", radical: "疒" }
+      ]
+    },
+    { // 碟的右邊
+      component: { char: "枼", zhuyin: "ㄧㄝˋ", radical: "木" },
+      characters: [
+        { char: "葉", zhuyin: "ㄧㄝˋ", radical: "艸" },
+        { char: "蝶", zhuyin: "ㄉㄧㄝˊ", radical: "虫" },
+        { char: "碟", zhuyin: "ㄉㄧㄝˊ", radical: "石" },
+        { char: "喋", zhuyin: "ㄉㄧㄝˊ", radical: "口" },
+        { char: "諜", zhuyin: "ㄉㄧㄝˊ", radical: "言" }
+      ]
+    },
 {
   component: { char: "有", zhuyin: "ㄧㄡˇ", radical: "月" },
   characters: [
@@ -1719,6 +2116,16 @@ characters:[
     { char: "梧", zhuyin: "ㄨˊ", radical: "木" }
   ]
 },
+         {
+      component: { char: "韋", zhuyin: "ㄨㄟˊ", radical: "韋" },
+      characters: [
+        { char: "圍", zhuyin: "ㄨㄟˊ", radical: "囗" },
+        { char: "偉", zhuyin: "ㄨㄟˇ", radical: "人" },
+        { char: "緯", zhuyin: "ㄨㄟˇ", radical: "糸" },
+        { char: "衛", zhuyin: "ㄨㄟˋ", radical: "行" },
+        { char: "違", zhuyin: "ㄨㄟˊ", radical: "辵" }
+      ]
+    },
 {
   component: { char: "勿", zhuyin: "ㄨˋ", radical: "勹" },
   characters: [
