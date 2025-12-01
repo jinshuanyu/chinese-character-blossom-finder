@@ -33,7 +33,7 @@
     }
 
  /* =========================================
-       🖨️ 列印專用樣式 (純白、1.8倍大、含版權宣告)
+       🖨️ 列印專用樣式 (大標題、花瓣靠近、純白)
        ========================================= */
     @media print {
       @page {
@@ -75,35 +75,37 @@
         flex: 1;
       }
 
-      /* 版面置中 */
+      /* 版面佈局：靠上對齊 (關鍵修改) */
       #results-page {
         display: flex !important;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start !important; /* 改成靠上，不要置中 */
         align-items: center;
         height: 100vh !important;
         width: 100vw !important;
         background: white !important;
-        padding-top: 2cm;
-        position: relative; /* 為了讓版權宣告絕對定位 */
+        padding-top: 0 !important;
+        position: relative;
       }
 
-      /* 標題設定 */
+      /* 標題設定：位置與大小 */
       #results-page header {
         position: absolute;
-        top: 1.5cm;
+        top: 1.5cm; /* 標題離紙張頂部的距離 */
         width: 100%;
         text-align: center;
         z-index: 10;
       }
       #results-page h1 {
         color: #000 !important;
-        font-size: 2rem !important;
+        font-size: 4rem !important; /* 標題字體加大 */
+        font-weight: 900 !important;
+        margin: 0 !important;
       }
 
-      /* 👇 新增：版權宣告 (會自動出現在紙張最下方) */
+      /* 版權宣告 */
       #results-page::after {
-        content: "© 2025 Christina Yu. All Rights Reserved."; /* 這裡修改你要印的字 */
+        content: "© 2025 Christina Yu"; 
         position: absolute;
         bottom: 1cm;
         width: 100%;
@@ -113,14 +115,19 @@
         font-family: sans-serif;
       }
 
-      /* 花瓣放大 (1.8倍) */
+      /* 花瓣設定：放大 & 位置調整 */
       #petal-container {
         transform: scale(1.8) !important; 
         transform-origin: center center;
+        /* 用 margin-top 把花瓣往下推。
+           因為現在是靠上對齊，這個數值決定花瓣離標題多近。
+           9cm 大約是 A4 上方三分之一處，剛好在標題下面。
+        */
+        margin-top: 9cm !important; 
         min-height: auto !important;
       }
 
-      /* 線框化與去背設定 */
+      /* 線框化與去背設定 (白底黑字) */
       .center-char-container, .petal-char-container {
         background-color: white !important;
         border: 2px solid #000 !important;
