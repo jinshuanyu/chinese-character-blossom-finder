@@ -32,8 +32,8 @@
       box-shadow:0 2px 6px rgba(0,0,0,.06);
     }
 
- /* =========================================
-       🖨️ 列印專用樣式 (大標題、花瓣靠近、純白)
+/* =========================================
+       🖨️ 列印專用樣式 (絕對定位修正版)
        ========================================= */
     @media print {
       @page {
@@ -41,12 +41,12 @@
         margin: 0;
       }
       
-      /* 隱藏介面元素 */
+      /* 1. 隱藏不相關元素 */
       #selection-page, footer, #back-button, #print-button, #search-area-wrapper {
         display: none !important;
       }
 
-      /* 基礎設定 */
+      /* 2. 基礎設定 */
       body, html {
         background-color: white !important;
         width: 100%;
@@ -63,51 +63,65 @@
         margin: 0 !important;
       }
 
-      /* 主畫面設定 */
-      #results-page main {
+      /* 3. 結果頁全螢幕設定 */
+      #results-page {
+        display: block !important; /* 改回 block，方便絕對定位 */
+        width: 100vw !important;
+        height: 100vh !important;
         background: white !important;
+        position: relative !important;
+        overflow: hidden !important;
+      }
+
+      /* 移除 main 的干擾 */
+      #results-page main {
+        background: transparent !important;
         box-shadow: none !important;
         border: none !important;
-        padding: 0 !important;
         margin: 0 !important;
+        padding: 0 !important;
         width: 100% !important;
-        min-height: auto !important;
-        flex: 1;
+        height: 100% !important;
       }
 
-      /* 版面佈局：靠上對齊 (關鍵修改) */
-      #results-page {
-        display: flex !important;
-        flex-direction: column;
-        justify-content: flex-start !important; /* 改成靠上，不要置中 */
-        align-items: center;
-        height: 100vh !important;
-        width: 100vw !important;
-        background: white !important;
-        padding-top: 0 !important;
-        position: relative;
-      }
-
-      /* 標題設定：位置與大小 */
+      /* 4. 標題設定：大字、置頂 */
       #results-page header {
         position: absolute;
-        top: 1.5cm; /* 標題離紙張頂部的距離 */
+        top: 1.5cm; 
+        left: 0;
         width: 100%;
         text-align: center;
-        z-index: 10;
+        z-index: 20;
       }
       #results-page h1 {
         color: #000 !important;
-        font-size: 4rem !important; /* 標題字體加大 */
+        font-size: 3rem !important; /* 大標題 */
         font-weight: 900 !important;
         margin: 0 !important;
       }
 
-      /* 版權宣告 */
+      /* 5. 花瓣設定：絕對定位 + 放大 */
+      #petal-container {
+        position: absolute !important;
+        left: 50% !important;
+        /* top: 40% 代表花瓣中心點在紙張上面 40% 的位置
+           如果覺得太近，改 45%；覺得太遠，改 35% */
+        top: 40% !important; 
+        
+        /* 放大 1.8 倍 */
+        transform: translate(-50%, -50%) scale(1.8) !important;
+        
+        transform-origin: center center !important;
+        min-height: 0 !important; /* 避免高度干擾 */
+        z-index: 10;
+      }
+
+      /* 6. 版權宣告 */
       #results-page::after {
         content: "© 2025 Christina Yu"; 
         position: absolute;
         bottom: 1cm;
+        left: 0;
         width: 100%;
         text-align: center;
         font-size: 10pt;
@@ -115,19 +129,7 @@
         font-family: sans-serif;
       }
 
-      /* 花瓣設定：放大 & 位置調整 */
-      #petal-container {
-        transform: scale(1.8) !important; 
-        transform-origin: center center;
-        /* 用 margin-top 把花瓣往下推。
-           因為現在是靠上對齊，這個數值決定花瓣離標題多近。
-           9cm 大約是 A4 上方三分之一處，剛好在標題下面。
-        */
-        margin-top: 9cm !important; 
-        min-height: auto !important;
-      }
-
-      /* 線框化與去背設定 (白底黑字) */
+      /* 7. 線框化與去背設定 (白底黑字) */
       .center-char-container, .petal-char-container {
         background-color: white !important;
         border: 2px solid #000 !important;
