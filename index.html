@@ -13,6 +13,7 @@
     #petal-container{transition:min-height .3s ease}
     .petal-char-container,.center-char-container{transform:translateZ(0)}
     .zhuyin-col{display:flex;flex-direction:column;justify-content:center;align-items:center;line-height:1;margin-left:2px}
+    
     /* 部首圈小點 */
     .radical-dot{
       position:absolute; display:flex; align-items:center; justify-content:center;
@@ -22,12 +23,129 @@
       box-shadow:0 2px 6px rgba(0,0,0,.06);
     }
     .radical-dot:hover{ transform:scale(1.08); background:#fee2e2; border-color:#fecaca }
+    
     /* 中心字下方的部首徽章 */
     .center-radical-badge{
       position:absolute; bottom:-10px; left:50%; transform:translateX(-50%);
       background:#fff; border:2px solid #fde68a; color:#b45309;
       padding:.1rem .4rem; border-radius:9999px; font-weight:700; font-size:.9rem;
       box-shadow:0 2px 6px rgba(0,0,0,.06);
+    }
+
+ /* =========================================
+       🖨️ 列印專用樣式 (純白、1.8倍大、含版權宣告)
+       ========================================= */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+      
+      /* 隱藏介面元素 */
+      #selection-page, footer, #back-button, #print-button, #search-area-wrapper {
+        display: none !important;
+      }
+
+      /* 基礎設定 */
+      body, html {
+        background-color: white !important;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+
+      .container {
+        width: 100% !important;
+        max-width: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      /* 主畫面設定 */
+      #results-page main {
+        background: white !important;
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+        min-height: auto !important;
+        flex: 1;
+      }
+
+      /* 版面置中 */
+      #results-page {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh !important;
+        width: 100vw !important;
+        background: white !important;
+        padding-top: 2cm;
+        position: relative; /* 為了讓版權宣告絕對定位 */
+      }
+
+      /* 標題設定 */
+      #results-page header {
+        position: absolute;
+        top: 1.5cm;
+        width: 100%;
+        text-align: center;
+        z-index: 10;
+      }
+      #results-page h1 {
+        color: #000 !important;
+        font-size: 2rem !important;
+      }
+
+      /* 👇 新增：版權宣告 (會自動出現在紙張最下方) */
+      #results-page::after {
+        content: "© 2025 Christina Yu. All Rights Reserved."; /* 這裡修改你要印的字 */
+        position: absolute;
+        bottom: 1cm;
+        width: 100%;
+        text-align: center;
+        font-size: 10pt;
+        color: #666 !important;
+        font-family: sans-serif;
+      }
+
+      /* 花瓣放大 (1.6倍) */
+      #petal-container {
+        transform: scale(1.6) !important; 
+        transform-origin: center center;
+        min-height: auto !important;
+      }
+
+      /* 線框化與去背設定 */
+      .center-char-container, .petal-char-container {
+        background-color: white !important;
+        border: 2px solid #000 !important;
+        box-shadow: none !important;
+        color: #000 !important;
+      }
+      
+      .petal-char-container .zhuyin-col, 
+      .center-char-container .zhuyin-col {
+        color: #000 !important;
+      }
+
+      .radical-dot {
+        background-color: white !important;
+        border: 1px solid #000 !important;
+        color: #000 !important;
+        box-shadow: none !important;
+      }
+
+      .center-radical-badge, 
+      .center-char-container div.absolute {
+         background-color: white !important;
+         border: 1px solid #000 !important;
+         color: #000 !important;
+      }
     }
   </style>
 </head>
@@ -43,13 +161,13 @@
         <div class="mb-6">
           <h2 class="text-2xl font-semibold border-b-2 border-cyan-200 pb-2 mb-4">🔍 全文檢索</h2>
           <div class="flex gap-2 justify-start">
-  <input id="search-input" type="text" placeholder="輸入國字或注音" 
-         class="border rounded-lg px-3 py-2 w-48 focus:outline-none focus:ring-2 focus:ring-orange-400">
-  <button id="search-button"
-          class="bg-orange-400 text-white px-4 py-2 rounded-lg hover:bg-orange-500 transition-colors">
-    🔍
-  </button>
-</div>
+            <input id="search-input" type="text" placeholder="輸入國字或注音" 
+                   class="border rounded-lg px-3 py-2 w-48 focus:outline-none focus:ring-2 focus:ring-orange-400">
+            <button id="search-button"
+                    class="bg-orange-400 text-white px-4 py-2 rounded-lg hover:bg-orange-500 transition-colors">
+              🔍
+            </button>
+          </div>
           <div id="search-results" class="mt-4 space-y-3"></div>
         </div>
 
@@ -68,14 +186,19 @@
     </div>
 
     <div id="results-page" class="page-hidden">
-      <header class="text-center mb-8 relative">
+      <header class="text-center mb-8 relative flex items-center justify-center">
         <button id="back-button" class="absolute left-0 top-1/2 -translate-y-1/2 bg-orange-400 text-white py-2 px-4 rounded-lg hover:bg-orange-500 transition-colors shadow">
           &larr; 返回
         </button>
-        <h1 class="text-4xl font-bold text-cyan-600">識字花瓣圖</h1>
+        
+        <h1 class="text-2xl md:text-4xl font-bold text-cyan-600 mx-auto">識字花瓣圖</h1>
+
+        <button id="print-button" class="absolute right-0 top-1/2 -translate-y-1/2 bg-sky-500 text-white py-2 px-4 rounded-lg hover:bg-sky-600 transition-colors shadow flex items-center gap-2">
+          <span>🖨️</span> <span class="hidden md:inline">列印</span>
+        </button>
       </header>
 
-      <main class="bg-white rounded-lg shadow-lg p-6">
+      <main class="bg-white rounded-lg shadow-lg p-6 min-h-[500px] flex items-center justify-center">
         <div id="petal-container" class="relative w-full flex justify-center items-center"></div>
       </main>
     </div>
@@ -1402,6 +1525,7 @@ characters:[
   const componentPlaceholder = document.getElementById('component-placeholder');
   const petalContainer       = document.getElementById('petal-container');
   const backButton           = document.getElementById('back-button');
+  const printButton          = document.getElementById('print-button'); // 新增列印按鈕變數
 
   let selectedZhuyinBtn=null, currentItem=null;
 
@@ -1452,6 +1576,13 @@ characters:[
     resultsPage.classList.add('page-hidden');
     selectionPage.classList.remove('page-hidden');
   });
+
+  // 列印按鈕事件綁定
+  if(printButton) {
+    printButton.addEventListener('click', () => {
+      window.print();
+    });
+  }
 
 /* =========================
      ⑤ 螢幕佈局（半徑、尺寸）
