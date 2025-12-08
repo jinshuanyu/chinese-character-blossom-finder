@@ -243,7 +243,10 @@
 document.addEventListener('DOMContentLoaded', () => {
 
 // 為了讓程式碼完整運作，我把完整的資料內容放回來了
-const componentData = {
+  const componentData =
+    (typeof window !== 'undefined' && window.componentData)
+      ? window.componentData
+      : {
     "ㄅ":[{
       component: { char: "八", zhuyin: "ㄅㄚ", radical: "八" },
       characters: [
@@ -2002,7 +2005,7 @@ const componentData = {
     { char: "沖", zhuyin: "ㄔㄨㄥ", radical: "水" }
   ]
 },
-,
+
       {component:{char:"長",zhuyin:"ㄓㄤˇ", radical:"長"},characters:[
         {char:"張",zhuyin:"ㄓㄤ", radical:"弓"},
         {char:"漲",zhuyin:"ㄓㄤˇ", radical:"水"},
@@ -2923,14 +2926,13 @@ characters:[
     ]
   };
 
-
   /* =========================
      ② 部首正字化（偏旁→正字）
      ========================= */
   const RAD_NORMALIZE = new Map(Object.entries({
     "亻":"人","衤":"衣","氵":"水","月":"肉","⺼":"肉","扌":"手","忄":"心","犭":"犬",
     "飠":"食","饣":"食","礻":"示","艹":"艸","艸":"艸","糹":"糸","纟":"糸",
-    "钅":"金","釒":"金","讠":"言","辶":"辵","阝":"阜" // 無法分左右時先作「阜」處理
+    "钅":"金","釒":"金","讠":"言","辶":"辵","阝":"阜"
   }));
   function canonicalRad(rad){
     if(!rad) return "";
@@ -2945,77 +2947,113 @@ characters:[
   const searchResults = document.getElementById('search-results');
 
   function searchCharacters(query){
-    const q = (query||'').trim(); if(!q) return [];
+    const q = (query||'').trim();
+    if(!q) return [];
+
     const out = [];
     for(const zy in componentData){
-      (componentData[zy]||[]).forEach(item=>{
-        if((item.component.char||'').includes(q) || (item.component.zhuyin||'').includes(q))
-          out.push({type:'component', char:item.component.char, zhuyin:item.component.zhuyin});
-        (item.characters||[]).forEach(c=>{
-          if((c.char||'').includes(q) || (c.zhuyin||'').includes(q))
-            out.push({type:'character', char:c.char, zhuyin:c.zhuyin, parent:item.component.char});
+      (componentData[zy] || []).forEach(item => {
+        const comp = item.component || {};
+        const compChar = comp.char || "";
+        const compZy   = comp.zhuyin || "";
+
+        if(compChar.includes(q) || compZy.includes(q)){
+          out.push({
+            type:'component',
+            char: compChar,
+            zhuyin: compZy
+          });
+        }
+
+        (item.characters || []).forEach(c => {
+          const ch = c.char || "";
+          const zy = c.zhuyin || "";
+          if(ch.includes(q) || zy.includes(q)){
+            out.push({
+              type:'character',
+              char: ch,
+              zhuyin: zy,
+              parent: compChar
+            });
+          }
         });
       });
     }
     return out;
   }
+
   function findComponentItemByChar(ch){
+    if(!ch) return null;
     for(const zy in componentData){
-      for(const it of (componentData[zy]||[])){
-        if(it.component.char===ch) return it;
+      for(const it of (componentData[zy] || [])){
+        if(it?.component?.char === ch) return it;
       }
     }
     return null;
   }
+
   function renderSearchResults(results){
+    if(!searchResults) return;
     searchResults.innerHTML = '';
-    
-    // 【修改點】 無結果時的禮貌用語
-    if(!results.length){ 
-      searchResults.innerHTML='<p class="text-gray-500">抱歉，資料庫中暫時找不到這個字或部件。</p>'; 
-      return; 
+
+    if(!results.length){
+      searchResults.innerHTML =
+        '<p class="text-gray-500">抱歉，資料庫中暫時找不到這個字或部件。</p>';
+      return;
     }
 
     const header = document.createElement('div');
-    header.className='text-sm text-gray-600';
-    header.textContent=`搜尋結果（${results.length} 筆）`;
+    header.className = 'text-sm text-gray-600';
+    header.textContent = `搜尋結果（${results.length} 筆）`;
     searchResults.appendChild(header);
 
-    results.forEach(r=>{
-      const btn=document.createElement('button');
-      btn.type='button';
-      btn.className='w-full text-left bg-white border rounded-lg p-3 shadow hover:bg-orange-50';
-      
-      // 【修改點】 搜尋列表的文字顯示邏輯
-      let extra = '';
-      if(r.type === 'character') {
-        extra = `所屬部件：<b>${r.parent}</b>`;
-      } else {
-        extra = `查看「<b>${r.char}</b>」的所有延伸字`;
-      }
+    results.forEach(r => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className =
+        'w-full text-left bg-white border rounded-lg p-3 shadow hover:bg-orange-50';
+
+      const extra = (r.type === 'character')
+        ? `所屬部件：<b>${r.parent}</b>`
+        : `查看「<b>${r.char}</b>」的所有延伸字`;
 
       btn.innerHTML = `
         <span class="text-2xl font-bold mr-2">${r.char}</span>
-        <span class="text-gray-600">${r.zhuyin||''}</span> 
+        <span class="text-gray-600">${r.zhuyin || ''}</span>
         <span class="text-sm text-gray-500 ml-2">${extra}</span>
       `;
-      btn.addEventListener('click', ()=>{
-        const target = r.type==='character' ? r.parent : r.char;
+
+      btn.addEventListener('click', () => {
+        const target = (r.type === 'character') ? r.parent : r.char;
         const item = findComponentItemByChar(target);
         if(item) handleComponentClick(item);
       });
+
       searchResults.appendChild(btn);
     });
   }
-  searchButton.addEventListener('click', ()=> renderSearchResults(searchCharacters(searchInput.value)));
-  searchInput.addEventListener('keypress', e=>{
-    if(e.key==='Enter') renderSearchResults(searchCharacters(searchInput.value));
-  });
+
+  if(searchButton && searchInput){
+    searchButton.addEventListener('click', () =>
+      renderSearchResults(searchCharacters(searchInput.value))
+    );
+    searchInput.addEventListener('keypress', e => {
+      if(e.key === 'Enter'){
+        renderSearchResults(searchCharacters(searchInput.value));
+      }
+    });
+  }
 
   /* =========================
      ④ 注音 / 部件列表
      ========================= */
-  const zhuyinSymbols = ["ㄅ","ㄆ","ㄇ","ㄈ","ㄉ","ㄊ","ㄋ","ㄌ","ㄍ","ㄎ","ㄏ","ㄐ","ㄑ","ㄒ","ㄓ","ㄔ","ㄕ","ㄖ","ㄗ","ㄘ","ㄙ","ㄧ","ㄨ","ㄩ","ㄚ","ㄛ","ㄜ","ㄝ","ㄞ","ㄟ","ㄠ","ㄡ","ㄢ","ㄣ","ㄤ","ㄥ","ㄦ"];
+  const zhuyinSymbols = [
+    "ㄅ","ㄆ","ㄇ","ㄈ","ㄉ","ㄊ","ㄋ","ㄌ",
+    "ㄍ","ㄎ","ㄏ","ㄐ","ㄑ","ㄒ","ㄓ","ㄔ","ㄕ","ㄖ","ㄗ","ㄘ","ㄙ",
+    "ㄧ","ㄨ","ㄩ",
+    "ㄚ","ㄛ","ㄜ","ㄝ","ㄞ","ㄟ","ㄠ","ㄡ","ㄢ","ㄣ","ㄤ","ㄥ","ㄦ"
+  ];
+
   const selectionPage        = document.getElementById('selection-page');
   const resultsPage          = document.getElementById('results-page');
   const zhuyinList           = document.getElementById('zhuyin-list');
@@ -3023,216 +3061,265 @@ characters:[
   const componentPlaceholder = document.getElementById('component-placeholder');
   const petalContainer       = document.getElementById('petal-container');
   const backButton           = document.getElementById('back-button');
-  const printButton          = document.getElementById('print-button'); // 新增列印按鈕變數
+  const printButton          = document.getElementById('print-button');
 
-  let selectedZhuyinBtn=null, currentItem=null;
+  let selectedZhuyinBtn = null;
+  let currentItem = null;
 
-  zhuyinSymbols.forEach(symbol=>{
-    const btn=document.createElement('button');
-    btn.textContent=symbol; btn.dataset.zhuyin=symbol;
-    const has = (componentData[symbol]||[]).length>0;
-    if(!has){
-      btn.disabled=true;
-      btn.className="text-lg border-2 border-gray-200 bg-gray-100 text-gray-400 rounded-md w-10 h-10 flex items-center justify-center cursor-not-allowed opacity-50";
-    }else{
-      btn.className="text-lg border-2 border-gray-300 rounded-md w-10 h-10 flex items-center justify-center cursor-pointer transition-colors hover:bg-orange-100";
-      btn.addEventListener('click', handleZhuyinClick);
-    }
-    zhuyinList.appendChild(btn);
-  });
+  if(zhuyinList){
+    zhuyinSymbols.forEach(symbol => {
+      const btn = document.createElement('button');
+      btn.textContent = symbol;
+      btn.dataset.zhuyin = symbol;
 
-  function handleZhuyinClick(e){
-    const zy=e.target.dataset.zhuyin;
-    const items=componentData[zy]||[];
-    if(selectedZhuyinBtn) selectedZhuyinBtn.classList.remove('btn-selected');
-    selectedZhuyinBtn=e.target; selectedZhuyinBtn.classList.add('btn-selected');
+      const has = (componentData[symbol] || []).length > 0;
 
-    componentList.innerHTML='';
-    if(items.length){
-      componentPlaceholder.style.display='none';
-      items.forEach(item=>{
-        const b=document.createElement('button');
-        b.textContent=item.component.char;
-        b.className="text-2xl font-bold border-2 border-gray-300 rounded-lg w-16 h-16 flex items-center justify-center cursor-pointer transition-all hover:bg-orange-100 hover:border-orange-400";
-        b.addEventListener('click', ()=>handleComponentClick(item));
-        componentList.appendChild(b);
-      });
-    }else{
-      componentPlaceholder.style.display='block';
-      componentPlaceholder.textContent='這個注音沒有對應的部件喔！';
-    }
-  }
-  function handleComponentClick(item){
-    currentItem=item;
-    selectionPage.classList.add('page-hidden');
-    resultsPage.classList.remove('page-hidden');
-    // 【修改點】 結果頁標題動態更新
-    document.querySelector('#results-page h1').textContent = `「${item.component.char}」的字族`;
-    renderPetalView(item);
-  }
-  backButton.addEventListener('click', ()=>{
-    resultsPage.classList.add('page-hidden');
-    selectionPage.classList.remove('page-hidden');
-  });
+      if(!has){
+        btn.disabled = true;
+        btn.className =
+          "text-lg border-2 border-gray-200 bg-gray-100 text-gray-400 rounded-md w-10 h-10 flex items-center justify-center cursor-not-allowed opacity-50";
+      }else{
+        btn.className =
+          "text-lg border-2 border-gray-300 rounded-md w-10 h-10 flex items-center justify-center cursor-pointer transition-colors hover:bg-orange-100";
+        btn.addEventListener('click', handleZhuyinClick);
+      }
 
-  // 列印按鈕事件綁定
-  if(printButton) {
-    printButton.addEventListener('click', () => {
-      window.print();
+      zhuyinList.appendChild(btn);
     });
   }
 
-/* =========================
-     ⑤ 螢幕佈局（半徑、尺寸）
-     ========================= */
-function computeLayout(petalCount){
-  const W = window.innerWidth;
-  const isNarrow = W < 390;      
-  const isMobile = W < 640 && !isNarrow;
+  function handleZhuyinClick(e){
+    const zy = e.target.dataset.zhuyin;
+    const items = componentData[zy] || [];
 
-  let centerWH, centerText, size, centerRadius, dotRadius, petalRadius;
-  const dotSizeNarrow = 32; 
-  const dotSizeDesktop = 36; 
+    if(selectedZhuyinBtn) selectedZhuyinBtn.classList.remove('btn-selected');
+    selectedZhuyinBtn = e.target;
+    selectedZhuyinBtn.classList.add('btn-selected');
 
-  if(isNarrow){
-    // 直徑加大
-    centerWH = 'w-24 h-24'; centerText = 'text-4xl';
-    centerRadius = 48; // 96px / 2
-    dotRadius = dotSizeNarrow / 2;
+    if(componentList) componentList.innerHTML = '';
 
-    if(petalCount<=8){   
-      size={container:'w-20 h-20', char:'text-4xl', zhuyin:'text-sm', tone:'text-sm'}; 
-      petalRadius = 40; // 80px / 2
-    } else if(petalCount<=12){ 
-      size={container:'w-[72px] h-[72px]', char:'text-3xl',  zhuyin:'text-xs', tone:'text-xs'};
-      petalRadius = 36; // 72px / 2
-    } else{                 
-      size={container:'w-16 h-16', char:'text-lg',  zhuyin:'text-[10px]', tone:'text-[10px]'};
-      petalRadius = 32;
-    }
-  } else if(isMobile){
-    // 字體放大
-    centerWH = 'w-24 h-24'; centerText = 'text-4xl';
-    centerRadius = 48; // 96px / 2
-    dotRadius = dotSizeNarrow / 2;
+    if(items.length){
+      if(componentPlaceholder) componentPlaceholder.style.display = 'none';
 
-    if(petalCount<=8){   
-      size={container:'w-20 h-20', char:'text-4xl', zhuyin:'text-sm', tone:'text-sm'}; 
-      petalRadius = 40; // 80px / 2
-    } else if(petalCount<=12){ 
-      size={container:'w-[76px] h-[76px]', char:'text-4xl', zhuyin:'text-sm', tone:'text-sm'}; 
-      petalRadius = 38;
-    } else{                 
-      size={container:'w-16 h-16', char:'text-3xl', zhuyin:'text-xs', tone:'text-xs'};
-      petalRadius = 32; // 64px / 2
-    }
-  } else { // Desktop
-    centerWH = 'w-28 h-28'; centerText = 'text-5xl';
-    centerRadius = 56; // 112px / 2
-    dotRadius = dotSizeDesktop / 2;
+      items.forEach(item => {
+        const b = document.createElement('button');
+        b.textContent = item?.component?.char || "";
+        b.className =
+          "text-2xl font-bold border-2 border-gray-300 rounded-lg w-16 h-16 flex items-center justify-center cursor-pointer transition-all hover:bg-orange-100 hover:border-orange-400";
+        b.addEventListener('click', () => handleComponentClick(item));
+        componentList?.appendChild(b);
+      });
 
-    if(petalCount<=8){
-      size={container:'w-24 h-24', char:'text-4xl', zhuyin:'text-sm', tone:'text-sm'};
-      petalRadius = 48; // 96px / 2
-    } else if(petalCount<=12){
-      size={container:'w-20 h-20', char:'text-4xl', zhuyin:'text-sm', tone:'text-sm'};
-      petalRadius = 40; // 80px / 2
-    } else{
-      size={container:'w-16 h-16', char:'text-2xl', zhuyin:'text-xs', tone:'text-xs'};
-      petalRadius = 32; // 64px / 2
+    }else{
+      if(componentPlaceholder){
+        componentPlaceholder.style.display = 'block';
+        componentPlaceholder.textContent = '這個注音沒有對應的部件喔！';
+      }
     }
   }
 
-  const centerBorderWidth = 4; 
+  function handleComponentClick(item){
+    currentItem = item;
 
-  const R2 = centerRadius + centerBorderWidth + dotRadius;
-  const R = R2 + dotRadius + petalRadius;
+    selectionPage?.classList.add('page-hidden');
+    resultsPage?.classList.remove('page-hidden');
 
-  const totalDiameter = (R + petalRadius) * 2;
-  const minH = totalDiameter + 40; 
+    const h1 = resultsPage?.querySelector('h1');
+    if(h1){
+      const cc = item?.component?.char || "";
+      h1.textContent = `「${cc}」的字族`;
+    }
 
-  return { isNarrow, isMobile, centerWH, centerText, R, size, R2, minH };
-}
+    renderPetalView(item);
+  }
+
+  backButton?.addEventListener('click', () => {
+    resultsPage?.classList.add('page-hidden');
+    selectionPage?.classList.remove('page-hidden');
+  });
+
+  if(printButton){
+    printButton.addEventListener('click', () => window.print());
+  }
+
+  /* =========================
+     ⑤ 螢幕佈局（半徑、尺寸）
+     ========================= */
+  function computeLayout(petalCount){
+    const W = window.innerWidth;
+    const isNarrow = W < 390;
+    const isMobile = W < 640 && !isNarrow;
+
+    let centerWH, centerText, size, centerRadius, dotRadius, petalRadius;
+    const dotSizeNarrow = 32;
+    const dotSizeDesktop = 36;
+
+    if(isNarrow){
+      centerWH = 'w-24 h-24'; centerText = 'text-4xl';
+      centerRadius = 48;
+      dotRadius = dotSizeNarrow / 2;
+
+      if(petalCount <= 8){
+        size = {container:'w-20 h-20', char:'text-4xl', zhuyin:'text-sm', tone:'text-sm'};
+        petalRadius = 40;
+      } else if(petalCount <= 12){
+        size = {container:'w-[72px] h-[72px]', char:'text-3xl', zhuyin:'text-xs', tone:'text-xs'};
+        petalRadius = 36;
+      } else {
+        size = {container:'w-16 h-16', char:'text-lg', zhuyin:'text-[10px]', tone:'text-[10px]'};
+        petalRadius = 32;
+      }
+
+    } else if(isMobile){
+      centerWH = 'w-24 h-24'; centerText = 'text-4xl';
+      centerRadius = 48;
+      dotRadius = dotSizeNarrow / 2;
+
+      if(petalCount <= 8){
+        size = {container:'w-20 h-20', char:'text-4xl', zhuyin:'text-sm', tone:'text-sm'};
+        petalRadius = 40;
+      } else if(petalCount <= 12){
+        size = {container:'w-[76px] h-[76px]', char:'text-4xl', zhuyin:'text-sm', tone:'text-sm'};
+        petalRadius = 38;
+      } else {
+        size = {container:'w-16 h-16', char:'text-3xl', zhuyin:'text-xs', tone:'text-xs'};
+        petalRadius = 32;
+      }
+
+    } else {
+      centerWH = 'w-28 h-28'; centerText = 'text-5xl';
+      centerRadius = 56;
+      dotRadius = dotSizeDesktop / 2;
+
+      if(petalCount <= 8){
+        size = {container:'w-24 h-24', char:'text-4xl', zhuyin:'text-sm', tone:'text-sm'};
+        petalRadius = 48;
+      } else if(petalCount <= 12){
+        size = {container:'w-20 h-20', char:'text-4xl', zhuyin:'text-sm', tone:'text-sm'};
+        petalRadius = 40;
+      } else {
+        size = {container:'w-16 h-16', char:'text-2xl', zhuyin:'text-xs', tone:'text-xs'};
+        petalRadius = 32;
+      }
+    }
+
+    const centerBorderWidth = 4;
+    const R2 = centerRadius + centerBorderWidth + dotRadius;
+    const R  = R2 + dotRadius + petalRadius;
+
+    const totalDiameter = (R + petalRadius) * 2;
+    const minH = totalDiameter + 40;
+
+    return { isNarrow, isMobile, centerWH, centerText, R, size, R2, minH };
+  }
+
   /* =========================
      ⑥ 花瓣 / 部首圈
      ========================= */
   function createZhuyinHTML(zhuyinString, sizeClass, charClass){
-    const tones=['ˊ','ˇ','ˋ','˙'];
-    const last=zhuyinString ? zhuyinString.slice(-1) : '';
-    let base='', tone='';
-    if(tones.includes(last)){ base=zhuyinString.slice(0,-1); tone=last; }
-    else{ base=zhuyinString||''; tone=''; }
-    return base.split('').map((ch,i)=>{
-      if(i===base.length-1 && tone){
+    const tones = ['ˊ','ˇ','ˋ','˙'];
+    const last = zhuyinString ? zhuyinString.slice(-1) : '';
+    let base = '', tone = '';
+
+    if(tones.includes(last)){
+      base = zhuyinString.slice(0, -1);
+      tone = last;
+    } else {
+      base = zhuyinString || '';
+      tone = '';
+    }
+
+    return base.split('').map((ch, i) => {
+      if(i === base.length - 1 && tone){
         return `<span class="relative ${charClass}">${ch}<span class="absolute -top-1 -right-3 ${sizeClass}">${tone}</span></span>`;
       }
       return `<span class="${charClass}">${ch}</span>`;
     }).join('');
   }
 
-  function createPetalElement(charObj,size){
-    const link=document.createElement('a');
-    link.href=`https://dict.concised.moe.edu.tw/search.jsp?word=${encodeURIComponent(charObj.char)}`;
-    link.target='_blank'; link.rel='noopener noreferrer';
+  function createPetalElement(charObj, size){
+    const link = document.createElement('a');
+    link.href = `https://dict.concised.moe.edu.tw/search.jsp?word=${encodeURIComponent(charObj.char)}`;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
 
-    const wrap=document.createElement('div');
-    wrap.className=`absolute flex items-center justify-center bg-pink-200 border-2 border-pink-300 rounded-full ${size.container} transition-transform hover:scale-110 hover:bg-pink-300 shadow petal-char-container`;
+    const wrap = document.createElement('div');
+    wrap.className =
+      `absolute flex items-center justify-center bg-pink-200 border-2 border-pink-300 rounded-full ${size.container} transition-transform hover:scale-110 hover:bg-pink-300 shadow petal-char-container`;
 
-    const big=document.createElement('span');
-    big.className=`${size.char} font-medium`; big.textContent=charObj.char;
+    const big = document.createElement('span');
+    big.className = `${size.char} font-medium`;
+    big.textContent = charObj.char;
 
-    const zy=document.createElement('div');
-    zy.className='zhuyin-col text-gray-600';
-    zy.innerHTML=createZhuyinHTML(charObj.zhuyin||'', size.tone, size.zhuyin);
+    const zy = document.createElement('div');
+    zy.className = 'zhuyin-col text-gray-600';
+    zy.innerHTML = createZhuyinHTML(charObj.zhuyin || '', size.tone, size.zhuyin);
 
-    wrap.appendChild(big); wrap.appendChild(zy); link.appendChild(wrap);
-    return { link, container:wrap };
+    wrap.appendChild(big);
+    wrap.appendChild(zy);
+
+    link.appendChild(wrap);
+
+    return { link, container: wrap };
   }
 
-  // MODIFIED: This function has been updated to create larger radical dots with bigger text.
-  function createRadicalDot(label,isNarrow,isMobile){
+  function createRadicalDot(label, isNarrow, isMobile){
     const txt = canonicalRad(label);
-    const el=document.createElement('div');
-    // 放大尺寸與字級
-const cls = isNarrow
-  ? 'w-8 h-8 text-sm' // 稍微大一點
-  : (isMobile ? 'w-8 h-8 text-sm' : 'w-9 h-9 text-base'); // 再大一點
-    el.className = `radical-dot absolute bg-emerald-100 border border-emerald-300 rounded-full ${cls} flex items-center justify-center text-emerald-700 shadow font-normal`;
+    const el = document.createElement('div');
+
+    const cls = isNarrow
+      ? 'w-8 h-8 text-sm'
+      : (isMobile ? 'w-8 h-8 text-sm' : 'w-9 h-9 text-base');
+
+    el.className =
+      `radical-dot absolute bg-emerald-100 border border-emerald-300 rounded-full ${cls} flex items-center justify-center text-emerald-700 shadow font-normal`;
+
     el.textContent = txt || '';
-    el.style.pointerEvents = 'none'; // 不擋點擊
+    el.style.pointerEvents = 'none';
+
     return el;
   }
 
   function renderPetalView(item){
-    petalContainer.innerHTML='';
-    const characters=item.characters||[];
-    const n=characters.length;
-    const L=computeLayout(n);
+    if(!petalContainer) return;
 
-    // 中心（部件→簡編本）
-    const centerLink=document.createElement('a');
-    centerLink.href=`https://dict.concised.moe.edu.tw/search.jsp?word=${encodeURIComponent(item.component.char)}`;
-    centerLink.target='_blank'; centerLink.rel='noopener noreferrer';
+    petalContainer.innerHTML = '';
 
-    const centerDiv=document.createElement('div');
-    centerDiv.className=`center-char-container absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-yellow-200 border-4 border-yellow-300 rounded-full ${L.centerWH} flex items-center justify-center z-20 transition-transform hover:scale-110 shadow-lg`;
+    const characters = item?.characters || [];
+    const n = characters.length;
+    const L = computeLayout(n);
 
-    const centerChar=document.createElement('span');
-    centerChar.className=`${L.centerText} font-bold`;
-    centerChar.textContent=item.component.char;
+    // 中心
+    const compChar = item?.component?.char || "";
+    const compZy   = item?.component?.zhuyin || "";
+    const compRad  = item?.component?.radical || "";
 
-    const centerZh=document.createElement('div');
-    centerZh.className="zhuyin-col text-gray-700 font-medium";
-    centerZh.innerHTML=createZhuyinHTML(item.component.zhuyin||'', 'text-sm', 'text-sm');
+    const centerLink = document.createElement('a');
+    centerLink.href = `https://dict.concised.moe.edu.tw/search.jsp?word=${encodeURIComponent(compChar)}`;
+    centerLink.target = '_blank';
+    centerLink.rel = 'noopener noreferrer';
+
+    const centerDiv = document.createElement('div');
+    centerDiv.className =
+      `center-char-container absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-yellow-200 border-4 border-yellow-300 rounded-full ${L.centerWH} flex items-center justify-center z-20 transition-transform hover:scale-110 shadow-lg`;
+
+    const centerChar = document.createElement('span');
+    centerChar.className = `${L.centerText} font-bold`;
+    centerChar.textContent = compChar;
+
+    const centerZh = document.createElement('div');
+    centerZh.className = "zhuyin-col text-gray-700 font-medium";
+    centerZh.innerHTML = createZhuyinHTML(compZy, 'text-sm', 'text-sm');
 
     centerDiv.appendChild(centerChar);
     centerDiv.appendChild(centerZh);
 
-    // ✅ 中心也顯示「部首正字」：放在圓內下緣的綠色膠囊
-    if(item.component.radical){
-      const pill=document.createElement('div');
-      pill.className='absolute -bottom-1 left-1/2 -translate-x-1/2 bg-emerald-100 text-emerald-800 border border-emerald-300 rounded-full px-2 py-[2px] text-sm';
-      pill.textContent = canonicalRad(item.component.radical);
+    // 中心部首膠囊
+    if(compRad){
+      const pill = document.createElement('div');
+      pill.className =
+        'absolute -bottom-1 left-1/2 -translate-x-1/2 bg-emerald-100 text-emerald-800 border border-emerald-300 rounded-full px-2 py-[2px] text-sm';
+      pill.textContent = canonicalRad(compRad);
       centerDiv.appendChild(pill);
     }
 
@@ -3242,34 +3329,40 @@ const cls = isNarrow
     petalContainer.style.minHeight = L.minH + 'px';
 
     // 外圈花瓣
-    const step=(2*Math.PI)/Math.max(n,1);
-    characters.forEach((c,i)=>{
-      const a = i*step - Math.PI/2;
-      const x = Math.cos(a)*L.R;
-      const y = Math.sin(a)*L.R;
+    const step = (2 * Math.PI) / Math.max(n, 1);
 
-      const {link,container}=createPetalElement(c,L.size);
-      container.style.transform=`translate(-50%,-50%) translate(${x}px,${y}px)`;
-      container.style.top='50%'; container.style.left='50%';
+    characters.forEach((c, i) => {
+      const a = i * step - Math.PI / 2;
+      const x = Math.cos(a) * L.R;
+      const y = Math.sin(a) * L.R;
+
+      const { link, container } = createPetalElement(c, L.size);
+      container.style.transform = `translate(-50%,-50%) translate(${x}px,${y}px)`;
+      container.style.top = '50%';
+      container.style.left = '50%';
+
       petalContainer.appendChild(link);
 
-      // ✅ 部首圈（正字、不設 title）
+      // 部首圈
       if(c.radical){
-        const rx = Math.cos(a)*L.R2, ry = Math.sin(a)*L.R2;
+        const rx = Math.cos(a) * L.R2;
+        const ry = Math.sin(a) * L.R2;
         const dot = createRadicalDot(c.radical, L.isNarrow, L.isMobile);
-        dot.style.left='50%'; dot.style.top='50%';
-        dot.style.transform=`translate(-50%,-50%) translate(${rx}px,${ry}px)`;
+        dot.style.left = '50%';
+        dot.style.top  = '50%';
+        dot.style.transform = `translate(-50%,-50%) translate(${rx}px,${ry}px)`;
         petalContainer.appendChild(dot);
       }
     });
   }
 
-  // 尺寸改變時，仍會重排
-  window.addEventListener('resize', ()=>{
-    if(!resultsPage.classList.contains('page-hidden') && currentItem){
+  // resize 重排
+  window.addEventListener('resize', () => {
+    if(resultsPage && !resultsPage.classList.contains('page-hidden') && currentItem){
       renderPetalView(currentItem);
     }
   });
+
 });
 </script>
 
