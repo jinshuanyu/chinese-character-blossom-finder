@@ -13,17 +13,18 @@
     .page-hidden{display:none}
     #petal-container{transition:min-height .3s ease}
     .petal-char-container,.center-char-container{transform:translateZ(0)}
-    .zhuyin-col{display:flex;flex-direction:column;justify-content:center;align-items:center;line-height:1;margin-left:2px}
-    
-    /* 部首圈小點 */
-    .radical-dot{
-      position:absolute; display:flex; align-items:center; justify-content:center;
-      width:2.25rem; height:2.25rem; border-radius:9999px;
-      background:#f1f5f9; border:2px solid #cbd5e1; font-weight:600;
-      transition:transform .15s ease, background .15s ease, border-color .15s ease;
-      box-shadow:0 2px 6px rgba(0,0,0,.06);
-    }
-    .radical-dot:hover{ transform:scale(1.08); background:#fee2e2; border-color:#fecaca }
+.zhuyin-col{display:flex;flex-direction:column;justify-content:center;align-items:center;line-height:0.3;margin-left:2px}.zhuyin-col > span{margin-top:-2px}  
+/* 部首圈小點 */
+.radical-dot{
+  position:absolute; display:flex; align-items:center; justify-content:center;
+  width:2.5rem; height:2.5rem; border-radius:9999px;  /* 原本 2.25rem */
+  background:#f1f5f9; border:2px solid #cbd5e1; font-weight:600;
+  transition:transform .15s ease, background .15s ease, border-color .15s ease;
+  box-shadow:0 2px 6px rgba(0,0,0,.06);
+  line-height:1;
+  padding:2px;
+}
+.radical-dot:hover{ transform:scale(1.08); background:#fee2e2; border-color:#fecaca }
     
     /* 中心字下方的部首徽章 */
     .center-radical-badge{
@@ -136,7 +137,7 @@
       /* 7. 線框化與去背設定 (白底黑字) */
       .center-char-container, .petal-char-container {
         background-color: white !important;
-        border: 2px solid #000 !important;
+        border: 1px solid #000 !important;
         box-shadow: none !important;
         color: #000 !important;
       }
@@ -146,19 +147,33 @@
         color: #000 !important;
       }
 
-      .radical-dot {
-        background-color: white !important;
-        border: 1px solid #000 !important;
-        color: #000 !important;
-        box-shadow: none !important;
-      }
+/* === 只改這裡，修正部首圈圈 === */
+.radical-dot {
+  background-color: white !important;
+  border: 1px solid #000 !important; /* 外圈留著 */
+  box-shadow: none !important;
+  display: flex !important;
+  flex-direction: row !important;    /* 左字右音 */
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+  color: #000 !important;            /* 設定文字黑色 */
+}
 
-      .center-radical-badge, 
-      .center-char-container div.absolute {
-         background-color: white !important;
-         border: 1px solid #000 !important;
-         color: #000 !important;
-      }
+/* 這裡是關鍵修正：強制裡面的東西變黑，但「拿掉邊框」 */
+.radical-dot * {
+  color: #000 !important;
+  border: none !important;  /* 👈 修正點：裡面的注音不要有框，就不會變成黑塊了 */
+}
+
+.center-radical-badge, 
+.center-char-container div.absolute {
+   background-color: white !important;
+   border: 1px solid #000 !important;
+   color: #000 !important;
+}
+
+
     }
   </style>
 </head>
@@ -3145,7 +3160,53 @@ characters:[
     if(!rad) return "";
     return RAD_NORMALIZE.get(rad) || rad;
   }
+// 在 canonicalRad 函數後面新增這些
 
+// 部首注音對應表
+const RADICAL_ZHUYIN = new Map(Object.entries({
+  "人":"ㄖㄣˊ","刀":"ㄉㄠ","力":"ㄌㄧˋ","又":"ㄧㄡˋ","口":"ㄎㄡˇ","囗":"ㄨㄟˊ",
+  "土":"ㄊㄨˇ","士":"ㄕˋ","夊":"ㄙㄨㄟ","夕":"ㄒㄧˋ","大":"ㄉㄚˋ","女":"ㄋㄩˇ",
+  "子":"ㄗˇ","宀":"ㄇㄧㄢˊ","寸":"ㄘㄨㄣˋ","小":"ㄒㄧㄠˇ","尢":"ㄨㄤ","尸":"ㄕ",
+  "屮":"ㄔㄜˋ","山":"ㄕㄢ","巛":"ㄔㄨㄢ","工":"ㄍㄨㄥ","己":"ㄐㄧˇ","巾":"ㄐㄧㄣ",
+  "干":"ㄍㄢ","幺":"ㄧㄠ","广":"ㄧㄢˇ","廴":"ㄧㄣˇ","廾":"ㄍㄨㄥˇ","弋":"ㄧˋ",
+  "弓":"ㄍㄨㄥ","彐":"ㄐㄧˋ","彡":"ㄕㄢ","彳":"ㄔˋ","心":"ㄒㄧㄣ","戈":"ㄍㄜ",
+  "戶":"ㄏㄨˋ","手":"ㄕㄡˇ","支":"ㄓ","攴":"ㄆㄨ","文":"ㄨㄣˊ","斗":"ㄉㄡˇ",
+  "斤":"ㄐㄧㄣ","方":"ㄈㄤ","无":"ㄨˊ","日":"ㄖˋ","曰":"ㄩㄝ","月":"ㄩㄝˋ",
+  "木":"ㄇㄨˋ","欠":"ㄑㄧㄢˋ","止":"ㄓˇ","歹":"ㄉㄞˇ","殳":"ㄕㄨ","毋":"ㄨˊ",
+  "比":"ㄅㄧˇ","毛":"ㄇㄠˊ","氏":"ㄕˋ","气":"ㄑㄧˋ","水":"ㄕㄨㄟˇ","火":"ㄏㄨㄛˇ",
+  "爪":"ㄓㄠˇ","父":"ㄈㄨˋ","爻":"ㄧㄠˊ","爿":"ㄆㄢˊ","片":"ㄆㄧㄢˋ","牙":"ㄧㄚˊ",
+  "牛":"ㄋㄧㄡˊ","犬":"ㄑㄩㄢˇ","玄":"ㄒㄩㄢˊ","玉":"ㄩˋ","瓜":"ㄍㄨㄚ","瓦":"ㄨㄚˇ",
+  "甘":"ㄍㄢ","生":"ㄕㄥ","用":"ㄩㄥˋ","田":"ㄊㄧㄢˊ","疋":"ㄆㄧˇ","疒":"ㄔㄨㄤˊ",
+  "癶":"ㄅㄛˊ","白":"ㄅㄞˊ","皮":"ㄆㄧˊ","皿":"ㄇㄧㄣˇ","目":"ㄇㄨˋ","矛":"ㄇㄠˊ",
+  "矢":"ㄕˇ","石":"ㄕˊ","示":"ㄕˋ","禸":"ㄖㄡˊ","禾":"ㄏㄜˊ","穴":"ㄒㄩㄝˊ",
+  "立":"ㄌㄧˋ","竹":"ㄓㄨˊ","米":"ㄇㄧˇ","糸":"ㄇㄧˋ","缶":"ㄈㄡˇ","网":"ㄨㄤˇ",
+  "羊":"ㄧㄤˊ","羽":"ㄩˇ","老":"ㄌㄠˇ","而":"ㄦˊ","耒":"ㄌㄟˇ","耳":"ㄦˇ",
+  "聿":"ㄩˋ","肉":"ㄖㄡˋ","臣":"ㄔㄣˊ","自":"ㄗˋ","至":"ㄓˋ","臼":"ㄐㄧㄡˋ",
+  "舌":"ㄕㄜˊ","舛":"ㄔㄨㄢˇ","舟":"ㄓㄡ","艮":"ㄍㄣˋ","色":"ㄙㄜˋ","艸":"ㄘㄠˇ",
+  "虍":"ㄏㄨ","虫":"ㄔㄨㄥˊ","血":"ㄒㄧㄝˇ","行":"ㄒㄧㄥˊ","衣":"ㄧ","襾":"ㄧㄚˋ",
+  "見":"ㄐㄧㄢˋ","角":"ㄐㄧㄠˇ","言":"ㄧㄢˊ","谷":"ㄍㄨˇ","豆":"ㄉㄡˋ","豕":"ㄕˇ",
+  "豸":"ㄓˋ","貝":"ㄅㄟˋ","赤":"ㄔˋ","走":"ㄗㄡˇ","足":"ㄗㄨˊ","身":"ㄕㄣ",
+  "車":"ㄔㄜ","辛":"ㄒㄧㄣ","辰":"ㄔㄣˊ","辵":"ㄔㄨㄛˋ","邑":"ㄧˋ","酉":"ㄧㄡˇ",
+  "釆":"ㄅㄧㄢˋ","里":"ㄌㄧˇ","金":"ㄐㄧㄣ","長":"ㄔㄤˊ","門":"ㄇㄣˊ","阜":"ㄈㄨˋ",
+  "隶":"ㄉㄞˋ","隹":"ㄓㄨㄟ","雨":"ㄩˇ","青":"ㄑㄧㄥ","非":"ㄈㄟ","面":"ㄇㄧㄢˋ",
+  "革":"ㄍㄜˊ","韋":"ㄨㄟˊ","韭":"ㄐㄧㄡˇ","音":"ㄧㄣ","頁":"ㄧㄝˋ","風":"ㄈㄥ",
+  "飛":"ㄈㄟ","食":"ㄕˊ","首":"ㄕㄡˇ","香":"ㄒㄧㄤ","馬":"ㄇㄚˇ","骨":"ㄍㄨˇ",
+  "高":"ㄍㄠ","髟":"ㄅㄧㄠ","鬥":"ㄉㄡˋ","鬯":"ㄔㄤˋ","鬲":"ㄌㄧˋ","鬼":"ㄍㄨㄟˇ",
+  "魚":"ㄩˊ","鳥":"ㄋㄧㄠˇ","鹵":"ㄌㄨˇ","鹿":"ㄌㄨˋ","麥":"ㄇㄞˋ","麻":"ㄇㄚˊ",
+  "黃":"ㄏㄨㄤˊ","黍":"ㄕㄨˇ","黑":"ㄏㄟ","黹":"ㄓˇ","黽":"ㄇㄧㄥˇ","鼎":"ㄉㄧㄥˇ",
+  "鼓":"ㄍㄨˇ","鼠":"ㄕㄨˇ","鼻":"ㄅㄧˊ","齊":"ㄑㄧˊ","齒":"ㄔˇ","龍":"ㄌㄨㄥˊ",
+  "龜":"ㄍㄨㄟ","龠":"ㄩㄝˋ",
+  "十":"ㄕˊ","八":"ㄅㄚ","冖":"ㄇㄧˋ","冂":"ㄐㄩㄥ","匚":"ㄈㄤ",
+  "刂":"ㄉㄠ","卜":"ㄅㄨˇ","卩":"ㄐㄧㄝˊ","厂":"ㄏㄢˇ","厶":"ㄙ",
+  "凵":"ㄎㄢˇ","勹":"ㄅㄠ","匸":"ㄒㄧˋ","亠":"ㄊㄡˊ","儿":"ㄖㄣˊ",
+  "入":"ㄖㄨˋ","几":"ㄐㄧˇ","卄":"ㄋㄧㄢˋ"
+}));
+
+function getRadicalZhuyin(rad){
+  if(!rad) return "";
+  const normalized = canonicalRad(rad);
+  return RADICAL_ZHUYIN.get(normalized) || "";
+}
   /* =========================
      ③ 全文檢索（點結果→進入該部件花瓣頁）
      ========================= */
@@ -3358,12 +3419,12 @@ characters:[
     const isMobile = W < 640 && !isNarrow;
 
     let centerWH, centerText, size, centerRadius, dotRadius, petalRadius;
-    const dotSizeNarrow = 32;
-    const dotSizeDesktop = 36;
+const dotSizeNarrow = 28;  // 原本 32
+const dotSizeDesktop = 32; // 原本 36
 
-    if(isNarrow){
-      centerWH = 'w-24 h-24'; centerText = 'text-4xl';
-      centerRadius = 48;
+if(isNarrow){
+  centerWH = 'w-20 h-20'; centerText = 'text-3xl';  // 原本是 w-24 h-24, text-4xl
+  centerRadius = 40;  // 原本是 48
       dotRadius = dotSizeNarrow / 2;
 
       if(petalCount <= 8){
@@ -3377,9 +3438,9 @@ characters:[
         petalRadius = 32;
       }
 
-    } else if(isMobile){
-      centerWH = 'w-24 h-24'; centerText = 'text-4xl';
-      centerRadius = 48;
+} else if(isMobile){
+  centerWH = 'w-20 h-20'; centerText = 'text-3xl';  // 原本是 w-24 h-24, text-4xl
+  centerRadius = 40;  // 原本是 48
       dotRadius = dotSizeNarrow / 2;
 
       if(petalCount <= 8){
@@ -3393,9 +3454,9 @@ characters:[
         petalRadius = 32;
       }
 
-    } else {
-      centerWH = 'w-28 h-28'; centerText = 'text-5xl';
-      centerRadius = 56;
+} else {
+  centerWH = 'w-24 h-24'; centerText = 'text-4xl';  // 原本是 w-28 h-28, text-5xl
+  centerRadius = 48;  // 原本是 56
       dotRadius = dotSizeDesktop / 2;
 
       if(petalCount <= 8){
@@ -3411,8 +3472,8 @@ characters:[
     }
 
     const centerBorderWidth = 4;
-    const R2 = centerRadius + centerBorderWidth + dotRadius;
-    const R  = R2 + dotRadius + petalRadius;
+const R2 = centerRadius + centerBorderWidth + dotRadius + 9; // 增加到20px間距// 改成10px    
+const R  = R2 + dotRadius + petalRadius + 9;  // 多加12px
 
     const totalDiameter = (R + petalRadius) * 2;
     const minH = totalDiameter + 40;
@@ -3437,9 +3498,9 @@ characters:[
     }
 
     return base.split('').map((ch, i) => {
-      if(i === base.length - 1 && tone){
-        return `<span class="relative ${charClass}">${ch}<span class="absolute -top-1 -right-3 ${sizeClass}">${tone}</span></span>`;
-      }
+     if(i === base.length - 1 && tone){
+  return `<span class="relative ${charClass}">${ch}<span class="absolute -top-0 -right-1.5 ${sizeClass}">${tone}</span></span>`;
+}
       return `<span class="${charClass}">${ch}</span>`;
     }).join('');
   }
@@ -3460,6 +3521,9 @@ characters:[
 
     const zy = document.createElement('div');
     zy.className = 'zhuyin-col text-gray-600';
+
+zy.style.gap = '0';
+zy.style.lineHeight = '0.85';
     zy.innerHTML = createZhuyinHTML(charObj.zhuyin || '', size.tone, size.zhuyin);
 
     wrap.appendChild(big);
@@ -3470,23 +3534,37 @@ characters:[
     return { link, container: wrap };
   }
 
-  function createRadicalDot(label, isNarrow, isMobile){
-    const txt = canonicalRad(label);
-    const el = document.createElement('div');
+function createRadicalDot(label, isNarrow, isMobile){
+  const txt = canonicalRad(label);
+  const zhuyinTxt = getRadicalZhuyin(label);
+  const el = document.createElement('div');
+const cls = isNarrow
+  ? 'w-10 h-10'
+  : (isMobile ? 'w-10 h-10' : 'w-11 h-11');
 
-    const cls = isNarrow
-      ? 'w-8 h-8 text-sm'
-      : (isMobile ? 'w-8 h-8 text-sm' : 'w-9 h-9 text-base');
+  el.className =
+    `radical-dot absolute bg-emerald-100 border border-emerald-300 rounded-full ${cls} flex items-center justify-center text-emerald-700 shadow font-normal`;
 
-    el.className =
-      `radical-dot absolute bg-emerald-100 border border-emerald-300 rounded-full ${cls} flex items-center justify-center text-emerald-700 shadow font-normal`;
+  // 部首字
+  const radChar = document.createElement('span');
+radChar.className = 'text-sm font-normal';  radChar.textContent = txt || '';
+  el.appendChild(radChar);
+  
+  // 注音 - 在右側垂直排列
+// 注音 - 在右側垂直排列
+if(zhuyinTxt){
+  const zy = document.createElement('div');
+  zy.className = 'zhuyin-col text-emerald-700';
+  zy.style.gap = '1px';           // 加入正值間距
+  zy.style.lineHeight = '1';       // 正常行高
+  zy.innerHTML = createZhuyinHTML(zhuyinTxt, 'text-[7px]', 'text-[9px]');    
+  el.appendChild(zy);
+}
 
-    el.textContent = txt || '';
-    el.style.pointerEvents = 'none';
+  el.style.pointerEvents = 'none';
 
-    return el;
-  }
-
+  return el;
+}
   function renderPetalView(item){
     if(!petalContainer) return;
 
@@ -3508,28 +3586,42 @@ characters:[
 
     const centerDiv = document.createElement('div');
     centerDiv.className =
-      `center-char-container absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-yellow-200 border-4 border-yellow-300 rounded-full ${L.centerWH} flex items-center justify-center z-20 transition-transform hover:scale-110 shadow-lg`;
-
+  `center-char-container absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-yellow-200 border-4 border-yellow-300 rounded-full ${L.centerWH} flex items-center justify-center z-20 shadow-lg`;
     const centerChar = document.createElement('span');
-    centerChar.className = `${L.centerText} font-bold`;
+    centerChar.className = `${L.centerText} font-semibold`;
     centerChar.textContent = compChar;
 
     const centerZh = document.createElement('div');
     centerZh.className = "zhuyin-col text-gray-700 font-medium";
-    centerZh.innerHTML = createZhuyinHTML(compZy, 'text-sm', 'text-sm');
 
-    centerDiv.appendChild(centerChar);
+centerZh.style.gap = '0';
+centerZh.style.lineHeight = '0.85';
+centerZh.innerHTML = createZhuyinHTML(compZy, 'text-[10px]', 'text-xs');    centerDiv.appendChild(centerChar);
     centerDiv.appendChild(centerZh);
 
-    // 中心部首膠囊
-    if(compRad){
-      const pill = document.createElement('div');
-      pill.className =
-        'absolute -bottom-1 left-1/2 -translate-x-1/2 bg-emerald-100 text-emerald-800 border border-emerald-300 rounded-full px-2 py-[2px] text-sm';
-      pill.textContent = canonicalRad(compRad);
-      centerDiv.appendChild(pill);
-    }
-
+// 中心部首膠囊 - 加上垂直注音
+if(compRad){
+  const pill = document.createElement('div');
+  pill.className =
+    'absolute -bottom-2.5 left-1/2 -translate-x-1/2 bg-emerald-100 text-emerald-800 border border-emerald-300 rounded-full px-2 py-[2px] text-xs flex items-center justify-center gap-[2px]';
+  
+  const radText = document.createElement('span');
+  radText.textContent = canonicalRad(compRad);
+  radText.className = 'font-normal text-sm';
+  pill.appendChild(radText);
+  
+const radZhuyin = getRadicalZhuyin(compRad);
+if(radZhuyin){
+  const radZy = document.createElement('div');
+  radZy.className = 'zhuyin-col text-emerald-800';
+  radZy.style.gap = '1px';           // 加入間距
+  radZy.style.lineHeight = '1';      // 正常行高
+  radZy.innerHTML = createZhuyinHTML(radZhuyin, 'text-[7px]', 'text-[9px]');
+  pill.appendChild(radZy);
+}
+  
+  centerDiv.appendChild(pill);
+}
     centerLink.appendChild(centerDiv);
     petalContainer.appendChild(centerLink);
 
