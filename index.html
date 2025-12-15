@@ -13,7 +13,36 @@
     .page-hidden{display:none}
     #petal-container{transition:min-height .3s ease}
     .petal-char-container,.center-char-container{transform:translateZ(0)}
-.zhuyin-col{display:flex;flex-direction:column;justify-content:center;align-items:center;line-height:0.3;margin-left:2px}.zhuyin-col > span{margin-top:-2px}  
+/* 共用的注音容器設定 */
+/* =========================================
+   ⚡ 最終完美版：分開控制 大字 vs 小字 vs 膠囊
+   ========================================= */
+
+/* 1. 容器基本設定 */
+.zhuyin-col {
+  line-height: 1 !important;
+  gap: 0 !important;
+}
+
+/* 2. 【外圈部首】的小字設定 */
+.zhuyin-col > span {
+  display: block !important;
+  margin-top: -0.1em !important; /* 👈 一般小字縮一點點就好 */
+}
+
+/* 3. 關鍵修正！針對【花瓣 & 中心大字】 */
+/* 🔴 請注意：這裡加了 ">" 符號，表示「只抓第一層」，才不會誤傷到裡面的膠囊 */
+.petal-char-container > .zhuyin-col > span,
+.center-char-container > .zhuyin-col > span {
+  margin-top: -0.5em !important; /* 👈 大字縮排 (控制這裡) */
+}
+
+/* 4. 【中心部首膠囊】的專屬設定 */
+/* 這裡就是您問的「部件的部首」控制位置 */
+.center-char-container .absolute .zhuyin-col > span {
+  /* 👇 覺得太擠就改 0，覺得不夠緊就改 -0.1em */
+  margin-top: 0em !important;  
+}
 /* 部首圈小點 */
 .radical-dot{
   position:absolute; display:flex; align-items:center; justify-content:center;
@@ -3413,23 +3442,31 @@ function getRadicalZhuyin(rad){
   /* =========================
      ⑤ 螢幕佈局（半徑、尺寸）
      ========================= */
-  function computeLayout(petalCount){
+function computeLayout(petalCount){
     const W = window.innerWidth;
     const isNarrow = W < 390;
     const isMobile = W < 640 && !isNarrow;
 
     let centerWH, centerText, size, centerRadius, dotRadius, petalRadius;
-const dotSizeNarrow = 28;  // 原本 32
-const dotSizeDesktop = 32; // 原本 36
+    const dotSizeNarrow = 28;
+    const dotSizeDesktop = 32;
 
-if(isNarrow){
-  centerWH = 'w-20 h-20'; centerText = 'text-3xl';  // 原本是 w-24 h-24, text-4xl
-  centerRadius = 40;  // 原本是 48
+    if(isNarrow || isMobile){
+      // 📱 手機版設定
+      centerWH = 'w-20 h-20'; 
+      centerText = 'text-3xl';
+      centerRadius = 40;  
       dotRadius = dotSizeNarrow / 2;
 
       if(petalCount <= 8){
-        size = {container:'w-20 h-20', char:'text-4xl', zhuyin:'text-sm', tone:'text-sm'};
-        petalRadius = 40;
+        // 手機版花瓣 (小尺寸)
+        size = {
+            container:'w-[70px] h-[70px]', 
+            char:'text-3xl', 
+            zhuyin:'text-sm', 
+            tone:'text-sm'
+        };
+        petalRadius = 35; // ⭐ 這裡我也稍微改小一點 (原本40)，讓半徑計算更緊湊
       } else if(petalCount <= 12){
         size = {container:'w-[72px] h-[72px]', char:'text-3xl', zhuyin:'text-xs', tone:'text-xs'};
         petalRadius = 36;
@@ -3438,30 +3475,21 @@ if(isNarrow){
         petalRadius = 32;
       }
 
-} else if(isMobile){
-  centerWH = 'w-20 h-20'; centerText = 'text-3xl';  // 原本是 w-24 h-24, text-4xl
-  centerRadius = 40;  // 原本是 48
-      dotRadius = dotSizeNarrow / 2;
-
-      if(petalCount <= 8){
-        size = {container:'w-20 h-20', char:'text-4xl', zhuyin:'text-sm', tone:'text-sm'};
-        petalRadius = 40;
-      } else if(petalCount <= 12){
-        size = {container:'w-[76px] h-[76px]', char:'text-4xl', zhuyin:'text-sm', tone:'text-sm'};
-        petalRadius = 38;
-      } else {
-        size = {container:'w-16 h-16', char:'text-3xl', zhuyin:'text-xs', tone:'text-xs'};
-        petalRadius = 32;
-      }
-
-} else {
-  centerWH = 'w-24 h-24'; centerText = 'text-4xl';  // 原本是 w-28 h-28, text-5xl
-  centerRadius = 48;  // 原本是 56
+    } else {
+      // 💻 電腦版設定
+      centerWH = 'w-24 h-24'; centerText = 'text-4xl';  
+      centerRadius = 48;  
       dotRadius = dotSizeDesktop / 2;
 
       if(petalCount <= 8){
-        size = {container:'w-24 h-24', char:'text-4xl', zhuyin:'text-sm', tone:'text-sm'};
-        petalRadius = 48;
+        // 電腦版花瓣 (小尺寸)
+        size = {
+            container:'w-20 h-20', 
+            char:'text-4xl', 
+            zhuyin:'text-sm', 
+            tone:'text-sm'
+        };
+        petalRadius = 40; // ⭐ 這裡稍微改小 (原本48)
       } else if(petalCount <= 12){
         size = {container:'w-20 h-20', char:'text-4xl', zhuyin:'text-sm', tone:'text-sm'};
         petalRadius = 40;
@@ -3472,8 +3500,11 @@ if(isNarrow){
     }
 
     const centerBorderWidth = 4;
-const R2 = centerRadius + centerBorderWidth + dotRadius + 9; // 增加到20px間距// 改成10px    
-const R  = R2 + dotRadius + petalRadius + 9;  // 多加12px
+    
+    // ⭐⭐ 關鍵修改在這裡：把原本最後面的 + 9 改成 + 2 ⭐⭐
+    // 這樣圓圈之間就會靠得更近
+    const R2 = centerRadius + centerBorderWidth + dotRadius + 7;    
+    const R  = R2 + dotRadius + petalRadius + 9;  
 
     const totalDiameter = (R + petalRadius) * 2;
     const minH = totalDiameter + 40;
@@ -3603,7 +3634,7 @@ centerZh.innerHTML = createZhuyinHTML(compZy, 'text-[10px]', 'text-xs');    cent
 if(compRad){
   const pill = document.createElement('div');
   pill.className =
-    'absolute -bottom-2.5 left-1/2 -translate-x-1/2 bg-emerald-100 text-emerald-800 border border-emerald-300 rounded-full px-2 py-[2px] text-xs flex items-center justify-center gap-[2px]';
+    'absolute -bottom-2.5 left-1/2 -translate-x-1/2 bg-emerald-100 text-emerald-800 border border-emerald-300 rounded-full px-2 py-[0.5px] text-xs flex items-center justify-center gap-[2px]';
   
   const radText = document.createElement('span');
   radText.textContent = canonicalRad(compRad);
