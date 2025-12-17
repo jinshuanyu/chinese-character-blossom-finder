@@ -3459,21 +3459,20 @@ function computeLayout(petalCount){
     const dotSizeDesktop = 32;
 
     if(isNarrow || isMobile){
-      // 📱 手機版設定
+      /* === 📱 手機版設定 (維持原樣) === */
       centerWH = 'w-20 h-20'; 
       centerText = 'text-3xl';
       centerRadius = 40;  
       dotRadius = dotSizeNarrow / 2;
 
       if(petalCount <= 8){
-        // 手機版花瓣 (小尺寸)
         size = {
             container:'w-[70px] h-[70px]', 
             char:'text-3xl', 
             zhuyin:'text-sm', 
             tone:'text-sm'
         };
-        petalRadius = 35; // ⭐ 這裡我也稍微改小一點 (原本40)，讓半徑計算更緊湊
+        petalRadius = 35; 
       } else if(petalCount <= 12){
         size = {container:'w-[72px] h-[72px]', char:'text-3xl', zhuyin:'text-xs', tone:'text-xs'};
         petalRadius = 36;
@@ -3483,20 +3482,20 @@ function computeLayout(petalCount){
       }
 
     } else {
-      // 💻 電腦版設定
+      /* === 💻 平板 & 電腦共用設定 (完全一致) === */
+      // 只要螢幕大於 640px，通通走這裡，不會再變巨無霸了
       centerWH = 'w-24 h-24'; centerText = 'text-4xl';  
       centerRadius = 48;  
       dotRadius = dotSizeDesktop / 2;
 
       if(petalCount <= 8){
-        // 電腦版花瓣 (小尺寸)
         size = {
-            container:'w-20 h-20', 
+            container:'w-20 h-20', // 標準電腦版尺寸 (80px)
             char:'text-4xl', 
             zhuyin:'text-sm', 
             tone:'text-sm'
         };
-        petalRadius = 40; // ⭐ 這裡稍微改小 (原本48)
+        petalRadius = 40; 
       } else if(petalCount <= 12){
         size = {container:'w-20 h-20', char:'text-4xl', zhuyin:'text-sm', tone:'text-sm'};
         petalRadius = 40;
@@ -3508,8 +3507,7 @@ function computeLayout(petalCount){
 
     const centerBorderWidth = 4;
     
-    // ⭐⭐ 關鍵修改在這裡：把原本最後面的 + 9 改成 + 2 ⭐⭐
-    // 這樣圓圈之間就會靠得更近
+    // 間距設定 (依照您提供的程式碼：內圈+8 / 外圈+9)
     const R2 = centerRadius + centerBorderWidth + dotRadius + 8;    
     const R  = R2 + dotRadius + petalRadius + 9;  
 
@@ -3517,9 +3515,7 @@ function computeLayout(petalCount){
     const minH = totalDiameter + 40;
 
     return { isNarrow, isMobile, centerWH, centerText, R, size, R2, minH };
-  }
-
-  /* =========================
+  }  /* =========================
      ⑥ 花瓣 / 部首圈
      ========================= */
   function createZhuyinHTML(zhuyinString, sizeClass, charClass){
