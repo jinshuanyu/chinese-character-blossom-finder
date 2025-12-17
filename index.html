@@ -3454,23 +3454,21 @@ function computeLayout(petalCount){
     const isNarrow = W < 390;
     const isMobile = W < 640 && !isNarrow;
 
-    let centerWH, centerText, size, centerRadius, dotRadius, petalRadius;
+    let centerWH, centerText, size, centerRadius, dotRadius, petalRadius, gap;
     const dotSizeNarrow = 28;
-    const dotSizeDesktop = 32;
 
     if(isNarrow || isMobile){
-      /* === 📱 手機版設定 (維持原樣) === */
+      /* === 📱 手機版 (維持不變) === */
       centerWH = 'w-20 h-20'; 
       centerText = 'text-3xl';
       centerRadius = 40;  
       dotRadius = dotSizeNarrow / 2;
+      gap = 5;
 
       if(petalCount <= 8){
         size = {
             container:'w-[70px] h-[70px]', 
-            char:'text-3xl', 
-            zhuyin:'text-sm', 
-            tone:'text-sm'
+            char:'text-3xl', zhuyin:'text-sm', tone:'text-sm'
         };
         petalRadius = 35; 
       } else if(petalCount <= 12){
@@ -3482,40 +3480,50 @@ function computeLayout(petalCount){
       }
 
     } else {
-      /* === 💻 平板 & 電腦共用設定 (完全一致) === */
-      // 只要螢幕大於 640px，通通走這裡，不會再變巨無霸了
-      centerWH = 'w-24 h-24'; centerText = 'text-4xl';  
-      centerRadius = 48;  
-      dotRadius = dotSizeDesktop / 2;
+      /* === 💻 平板 & 電腦版 (1.3倍大 + 緊湊版) === */
+      centerWH = 'w-32 h-32'; 
+      centerText = 'text-5xl';
+      centerRadius = 64; 
+      
+      // 👇 修改重點：
+      // 1. 半徑 26.5 (直徑 53px) -> 比 50 大，比 56 小，剛剛好！
+      // 2. 間距 2 -> 超級緊湊，消除空隙！
+      dotRadius = 26.5; 
+      gap = 2;
 
       if(petalCount <= 8){
         size = {
-            container:'w-20 h-20', // 標準電腦版尺寸 (80px)
-            char:'text-4xl', 
-            zhuyin:'text-sm', 
-            tone:'text-sm'
+            container:'w-[104px] h-[104px]', 
+            char:'text-5xl', zhuyin:'text-xl', tone:'text-xl'
         };
-        petalRadius = 40; 
+        petalRadius = 52;
       } else if(petalCount <= 12){
-        size = {container:'w-20 h-20', char:'text-4xl', zhuyin:'text-sm', tone:'text-sm'};
-        petalRadius = 40;
+        size = {
+            container:'w-[100px] h-[100px]', 
+            char:'text-5xl', zhuyin:'text-lg', tone:'text-lg'
+        };
+        petalRadius = 52;
       } else {
-        size = {container:'w-16 h-16', char:'text-2xl', zhuyin:'text-xs', tone:'text-xs'};
-        petalRadius = 32;
+        size = {
+            container:'w-[84px] h-[84px]', 
+            char:'text-3xl', zhuyin:'text-sm', tone:'text-sm'
+        };
+        petalRadius = 42;
       }
     }
 
     const centerBorderWidth = 4;
     
-    // 間距設定 (依照您提供的程式碼：內圈+8 / 外圈+9)
-    const R2 = centerRadius + centerBorderWidth + dotRadius + 8;    
-    const R  = R2 + dotRadius + petalRadius + 9;  
+    // 計算位置
+    const R2 = centerRadius + centerBorderWidth + dotRadius + gap;    
+    const R  = R2 + dotRadius + petalRadius + gap;  
 
     const totalDiameter = (R + petalRadius) * 2;
-    const minH = totalDiameter + 40;
+    const minH = totalDiameter + 60;
 
     return { isNarrow, isMobile, centerWH, centerText, R, size, R2, minH };
-  }  /* =========================
+  }
+ /* =========================
      ⑥ 花瓣 / 部首圈
      ========================= */
   function createZhuyinHTML(zhuyinString, sizeClass, charClass){
@@ -3571,35 +3579,44 @@ zy.style.lineHeight = '0.85';
 function createRadicalDot(label, isNarrow, isMobile){
   const txt = canonicalRad(label);
   const zhuyinTxt = getRadicalZhuyin(label);
+  
   const el = document.createElement('div');
-const cls = isNarrow
-  ? 'w-10 h-10'
-  : (isMobile ? 'w-10 h-10' : 'w-11 h-11');
+  
+  // 👇 修改這裡：設定為 w-[53px] (黃金比例)，字體用 text-lg 保持清爽
+  const cls = isNarrow
+    ? 'w-10 h-10'
+    : (isMobile ? 'w-10 h-10' : 'w-[53px] h-[53px] text-lg');
 
   el.className =
     `radical-dot absolute bg-emerald-100 border border-emerald-300 rounded-full ${cls} flex items-center justify-center text-emerald-700 shadow font-normal`;
 
   // 部首字
   const radChar = document.createElement('span');
-radChar.className = 'text-sm font-normal';  radChar.textContent = txt || '';
+  radChar.className = (isNarrow || isMobile) ? 'text-sm font-normal' : 'text-lg font-normal';
+  radChar.textContent = txt || '';
   el.appendChild(radChar);
   
-  // 注音 - 在右側垂直排列
-// 注音 - 在右側垂直排列
-if(zhuyinTxt){
-  const zy = document.createElement('div');
-  zy.className = 'zhuyin-col text-emerald-700';
-  zy.style.gap = '1px';           // 加入正值間距
-  zy.style.lineHeight = '1';       // 正常行高
-  zy.innerHTML = createZhuyinHTML(zhuyinTxt, 'text-[7px]', 'text-[9px]');    
-  el.appendChild(zy);
-}
+  // 注音
+  if(zhuyinTxt){
+    const zy = document.createElement('div');
+    zy.className = 'zhuyin-col text-emerald-700';
+    zy.style.gap = '1px';
+    zy.style.lineHeight = '1';
+    
+    // 電腦版注音
+    const sizeZ = (isNarrow || isMobile) ? 'text-[7px]' : 'text-[9px]';
+    const sizeT = (isNarrow || isMobile) ? 'text-[9px]' : 'text-[11px]';
+    
+    zy.innerHTML = createZhuyinHTML(zhuyinTxt, sizeZ, sizeT);    
+    el.appendChild(zy);
+  }
 
   el.style.pointerEvents = 'none';
 
   return el;
 }
-  function renderPetalView(item){
+
+function renderPetalView(item){
     if(!petalContainer) return;
 
     petalContainer.innerHTML = '';
@@ -3607,6 +3624,9 @@ if(zhuyinTxt){
     const characters = item?.characters || [];
     const n = characters.length;
     const L = computeLayout(n);
+
+    // 👇 1. 定義 isLarge (判斷是否為平板/電腦)
+    const isLarge = !(L.isNarrow || L.isMobile);
 
     // 中心
     const compChar = item?.component?.char || "";
@@ -3625,37 +3645,61 @@ if(zhuyinTxt){
     centerChar.className = `${L.centerText} font-semibold`;
     centerChar.textContent = compChar;
 
+    // 👇 2. 中心注音設定 (這裡改大了！)
     const centerZh = document.createElement('div');
     centerZh.className = "zhuyin-col text-gray-700 font-medium";
+    centerZh.style.gap = '0';
+    centerZh.style.lineHeight = '0.85';
 
-centerZh.style.gap = '0';
-centerZh.style.lineHeight = '0.85';
-centerZh.innerHTML = createZhuyinHTML(compZy, 'text-[10px]', 'text-xs');    centerDiv.appendChild(centerChar);
+ // 依螢幕決定大小：
+    // 平板/電腦：注音改成 text-xl (20px)，聲調改成 text-base (16px)
+    // 手機：維持原樣
+    
+    // 👇 修改這兩行：
+    const cZySize = isLarge ? 'text-xl' : 'text-base';
+    const cToneSize = isLarge ? 'text-base' : 'text-xs';
+
+
+    centerZh.innerHTML = createZhuyinHTML(compZy, cToneSize, cZySize);    
+    
+    centerDiv.appendChild(centerChar);
     centerDiv.appendChild(centerZh);
 
-// 中心部首膠囊 - 加上垂直注音
-if(compRad){
-  const pill = document.createElement('div');
-  pill.className =
-    'absolute -bottom-2.5 left-1/2 -translate-x-1/2 bg-emerald-100 text-emerald-800 border border-emerald-300 rounded-full px-2 py-[0.5px] text-xs flex items-center justify-center gap-[2px]';
-  
-  const radText = document.createElement('span');
-  radText.textContent = canonicalRad(compRad);
-  radText.className = 'font-normal text-sm';
-  pill.appendChild(radText);
-  
-const radZhuyin = getRadicalZhuyin(compRad);
-if(radZhuyin){
-  const radZy = document.createElement('div');
-  radZy.className = 'zhuyin-col text-emerald-800';
-  radZy.style.gap = '1px';           // 加入間距
-  radZy.style.lineHeight = '1';      // 正常行高
-  radZy.innerHTML = createZhuyinHTML(radZhuyin, 'text-[7px]', 'text-[9px]');
-  pill.appendChild(radZy);
-}
-  
-  centerDiv.appendChild(pill);
-}
+    // 👇 3. 中心部首膠囊 (維持剛才調整好的設定)
+    if(compRad){
+      const pill = document.createElement('div');
+      
+      if(isLarge){
+         // 💻 平板/電腦：大膠囊
+         pill.className = 'absolute -bottom-2 left-1/2 -translate-x-1/2 bg-emerald-100 text-emerald-800 border border-emerald-300 rounded-full px-3 py-0.5 text-base flex items-center justify-center gap-1 shadow-sm';
+      } else {
+         // 📱 手機：小膠囊
+         pill.className = 'absolute -bottom-2.5 left-1/2 -translate-x-1/2 bg-emerald-100 text-emerald-800 border border-emerald-300 rounded-full px-2 py-[0.5px] text-xs flex items-center justify-center gap-[2px]';
+      }
+      
+      const radText = document.createElement('span');
+      radText.textContent = canonicalRad(compRad);
+      radText.className = isLarge ? 'font-normal text-lg' : 'font-normal text-sm';
+      pill.appendChild(radText);
+      
+      const radZhuyin = getRadicalZhuyin(compRad);
+      if(radZhuyin){
+        const radZy = document.createElement('div');
+        radZy.className = 'zhuyin-col text-emerald-800';
+        radZy.style.gap = '1px';
+        radZy.style.lineHeight = '1';
+        
+        // 膠囊注音大小
+        const zySz = isLarge ? 'text-[9px]' : 'text-[7px]';
+        const tnSz = isLarge ? 'text-[11px]' : 'text-[9px]';
+        
+        radZy.innerHTML = createZhuyinHTML(radZhuyin, zySz, tnSz);
+        pill.appendChild(radZy);
+      }
+      
+      centerDiv.appendChild(pill);
+    }
+    
     centerLink.appendChild(centerDiv);
     petalContainer.appendChild(centerLink);
 
@@ -3688,7 +3732,6 @@ if(radZhuyin){
       }
     });
   }
-
   // resize 重排
   window.addEventListener('resize', () => {
     if(resultsPage && !resultsPage.classList.contains('page-hidden') && currentItem){
