@@ -3452,7 +3452,8 @@ function getRadicalZhuyin(rad){
 function computeLayout(petalCount){
     const W = window.innerWidth;
     const isNarrow = W < 390;
-    const isMobile = W < 640 && !isNarrow;
+ // 👇 改成 500，這樣平板直式（通常是 700~800寬）就會被當成「電腦版」，顯示大花朵！
+const isMobile = W < 500 && !isNarrow;
 
     let centerWH, centerText, size, centerRadius, dotRadius, petalRadius, gap;
     const dotSizeNarrow = 28;
