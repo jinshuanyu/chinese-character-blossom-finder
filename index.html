@@ -3222,7 +3222,7 @@ const RADICAL_ZHUYIN = new Map(Object.entries({
   "羊":"ㄧㄤˊ","羽":"ㄩˇ","老":"ㄌㄠˇ","而":"ㄦˊ","耒":"ㄌㄟˇ","耳":"ㄦˇ",
   "聿":"ㄩˋ","肉":"ㄖㄡˋ","臣":"ㄔㄣˊ","自":"ㄗˋ","至":"ㄓˋ","臼":"ㄐㄧㄡˋ",
   "舌":"ㄕㄜˊ","舛":"ㄔㄨㄢˇ","舟":"ㄓㄡ","艮":"ㄍㄣˋ","色":"ㄙㄜˋ","艸":"ㄘㄠˇ",
-  "虍":"ㄏㄨ","虫":"ㄏㄨㄟˇ","血":"ㄒㄧㄝˇ","行":"ㄒㄧㄥˊ","衣":"ㄧ","襾":"ㄧㄚˋ",
+  "虍":"ㄏㄨ","虫":"ㄔㄨㄥˊ","血":"ㄒㄧㄝˇ","行":"ㄒㄧㄥˊ","衣":"ㄧ","襾":"ㄧㄚˋ",
   "見":"ㄐㄧㄢˋ","角":"ㄐㄧㄠˇ","言":"ㄧㄢˊ","谷":"ㄍㄨˇ","豆":"ㄉㄡˋ","豕":"ㄕˇ",
   "豸":"ㄓˋ","貝":"ㄅㄟˋ","赤":"ㄔˋ","走":"ㄗㄡˇ","足":"ㄗㄨˊ","身":"ㄕㄣ",
   "車":"ㄔㄜ","辛":"ㄒㄧㄣ","辰":"ㄔㄣˊ","辵":"ㄔㄨㄛˋ","邑":"ㄧˋ","酉":"ㄧㄡˇ",
@@ -3464,7 +3464,7 @@ const isMobile = W < 500 && !isNarrow;
       centerText = 'text-3xl';
       centerRadius = 40;  
       dotRadius = dotSizeNarrow / 2;
-      gap = 5;
+      gap = 8;
 
       if(petalCount <= 8){
         size = {
@@ -3657,8 +3657,8 @@ function renderPetalView(item){
     // 手機：維持原樣
     
     // 👇 修改這兩行：
-    const cZySize = isLarge ? 'text-xl' : 'text-base';
-    const cToneSize = isLarge ? 'text-base' : 'text-xs';
+    const cZySize = isLarge ? 'text-xl' : 'text-sm';
+    const cToneSize = isLarge ? 'text-base' : 'text-[10px]';
 
 
     centerZh.innerHTML = createZhuyinHTML(compZy, cToneSize, cZySize);    
